@@ -30,3 +30,21 @@
 .svn/wc.db
 
 qushop.log
+
+*.class
+
+WebRoot/WEB-INF/classes/context/applicationContext.xml
+
+WebRoot/WEB-INF/classes/context/qushopspring-servlet.xml
+
+WebRoot/WEB-INF/classes/ehcache.xml
+
+WebRoot/WEB-INF/classes/jdbc.properties
+
+WebRoot/WEB-INF/classes/log4j.properties
+
+WebRoot/WEB-INF/classes/mycustom.properties
+
+.classpath
+
+.classpath
