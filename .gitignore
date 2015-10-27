@@ -50,3 +50,13 @@ WebRoot/WEB-INF/classes/log4j.properties
 WebRoot/WEB-INF/classes/mycustom.properties
 
 .classpath
+
+.settings/com.genuitec.eclipse.core.prefs
+
+.settings/com.genuitec.eclipse.j2eedt.core.prefs
+
+.settings/com.genuitec.jboss.ide.eclipse.xdoclet.run.prefs
+
+.settings/org.eclipse.core.resources.prefs
+
+.settings/org.eclipse.jdt.core.prefs
