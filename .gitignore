@@ -13,7 +13,8 @@
 
 .myumldata
 
-*.prefs
+.svn
+
 .svn/format
 
 .svn/smartsvn.properties
@@ -35,7 +36,5 @@ WebRoot/WEB-INF/classes/jdbc.properties
 WebRoot/WEB-INF/classes/log4j.properties
 
 WebRoot/WEB-INF/classes/mycustom.properties
-
-.classpath
 
 .classpath
