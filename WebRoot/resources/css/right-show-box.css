@@ -1,0 +1,110 @@
+/*右侧商品展示区*/
+.rsb{
+    width:815px;
+    float:right;
+    display:inline-block;
+}
+
+.rsb_title{
+    height:30px;
+    width:200px;
+    line-height:30px;
+    background:#fff;
+    border-radius:5px 5px 0 0;
+    box-shadow:10px 0 5px rgba(0,0,0,0.3);
+}
+
+.rsb_title span{
+    font-size:16px;
+    font-weight:bold;
+}
+
+.rsb .product_box{
+    width:100%;
+    border-radius:0 3px 3px 3px;
+    background:#fff;
+    box-shadow:4px 4px 5px rgba(0, 0, 0, 0.3);
+}
+
+.rsb .page_infor{
+    width:97%;
+    border-bottom:1px solid #ccc;
+    margin:0 auto;
+    overflow:hidden;
+}
+
+.rsb .page_infor div{
+    display:inline-block;
+    padding:15px 10px;
+}
+
+.rsb .page_infor .sort_by{
+    float:left;
+}
+
+.rsb .page_infor .page{
+    float:right;
+}
+
+.rsb .pageinfor .sort_by select{
+    border-radius:5px;
+    width:50px;
+    height:20px;
+}
+
+.rsb .product_box .product_list_box{
+    width:90%;
+    margin:0 auto;
+}
+
+.rsb .product_box .product_list{
+    width:100%;
+    overflow:hidden;
+}
+
+.rsb .product_box .product_list li{
+    width:25%;
+    margin-top:15px;
+    height:330px;
+    padding:10px;
+    display:inline-block;
+    float:left;
+    overflow:hidden;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    border-bottom:1px solid #ccc;
+}
+
+.right_liner_border{
+    background:url(../images/rsb_line.png) no-repeat right bottom;
+}
+
+.rsb .product_list li .r_pro{
+    display:block;
+    color:#000;
+}
+
+
+.rsb .product_list .bubble{
+    width:70%;
+    height:25px;
+    overflow:hidden;
+    background:#244161;
+    border-radius:5px;
+    line-height:25px;
+    color:#fff;
+    font-weight:bold;
+    margin:0 auto;
+}
+
+.rsb .product_list .triangle{
+    width:0;
+    height:0;
+    line-height:0;
+    border-top:10px solid #244161;
+    border-left:10px solid transparent;
+    border-right:10px solid transparent;
+    margin:0 auto 15px auto;
+}
+
+

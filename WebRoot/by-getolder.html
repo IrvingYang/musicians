@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>热卖商品</title>
+
+        <link rel="stylesheet" href="css/public.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link href="css/city.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="css/presonal.css" />
+
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/area.js"></script>
+        <script src="js/easySlider1.7.js"></script>
+        <script src="js/js.js"></script>
+    </head>
+    <body>
+        <!-- header -->
+        <div class="header">
+            <!-- 导航 -->
+            <div class="nav">
+                <!-- 第一部分导航 -->
+                <div class="header_topList">
+                    <div class="content_maxwidth">
+                        <ul class="fst_nav">
+                            <!-- logo -->
+                            <li class="logo">
+                                <a href="javascript:;">
+                                    <img src="images/logo.jpg">
+                                </a>
+                            </li>
+                            <!-- 链接 -->
+                            <li class="topLink">
+                                <a class="active" href="javascript:;">商城</a>
+                                <a href="javascript:;">论坛</a>
+                                <a href="javascript:;">教育</a>
+                            </li>
+                            <!-- 搜索 -->
+                            <li  class="search">
+                                <div class="search_box">
+                                    <div>
+                                        <input class="search_text" type="text" placeholder="搜索" />
+                                    </div>
+                                    <div>
+                                        <input class="search_btn" type="submit" value="" />
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- 登录 -->
+                            <li class="login">
+                                <div id="login">
+                                    <a href="javascript:;" class="lg_txt1">登录</a>
+                                    <div class="login_sednav">
+                                        <ul>
+                                            <li><a href="javascript:;">ousr</a></li>
+                                            <li><a href="javascript:;">sdfosd</a></li>
+                                            <li><a href="javascript:;">sdfwe</a></li>
+                                            <li><a class="sign_btn" href="javascript:;">Sign In</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- 购物车 -->
+                            <li id="cart" class="cart_li">
+                                <a href="javascript:;" class="cart"> 
+                                    <div class="cart_icon">
+                                        <span class="cart_count">2</span>           
+                                    </div>
+                                    <div class="cart_txt">
+                                        <p>
+                                            购物车
+                                        </p>
+                                    </div>
+                                </a>
+                                <div class="cart_sednav">
+                                    <ul>
+                                        <li>
+                                            <div class="cart_pro">
+                                                <span class="cart_proImg">
+                                                    <img src="images/pro01.jpg">
+                                                </span>
+                                                <span class="cart_proOther">
+                                                    <p class="proOther1">
+                                                    这里包含着商品的信息，比如说商品名字，和其他信息，没有长度限制。 
+                                                    <p>
+                                                    <p class="proOther2">
+                                                        <span>数量：</span>1
+                                                    </p>
+                                                    <p class="proOther3">
+                                                        <span>单价：</span>￥333
+                                                    </p>
+                                                </span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="cart_pro">
+                                                <span class="cart_proImg">
+                                                    <img src="images/pro01.jpg">
+                                                </span>
+                                                <span class="cart_proOther">
+                                                    <p class="proOther1">
+                                                    这里包含着商品的信息，比如说商品名字，和其他信息，没有长度限制。 
+                                                    <p>
+                                                    <p class="proOther2">
+                                                        <span>数量：</span>1
+                                                    </p>
+                                                    <p class="proOther3">
+                                                        <span>单价：</span>￥333
+                                                    </p>
+                                                </span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="cart_pro">
+                                                <span class="cart_proImg">
+                                                    <img src="images/pro01.jpg">
+                                                </span>
+                                                <span class="cart_proOther">
+                                                    <p class="proOther1">
+                                                    这里包含着商品的信息，比如说商品名字，和其他信息，没有长度限制。 
+                                                    <p>
+                                                    <p class="proOther2">
+                                                        <span>数量：</span>1
+                                                    </p>
+                                                    <p class="proOther3">
+                                                        <span>单价：</span>￥333
+                                                    </p>
+                                                </span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="cart_pro">
+                                                <span class="cart_proImg">
+                                                    <img src="images/pro01.jpg">
+                                                </span>
+                                                <span class="cart_proOther">
+                                                    <p class="proOther1">
+                                                    这里包含着商品的信息，比如说商品名字，和其他信息，没有长度限制。 
+                                                    <p>
+                                                    <p class="proOther2">
+                                                        <span>数量：</span>1
+                                                    </p>
+                                                    <p class="proOther3">
+                                                        <span>单价：</span>￥333
+                                                    </p>
+                                                </span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="cart_pro">
+                                                <span class="cart_proImg">
+                                                    <img src="images/pro01.jpg">
+                                                </span>
+                                                <span class="cart_proOther">
+                                                    <p class="proOther1">
+                                                    这里包含着商品的信息，比如说商品名字，和其他信息，没有长度限制。 
+                                                    <p>
+                                                    <p class="proOther2">
+                                                        <span>数量：</span>1
+                                                    </p>
+                                                    <p class="proOther3">
+                                                        <span>单价：</span>￥333
+                                                    </p>
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </ul> 
+                                    <div class="cart_settle">
+                                        <a href="cart.html">去结算</a>
+                                    </div>                                   
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clear"></div>
+
+                <!-- 第二部分导航 -->
+                <div class="header_bottomList">
+                    <div class="content_maxwidth">
+                        <ul id="drop_item" class="sed_navfst">
+                            <li class="drop_item">
+                                <a href="javascript:;">所有商品</a>
+                                <ul class="sed_navItem">
+                                    <li>
+                                        <span>商品1</span>
+                                        <ul class="thr_navItem">
+                                            <div class="nav_leftBox">
+                                                <div class="navitem_box">
+                                                    <a href="javascript:;" class="item_title">电吉他</a>
+                                                    <ul>
+                                                        <li><a href="javascript:;">电吉他种类1</a></li>
+                                                        <li><a href="javascript:;">电吉他种类2</a></li>
+                                                        <li><a href="javascript:;">电吉他种类3</a></li>
+                                                        <li><a href="javascript:;">电吉他种类4</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="navitem_box">
+                                                    <a href="javascript:;" class="item_title">吉他</a>
+                                                    <ul>
+                                                        <li><a href="javascript:;">吉他种类1</a></li>
+                                                        <li><a href="javascript:;">吉他种类2</a></li>
+                                                        <li><a href="javascript:;">吉他种类3</a></li>
+                                                        <li><a href="javascript:;">吉他种类4</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="nav_rightBox">
+                                                <a href="javascript:;" class="item_title">推荐商品</a>
+                                                <div class="many_chose">
+                                                    <a href="javascript:;">山品</a>|
+                                                    <a href="javascript:;">吉他</a>|
+                                                    <a href="javascript:;">二胡</a>|
+                                                    <a href="javascript:;">手风琴</a>|
+                                                    <a href="javascript:;">钢琴</a>|
+                                                    <a href="javascript:;">小提琴</a>|
+                                                    <a href="javascript:;">大提琴</a>|
+                                                    <a href="javascript:;">手风琴</a>|
+                                                    <a href="javascript:;">古筝</a>|
+                                                    <a href="javascript:;">琵琶</a>|
+                                                    <a href="javascript:;">山品</a>|
+                                                    <a href="javascript:;">吉他</a>|
+                                                    <a href="javascript:;">二胡</a>|
+                                                    <a href="javascript:;">手风琴</a>|
+                                                    <a href="javascript:;">钢琴</a>|
+                                                    <a href="javascript:;">小提琴</a>|
+                                                    <a href="javascript:;">大提琴</a>|
+                                                    <a href="javascript:;">手风琴</a>|
+                                                    <a href="javascript:;">古筝</a>|
+                                                    <a href="javascript:;">琵琶</a>
+                                                </div>
+                                            </div>
+                                            <div class="navImg">
+                                                <a href="href:javascript:;"><img src="images/nav_img01.gif"></a>
+                                                <a href="href:javascript:;"><img src="images/nav_img01.gif"></a>
+                                                <a href="href:javascript:;"><img src="images/nav_img01.gif"></a>
+                                            </div>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span>商品导航2</span>
+                                        <ul class="thr_navItem">
+                                            <div class="nav_leftBox">
+                                                <div class="navitem_box">
+                                                    <a href="javascript:;" class="item_title">电吉他</a>
+                                                    <ul>
+                                                        <li><a href="javascript:;">电吉他种类1</a></li>
+                                                        <li><a href="javascript:;">电吉他种类2</a></li>
+                                                        <li><a href="javascript:;">电吉他种类3</a></li>
+                                                        <li><a href="javascript:;">电吉他种类4</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="nav_rightBox">
+                                                <a href="javascript:;" class="item_title">推荐商品</a>
+                                                <div class="many_chose">
+                                                    <a href="javascript:;">山品</a>|
+                                                    <a href="javascript:;">吉他</a>|
+                                                    <a href="javascript:;">二胡</a>|
+                                                    <a href="javascript:;">手风琴</a>|
+                                                    <a href="javascript:;">钢琴</a>|
+                                                    <a href="javascript:;">小提琴</a>|
+                                                    <a href="javascript:;">大提琴</a>|
+                                                    <a href="javascript:;">手风琴</a>|
+                                                    <a href="javascript:;">古筝</a>|
+                                                    <a href="javascript:;">琵琶</a>|
+                                                    <a href="javascript:;">山品</a>|
+                                                    <a href="javascript:;">吉他</a>|
+                                                    <a href="javascript:;">二胡</a>|
+                                                    <a href="javascript:;">手风琴</a>|
+                                                    <a href="javascript:;">钢琴</a>|
+                                                    <a href="javascript:;">小提琴</a>|
+                                                    <a href="javascript:;">大提琴</a>|
+                                                    <a href="javascript:;">手风琴</a>|
+                                                    <a href="javascript:;">古筝</a>|
+                                                    <a href="javascript:;">琵琶</a>
+                                                </div>
+                                            </div>
+                                            <div class="navImg">
+                                                <a href="href:javascript:;"><img src="images/nav_img01.gif"></a>
+                                                <a href="href:javascript:;"><img src="images/nav_img01.gif"></a>
+                                                <a href="href:javascript:;"><img src="images/nav_img01.gif"></a>
+                                            </div>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span>商品导航3</span>
+                                        <ul class="thr_navItem">
+                                            <div class="nav_leftBox">
+                                                <div class="navitem_box">
+                                                    <a href="javascript:;" class="item_title">电吉他</a>
+                                                    <ul>
+                                                        <li><a href="javascript:;">电吉他种类1</a></li>
+                                                        <li><a href="javascript:;">电吉他种类2</a></li>
+                                                        <li><a href="javascript:;">电吉他种类3</a></li>
+                                                        <li><a href="javascript:;">电吉他种类4</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="navitem_box">
+                                                    <a href="javascript:;" class="item_title">吉他</a>
+                                                    <ul>
+                                                        <li><a href="javascript:;">吉他种类1</a></li>
+                                                        <li><a href="javascript:;">吉他种类2</a></li>
+                                                        <li><a href="javascript:;">吉他种类3</a></li>
+                                                        <li><a href="javascript:;">吉他种类4</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="nav_rightBox">
+                                                <a href="javascript:;" class="item_title">推荐商品</a>
+                                                <div class="many_chose">
+                                                    <a href="javascript:;">山品</a>|
+                                                    <a href="javascript:;">吉他</a>|
+                                                    <a href="javascript:;">二胡</a>|
+                                                    <a href="javascript:;">手风琴</a>|
+                                                    <a href="javascript:;">钢琴</a>|
+                                                    <a href="javascript:;">小提琴</a>|
+                                                    <a href="javascript:;">大提琴</a>|
+                                                    <a href="javascript:;">手风琴</a>|
+                                                    <a href="javascript:;">古筝</a>|
+                                                    <a href="javascript:;">琵琶</a>|
+                                                    <a href="javascript:;">山品</a>|
+                                                    <a href="javascript:;">吉他</a>|
+                                                    <a href="javascript:;">二胡</a>|
+                                                    <a href="javascript:;">手风琴</a>|
+                                                    <a href="javascript:;">钢琴</a>|
+                                                    <a href="javascript:;">小提琴</a>|
+                                                    <a href="javascript:;">大提琴</a>|
+                                                    <a href="javascript:;">手风琴</a>|
+                                                    <a href="javascript:;">古筝</a>|
+                                                    <a href="javascript:;">琵琶</a>
+                                                </div>
+                                            </div>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="javascript:;">论坛</a></li>
+                            <li><a href="javascript:;">教育</a></li>
+                            <div class="clear"></div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- content -->
+        <div class="maxwidth content">
+            <div class="getolder_way">
+                <h3>进行折旧</h3>
+                <form>
+                    <div class="input_infor">
+                        <label for="">收货人姓名：</label>
+                        <input type="text" />
+                    </div>
+
+                    <div class="input_infor">
+                        <label>省份：</label> 
+                        <select id="s_province" class="city" name="s_province"></select>  
+                        <select id="s_city" class="city" name="s_city" ></select>  
+                        <select id="s_county" class="city" name="s_county"></select>
+                        <script type="text/javascript">_init_area();</script>
+                        <span class="address_error"></span>
+                    </div>
+
+                    <div class="input_infor">
+                        <label>详细地址：</label> 
+                        <input type="text" />
+                        <span class="address_error"></span>
+                    </div>
+
+                    <div class="input_infor">
+                        <label>手机号码：</label> 
+                        <input type="text" />
+                        <span class="address_error"></span>
+                    </div>
+
+                    <div class="input_infor">
+                        <label>电子邮箱：</label> 
+                        <input type="text" />
+                        <span class="address_error"></span>
+                    </div>
+
+                    <div class="input_infor">
+                        <label>邮编：</label> 
+                        <input type="text" />
+                        <span class="address_error"></span>
+                    </div>
+
+                    <input class="next_step" type="button" value="下一步">
+                </form>
+            </div>
+        </div>
+
+        <!-- footer -->
+        <div class="footer">
+            <div class="content_maxwidth">
+                <div class="footer_floor1">
+                    <div class="show_goods">
+                        <div id="slider">
+                            <span class="left_shadow"></span> 
+                            <ul>                                
+                                <li>
+                                    <h3>商品展示1</h3>
+                                    <a href="javascript:;">
+                                        <img src="images/img1.jpg" />
+                                        <br/>
+                                        <p>商品说明文商品说明文商品说明文商品说明文商品说
+                                        </p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <h3>商品展示1</h3>
+                                    <a href="javascript:;">
+                                        <img src="images/img2.jpg" />
+                                        <br/>
+                                        <p>商品说明文商品说明文商品说明文商品说明文商品说
+                                        </p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <h3>商品展示1</h3>
+                                    <a href="javascript:;">
+                                        <img src="images/img3.jpg" />
+                                        <br/>
+                                        <p>商品说明文商品说明文商品说明文商品说明文商品说
+                                        </p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <h3>商品展示1</h3>
+                                    <a href="javascript:;">
+                                        <img src="images/img4.jpg" />
+                                        <br/>
+                                        <p>商品说明文商品说明文商品说明文商品说明文商品说
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <span class="right_shadow"></span> 
+                        </div>
+                    </div>    
+                    <div class="service">
+                        <h3>服务</h3>
+                        <a href="javascript:;">服务项目1</a>
+                        <a href="javascript:;">服务项目2</a>
+                    </div>
+                    <div class="support">
+                        <h3>支持</h3>
+                        <a href="javascript:;">项目支持1</a>
+                        <a href="javascript:;">项目支持2</a>
+                        <a href="javascript:;">项目支持3</a>
+                        <a href="javascript:;">项目支持4</a>
+                        <a href="javascript:;">项目支持5</a>
+                    </div>
+                    <div class="about">
+                        <h3>关于我们</h3>
+                        <a href="javascript:;">关于我们1</a>
+                        <a href="javascript:;">关于我们2</a>
+                        <a href="javascript:;">关于我们3</a>
+                        <div class="contact">
+                            <div class="contact_words">
+                                <a href="javascript:;">联系我们</a>  
+                                <a href="javascript:;">FAQ</a>
+                                <p>+183444455</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer_floor2">
+                    <div class="share">
+                        <h3>分享到：</h3>
+                        <ul id="share_link">
+                            <li><a href="javascript:;"></a></li>
+                            <li><a href="javascript:;"></a></li>
+                            <li><a href="javascript:;"></a></li>
+                            <li><a href="javascript:;"></a></li>
+                            <li><a href="javascript:;"></a></li>
+                            <li><a href="javascript:;"></a></li>
+                            <li><a href="javascript:;"></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="floor2_right">
+                        <div class="floor2_rtitle top10">
+                            <h3>未知功能1</h3>
+                        </div>
+                        <ul class="top10">
+                            <li><a href="javascript:;">链接1</a></li>
+                            <li><a href="javascript:;">链接2</a></li>
+                            <li><a href="javascript:;">链接3</a></li>
+                            <li><a href="javascript:;">链接4</a></li>
+                            <li><a href="javascript:;">链接5</a></li>
+                            <li><a href="javascript:;">链接6</a></li>
+                            <li><a href="javascript:;">链接7</a></li>
+                            <li><a href="javascript:;">链接8</a></li>
+                            <li><a href="javascript:;">链接9</a></li>
+                            <li><a href="javascript:;">链接6</a></li>
+                            <li><a href="javascript:;">链接7</a></li>
+                            <li><a href="javascript:;">链接8</a></li>
+                            <li><a href="javascript:;">链接9</a></li>
+                        </ul> 
+
+                        <span></span>
+
+                        <div class="floor2_rtitle">
+                            <h3>未知功能1</h3>
+                        </div>
+                        <ul>
+                            <li><a href="javascript:;">链接1</a></li>
+                            <li><a href="javascript:;">链接2</a></li>
+                            <li><a href="javascript:;">链接3</a></li>
+                            <li><a href="javascript:;">链接4</a></li>
+                            <li><a href="javascript:;">链接5</a></li>
+                            <li><a href="javascript:;">链接6</a></li>
+                            <li><a href="javascript:;">链接7</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer_floor3">
+                    <div class="friends" id="friend">
+                        <ul>
+                            <li><a href="javascript:;"></a></li>
+                            <li><a href="javascript:;"></a></li>
+                            <li><a href="javascript:;"></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="floor3_right">
+                        <div class="floor3_rlink">
+                            <a href="javascript:;">链接测试1</a><span>|</span>
+                            <a href="javascript:;">链接测试1</a><span>|</span>
+                            <a href="javascript:;">链接测试1</a><span>|</span>
+                            <a href="javascript:;">链接测试1</a><span>|</span>
+                            <a href="javascript:;">链接测试1</a>    
+                        </div> 
+                        <div class="floor3_rtxt">
+                            <p>
+                                jQuery EasyUI 是一个基于 jQuery 的框架，集成了各种用户界面插件。jQuery EasyUI 框架提供了创建网页所需的一切，帮助您轻松建立站点。本教程将告诉您如何使用 jQuery EasyUI 框架创建应用。正如前面所说，你在使用EasyUI之前必须先声明UI控件，有两个方法声明它。1. 直接在 HTML 声明组件。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

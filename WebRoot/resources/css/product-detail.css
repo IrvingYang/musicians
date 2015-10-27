@@ -1,0 +1,13 @@
+div.fixed-table-container{
+	height: auto !important;
+}
+.container > .well{
+	margin-top: 20px;
+}
+.buy-btn-group{
+	margin-top: 10px;
+}
+/* rent modal */
+div.rent.modal .modal-dialog .modal-content{
+	padding: 8px;
+}

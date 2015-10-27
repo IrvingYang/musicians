@@ -1,0 +1,108 @@
+body{
+	min-height: 100%;
+    height: auto;
+    padding-top: 50px;
+    padding-bottom: 10px;
+    font-family: arial;
+    font-size: 12px;
+    line-height: 1.5;
+    background: #f0f0f0;
+}
+body > div.container{
+	padding-top: 70px;
+}
+body > div.row{
+	margin: 0;
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 12px;
+    vertical-align: baseline;
+    background: transparent;
+}
+html {
+    background: #ededed;
+}
+.footer-extend{
+	background: #fff;
+	margin-top: 25px;
+	height: 190px;
+}
+footer .container > div{
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 16px;
+}
+footer .container > div dt{
+	font-size: 16px;
+	margin-bottom: 5px;
+}
+footer .container > div dd{
+	margin-bottom: 5px;
+}
+footer .container > .first{
+	width: 250px;
+	background-image: url(../images/common/carouselFooterSkin.png);
+    height: 190px;
+    margin-top: 0;
+}
+footer .container > .first .carousel{
+	margin-bottom: 0;
+	width: 120px;
+	margin-left: 60px;
+    margin-top: 30px;
+}
+footer .container > .first .carousel .carousel-inner > .item{
+	width: 120px;
+	height: 160px;
+	background-color: #fff;
+	text-align:center;
+}
+footer .container > .first .carousel .carousel-inner > .item img{
+	width: 120px;
+	height: 120px;
+	margin-bottom: 10px;
+}
+footer .container > .second{
+	width: 150px;
+}
+footer .container > .third{
+	width: 150px;
+}
+footer .container > .forth{
+	width: 190px;
+}
+footer .container > .fifth{
+	width: 185px;
+	height: 190px;
+	margin-top: 0;
+}
+footer .container > .fifth .help-center{
+	background: url(../images/footer_floor1.png);
+	color: #fff;
+    font-size: 1em;
+    height: 202px;
+    left: 20px;
+    padding: 105px 0 0 34px;
+    position: relative;
+    top: -12px;
+}
+/* shopping cart */
+.dropdown-menu .list-inline{
+	margin: 0;
+}
+.dropdown-menu .list-inline li + li ul{
+	padding-left: 10px;
+}
+.dropdown-menu button{
+	margin-right: 5px;
+}
+div.container > .cart,
+div.container > .orders,
+div.container > .personal{
+	background-color: #fff;
+	border-radius: 5px;
+}

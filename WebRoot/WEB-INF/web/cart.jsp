@@ -1,0 +1,297 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<base href="<%=basePath%>" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>购物车</title>
+<link rel="stylesheet" href="resources/css/bootstrap.css">
+<link rel="stylesheet" href="resources/css/bootstrap-theme.css">
+<link rel="stylesheet" href="resources/css/sticky-footer.css">
+<link rel="stylesheet" href="resources/css/non-responsive.css">
+<link rel="stylesheet" href="resources/css/custom.css">
+<link rel="stylesheet" href="resources/css/bootstrap-dashboard.css">
+<link rel="stylesheet" href="resources/css/global.css">
+</head>
+<body>
+	<!-- header -->
+	<jsp:include page="/WEB-INF/web/common/top-nav.jsp"></jsp:include>
+
+	<!-- content -->
+	<div class="container">
+		<div class="row cart">
+			<div class="col-sm-3 col-md-2 sidebar">
+				<jsp:include page="/WEB-INF/web/common/leftside-nav.jsp"></jsp:include>
+			</div>
+			<div class="col-sm-9  col-md-10  main">
+				<div class="center-block">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">购买商品</h3>
+						</div>
+						<div class="panel-body">
+							<table class="table table-bordered">
+								<tr>
+									<th colspan="2"><span>商品</span></th>
+									<th><span>价格</span></th>
+									<th><span>数量</span></th>
+									<th><span>小计</span></th>
+								</tr>
+
+								<c:forEach items="${sessionScope.shopping_cart.map}" var="cart">
+									<c:choose>
+									<c:when test="${cart.value['cartType']==0 }">
+									<tr>
+										<td> <img src="${cart.value['product'].productimglist[0].path}" /></td>
+										<td><a class="text-primary"> ${cart.value['product'].productName } </a>
+											<p class="text-info" id="productId">${cart.value['product'].productId}</p>
+											<p class="text-success">有现货，随时可发出</p>
+										</td>
+										<td>
+											<div>
+												<p id="aprice">${cart.value['currentPrice']}</p>
+											</div>
+										</td>
+										<td>
+											<div class="input-group" style="width: 120px">
+												<span class="input-group-btn">
+													<button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="count">
+														<span class="glyphicon glyphicon-minus"></span>
+													</button>
+												</span>
+												<input type="text" class="form-control input-number" value="${cart.value['productCount']}" min="1" max="100" name="count" id="count">
+												<span class="input-group-btn">
+													<button type="button" class="btn btn-success btn-number" data-type="plus" data-field="count">
+														<span class="glyphicon glyphicon-plus"></span>
+													</button>
+												</span>
+											</div>
+										</td>
+										<td>
+											<div>
+												<p id="subtotal">￥ ${cart.value['currentPrice']*cart.value['productCount']}</p>
+											</div>
+										</td>
+									</tr></c:when>
+									</c:choose>
+								</c:forEach>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<p id="myPopover" class="help-block" data-container="body" data-toggle="popover" data-placement="right" data-content="请选择收货人地址">
+						<h3 class="panel-title">租赁商品</h3>
+						</p>
+
+					</div>
+
+					<div class="panel-body">
+					<table class="table table-bordered">
+								<tr>
+									<th colspan="2"><span>商品</span></th>
+									<th><span>押金</span></th>
+									<th><span>数量</span></th>
+									<th><span>租赁周期</span></th>
+									<th><span>小计</span></th>
+								</tr>
+
+								<c:forEach items="${sessionScope.shopping_cart.map}" var="cart">
+									<c:choose>
+									<c:when test="${cart.value['cartType']==2 }">
+									<tr>
+										<td> <img src="${cart.value['product'].productimglist[0].path}" /></td>
+										<td><a class="text-primary"> ${cart.value['product'].productName } </a>
+											<p class="text-info" id="productId">${cart.value['product'].productId}</p>
+											<p class="text-success">有现货，随时可发出</p>
+										</td>
+										<td>
+											<div>
+												<p id="aprice">${cart.value['yajin']}</p>
+											</div>
+										</td>
+										<td>
+											<div class="input-group" style="width: 120px">
+												<span class="input-group-btn">
+													<button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="count">
+														<span class="glyphicon glyphicon-minus"></span>
+													</button>
+												</span>
+												<input type="text" class="form-control input-number" value="${cart.value['productCount']}" min="1" max="100" name="count" id="count">
+												<span class="input-group-btn">
+													<button type="button" class="btn btn-success btn-number" data-type="plus" data-field="count">
+														<span class="glyphicon glyphicon-plus"></span>
+													</button>
+												</span>
+											</div>
+										</td>
+										<td>
+											<div>
+												<p id="leaseCycle"> ${cart.value['leaseCycle']} </p>
+											</div>
+										</td>
+										
+										<td>
+											<div>
+												<p id="subtotal">￥ ${cart.value['yajin']*cart.value['productCount']}</p>
+											</div>
+										</td>
+									</tr></c:when>
+									</c:choose>
+								</c:forEach>
+							</table>
+					
+					
+					</div>
+				</div>
+				
+				
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<p id="myPopover" class="help-block" data-container="body" data-toggle="popover" data-placement="right" data-content="请选择收货人地址">
+						<h3 class="panel-title">收货人信息</h3>
+						</p>
+
+					</div>
+
+					<div class="panel-body">
+						<form>
+							<c:forEach items="${userAddressesList}" var="add1">
+								<div class="radio">
+									<label><input type="radio" id="${add1.userAddressId}" name="radio-btn">${add1.stateId } ${add1.cityId } ${add1.districtId}
+										${add1.street} <b>${add1.name}</b> 收 ${add1.telephone}</label>
+								</div>
+							</c:forEach>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer" style="height: 50px">
+		<div class="container-fluid">
+			<p class="text-right">
+				<span> 总价： <em id="total" class="text-danger"></em></span> <small>共<em id="totalCount" class="text-danger"></em>件商品
+				</small> <a class="btn btn-lg btn-danger" id="submitOrder" onclick="submit()" role="button">提交订单</a>
+			</p>
+		</div>
+	</div>
+<script src="resources/js/jquery-1.11.1.min.js"></script>
+<script src="resources/js/bootstrap.js"></script>
+
+<script type="text/javascript" src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script type="text/javascript" src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			$('#lcart').addClass('active');
+
+			$("#myAlert").hide();
+
+			$("input[id='count']").change(function() {
+				var base = $(this).parent().parent().parent();
+				var count = $(this).val();
+				var price = $("#aprice", base).text();
+				var subtotal = price * count;
+
+				$("#subtotal", base).text(subtotal);
+				var pid = $("#productId", base).text().trim();
+
+				//update nav bar
+				$("input[name='aproductId']").each(function() {
+					var parent1 = $(this).parent().parent();
+					if ($(this).val().trim() == pid) {
+						$("#acount", parent1).text(count);
+						$("#asubtotal", parent1).text(subtotal);
+					}
+				});
+				var total = 0;
+				var totalCount = 0;
+				$("input[id='count']").each(function() {
+					var base = $(this).parent().parent().parent();
+					var price = $("#aprice", base).text();
+					var count = parseInt($(this).val());
+					var subtotal = price * count;
+					$("#subtotal", base).text(subtotal);
+					total += subtotal;
+					totalCount += count;
+				});
+
+				$.post("eshop/product/operationCart.action", {
+					'addcount' : count,
+					'action' : 'update',
+					'productId' : pid,
+					'cartType' : '0',
+				}, function() {
+					window.location.reload()
+				});
+
+				$("#total").text('￥' + total);
+				$("#totalCount").text(totalCount);
+
+			});
+
+			var total = new Number;
+			var totalCount = new Number;
+
+			$("input[id='count']").each(function() {
+				var base = $(this).parent().parent().parent(); //loop-item
+				var price = $("#aprice", base).text();
+				var count = parseInt($(this).val());
+				var subtotal = price * count;
+				$("#subtotal", base).text(subtotal);
+				total += subtotal;
+				totalCount += count;
+			});
+
+			$("#total").text('￥' + total);
+			$("#totalCount").text(totalCount);
+		});
+
+		function submit() {
+			var selected = $("input:radio[name='radio-btn']:checked")
+					.attr('id');
+			//	alert (selected);
+			if (selected) {
+				//TBD orderType should be 4
+				var url = "order/orderList/addOrder_list.action";
+				var paymentway = "01";
+				var form = $('<form action="' + url + '" method="post">'
+						+ '<input type="text" name="userAddressId" value="'+selected+'" hidden="true"/>'
+						+ '<input type="text" name="requireinvoice" value="'+1+'" hidden="true"/>'
+						+ '<input type="text" name="invoicetype" value="'+1+'" hidden="true"/>'
+						+ '<input type="text" name="paymentway" value="'+paymentway+'" hidden="true"/>'
+						+ '<input type="text" name="invoicetitle" value="'+"xx"+'" hidden="true"/>'
+						+ '<input type="text" name="invoicecontent" value="'+"xx"+'" hidden="true"/>'
+						+ '<input type="text" name="remark" value="'+"dummy"+'" hidden="true"/>'
+						+ '<input type="text" name="orderType" value="'+"1"+'" hidden="true"/>'
+						+ '<input type="text" name="payofflineflag" value="'+"0"+'" hidden="true"/>'
+						+ '</form>');
+				$('body').append(form);
+				form.submit();
+			} else {
+				$("#myPopover").popover('show');
+			}
+		}
+	</script>
+	<script src="resources/js/numberIncrease.js"></script>
+
+
+	<!-- footer
+	<jsp:include page="/WEB-INF/web/common/footer.jsp"></jsp:include> -->
+</body>
+</html>

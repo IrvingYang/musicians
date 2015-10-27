@@ -1,0 +1,19 @@
+.tab-content{
+	padding-top: 10px;	
+}
+div.container > div.sign{
+	background-color: #fff;
+	padding: 15px;
+	border-radius: 5px;
+}
+div.container > h1{
+	background: url(../images/sign/header.png) repeat scroll 0 0 transparent;
+    color: #fff;
+    font-size: 22px;
+    line-height: 45px;
+    height: 46px;
+    margin: 10px 0;
+    text-indent: 10px;
+    width: 967px;
+    border-radius: 5px;
+}
