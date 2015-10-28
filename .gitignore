@@ -13,9 +13,8 @@
 
 .myumldata
 
-<<<<<<< HEAD
 .svn
-=======
+
 *.prefs
 
 .settings/org.eclipse.wst.common.component
@@ -25,31 +24,10 @@
 .settings/org.eclipse.wst.jsdt.ui.superType.container
 
 .settings/org.eclipse.wst.jsdt.ui.superType.name
->>>>>>> parent of 6210271... eclipse settings
-
-.svn/format
-
-.svn/smartsvn.properties
-
-.svn/wc.db
 
 qushop.log
 
-*.class
-
-WebRoot/WEB-INF/classes/context/applicationContext.xml
-
-WebRoot/WEB-INF/classes/context/qushopspring-servlet.xml
-
-WebRoot/WEB-INF/classes/ehcache.xml
-
-WebRoot/WEB-INF/classes/jdbc.properties
-
-WebRoot/WEB-INF/classes/log4j.properties
-
-WebRoot/WEB-INF/classes/mycustom.properties
-
-.classpath
+classes/*
 
 .settings/com.genuitec.eclipse.core.prefs
 
