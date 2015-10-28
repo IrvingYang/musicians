@@ -229,7 +229,7 @@ $(document).ready(function() {
 	});
 });
 </script>
-<script type="text/javascript" src="resources/js/lightbox-2.6.min.js"></script>
+<script type="text/javascript" src="resources/js/lightbox.min.js"></script>
 <script type="text/javascript" src="resources/js/numberIncrease.js"></script>
 <jsp:include page="/WEB-INF/web/common/footer-nav.jsp"></jsp:include>
 </body>
