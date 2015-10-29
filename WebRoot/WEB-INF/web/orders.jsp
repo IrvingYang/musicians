@@ -39,10 +39,7 @@
 					<div class="row">
 						<div class="col-lg-6">
 							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">商城订单</a></li>
-								<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">租赁订单</a></li>
-								<li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">回购订单</a></li>
-								<li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">whatever</a></li>
+								<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">商品订单</a></li>
 							</ul>
 
 						</div>
@@ -139,10 +136,6 @@
 									href="javascript">4</a> <a href="javascript">5</a> <a href="javascript">下一页</a>
 							</div>
 						</div>
-						<div role="tabpanel" class="tab-pane" id="profile">...2</div>
-						<div role="tabpanel" class="tab-pane" id="messages">...3</div>
-						<div role="tabpanel" class="tab-pane" id="settings">...4</div>
-
 					</div>
 
 				</div>

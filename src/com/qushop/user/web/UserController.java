@@ -250,7 +250,7 @@ public class UserController {
 	public String toLogin(HttpServletRequest request,String _src)
 	{
 		if(_src!=null&&!_src.isEmpty()){
-			String serverPrefix = "/ROOT";
+			String serverPrefix = "/musicians";
 			if(_src.contains(serverPrefix)){
 				_src=_src.replace(serverPrefix, "");
 			};
