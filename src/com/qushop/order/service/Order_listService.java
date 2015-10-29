@@ -11,16 +11,16 @@ import com.qushop.order.entity.Order_list;
 import com.qushop.user.entity.Oper;
 
 public interface Order_listService {
-	
+
 	public void addOrder(List<ShopTemp> shopTemp,short orderType,String userId,String userAddressId,Integer payofflineflag,HttpServletRequest request);
 
 	public void addShopOrder(CartUtil cartUtil,String userId,String userAddressId,Integer payofflineflag,HttpServletRequest request);
-	
-	public Order_list addLeaseOrder( short orderType, String userId, String userAddressId,
-			Integer payofflineflag,String productId1, int productCount1,int lease_period,int invoicetype,String remark,String paymentway) ;
-	
+
+	public Order_list addLeaseOrder(List<ShopTemp> shopTemp, short orderType, String userId, String userAddressId,
+			Integer payofflineflag,int invoicetype,String remark,String paymentway) ;
+
 	public List<Order_list> getOrder_listByUserIdAndMethod(int type,String userId,Integer orderType,String...params);
-	
+
 	/**
 	 * 
 	 * @param type 1(查看所有商城订单 )2(查看所有团购订单) 3(查看大宗交易订单  )4(查看合作社订单) 5(根据团购id查询所有订单信息 )
@@ -30,11 +30,11 @@ public interface Order_listService {
 	 * @return
 	 */
 	public List<Order_list> getOrder_listByMethod(Oper oper,int type,String providerId,String ...params);
-	
+
 	public List<Order_list> getOrder_listDetail(String orderId,boolean bigdeal);
 
 	public boolean updateOrderList(Order_list order_list);
-	
+
 	public boolean deleteOrderList(String orderId,HttpServletRequest request);
 
 	public String cancelOrder(String orderId);
@@ -42,15 +42,13 @@ public interface Order_listService {
 	public String applyRefund(String orderId);
 
 	public String orderPayment(String orderId,int orderType);
-	
+
 	public List<Order_list> getNotFinishedOrderList(String userId,PagePojo pagePojo);
 
 	public List<Order_list> getFinishedOrderList(String userId,PagePojo pagePojo);
-	
+
 	public List<Order_list> getAllOrderList(String userId,PagePojo pagePojo);
-	
+
 	public List existsOrderListByProductId(String userId,String productId);
-	
-	
-	
+
 }

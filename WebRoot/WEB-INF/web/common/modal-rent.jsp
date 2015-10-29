@@ -44,7 +44,7 @@
 							</table>
 						</div> -->
 				<div class="row">
-					<label class="col-md-2 control-label" id="yajin">押金:</label> <label class="col-md-2" id="priceTag">${shop.originalPrice}</label> <label
+					<label class="col-md-2 control-label" id="yajin">押金:</label> <label class="col-md-2" id="priceTag">${shop.product.shopPrice}</label> <label
 						class="col-md-2 control-label">租金:</label> <label class="col-md-2" id="zujin"></label> <label class="col-md-2 control-label">合计:</label> <label
 						class="col-md-2" id="sum"></label>
 				</div>

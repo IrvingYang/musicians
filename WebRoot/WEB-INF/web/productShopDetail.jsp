@@ -110,8 +110,8 @@
 								</button>
 							</span>
 						</div>
-						<input type="button" id="addCart" value="加入购物车" class="btn btn-primary" onclick="updateCart()" />
-						<input type="button" id="forRent" value="租赁" class="btn btn-primary" data-toggle="modal" data-productTypeId="${shop.product.productTypeId}" data-productName="${shop.product.productName}" data-target="#rentModal"/>
+						<input type="button" id="addCart" value="去购买" class="btn btn-primary" onclick="updateCart()" />
+						<input type="button" id="forRent" value="去租赁" class="btn btn-primary" data-toggle="modal" data-productTypeId="${shop.product.productTypeId}" data-productName="${shop.product.productName}" data-target="#rentModal"/>
 						
 					</div>
 					<script type="text/javascript">

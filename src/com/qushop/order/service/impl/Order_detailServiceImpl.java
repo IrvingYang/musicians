@@ -17,14 +17,14 @@ public class Order_detailServiceImpl implements Order_detailService {
 
 	@Resource
 	CommonDao commonDao;
-	
+
 	@Override
-	public List<Order_detail> getOrderdetailByMethod(int type, Oper oper,
-			String... params) {
+	public List<Order_detail> getOrderdetailByMethod(int type, Oper oper, String... params) {
 		List<Order_detail> detailsList = new ArrayList<Order_detail>();
 		switch (type) {
 		case 0:
-			detailsList = commonDao.findByHql("from Order_detail where productId=? and orderType=?", params[0], Short.parseShort(params[1]));
+			detailsList = commonDao.findByHql("from Order_detail where productId=? and orderType=?", params[0],
+					Short.parseShort(params[1]));
 			break;
 		case 1:
 			detailsList = commonDao.findByHql("from Order_detail where orderId=?", params[0]);
@@ -36,14 +36,20 @@ public class Order_detailServiceImpl implements Order_detailService {
 		default:
 			break;
 		}
-		
+
 		return detailsList;
+	}
+
+	public Order_detail getOrderdetail(String productId, String orderId,int orderType) {
+		List<Order_detail> detailsList = new ArrayList<Order_detail>();
+		detailsList = commonDao.findByHql("from Order_detail where productId=? and orderId=? and orderType=? and validflag=1", productId,orderId,orderType);
+		return detailsList.get(0);
 	}
 
 	@Override
 	public boolean deleteOrderDetail(String orderIds) {
 
-		String dsql = "update tb_order_detail set validflag=0 where orderId in ("+orderIds+")";
+		String dsql = "update tb_order_detail set validflag=0 where orderId in (" + orderIds + ")";
 		return commonDao.executeBySql(dsql);
 	}
 

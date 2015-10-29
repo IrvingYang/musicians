@@ -268,8 +268,9 @@
 			//	alert (selected);
 			if (selected) {
 				//TBD orderType should be 4
-				var url = "order/orderList/addOrder_list.action";
+				var url = "order/orderList/addOrder_list.do";
 				var paymentway = "01";
+				
 				var form = $('<form action="' + url + '" method="post">'
 						+ '<input type="text" name="userAddressId" value="'+selected+'" hidden="true"/>'
 						+ '<input type="text" name="requireinvoice" value="'+1+'" hidden="true"/>'
@@ -278,7 +279,8 @@
 						+ '<input type="text" name="invoicetitle" value="'+"xx"+'" hidden="true"/>'
 						+ '<input type="text" name="invoicecontent" value="'+"xx"+'" hidden="true"/>'
 						+ '<input type="text" name="remark" value="'+"dummy"+'" hidden="true"/>'
-						+ '<input type="text" name="orderType" value="'+"1"+'" hidden="true"/>'
+						+ '<input type="text" name="orderTypes" value="'+1+'" hidden="true"/>'
+						+ '<input type="text" name="orderTypes" value="'+100+'" hidden="true"/>'
 						+ '<input type="text" name="payofflineflag" value="'+"0"+'" hidden="true"/>'
 						+ '</form>');
 				$('body').append(form);

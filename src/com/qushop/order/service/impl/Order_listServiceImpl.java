@@ -19,8 +19,10 @@ import com.qushop.common.util.ShopTemp;
 import com.qushop.common.util.UtilDate;
 import com.qushop.dict.service.ExpressService;
 import com.qushop.dict.service.Payment_MethodService;
+import com.qushop.musicains.entity.Lease;
 import com.qushop.musicains.entity.LeaseConfig;
 import com.qushop.musicains.service.LeaseConfigService;
+import com.qushop.musicains.service.LeaseDaoService;
 import com.qushop.musicains.service.business.LeaseBusinessService;
 import com.qushop.order.entity.Order_detail;
 import com.qushop.order.entity.Order_list;
@@ -86,9 +88,12 @@ public class Order_listServiceImpl implements Order_listService {
 
 	@Resource
 	LeaseConfigService leaseConfigService;
-	
+
 	@Resource
 	LeaseBusinessService leaseBusinessService;
+
+	@Resource
+	LeaseDaoService leaseDaoService;
 
 	@Override
 	public void addOrder(List<ShopTemp> shopsList, short orderType, String userId, String userAddressId,
@@ -334,56 +339,72 @@ public class Order_listServiceImpl implements Order_listService {
 
 	}
 
-	public Order_list addLeaseOrder( short orderType, String userId, String userAddressId,
-			Integer payofflineflag,String productId1, int productCount1,int lease_period,int invoicetype,String remark,String paymentway) {
-
+	public Order_list addLeaseOrder(List<ShopTemp> shopTempList, short orderType, String userId, String userAddressId,
+			Integer payofflineflag, int invoicetype, String remark, String paymentway) {
 		Order_list order_list = new Order_list();
-		order_list.setLastUpdateTime(new Date());
-		Order_detail order_detail = null;
-		Product_ext_shop product_ext_shop11 = ext_shopService.getShopProductByMethod(5, productId1).get(0);
-		
-		Double totalamt = leaseBusinessService.calculateTotalRentPrice(productId1, productCount1,
-				lease_period,product_ext_shop11.getOriginalPrice() );
+		// Product_ext_shop product_ext_shop11 =
+		// ext_shopService.getShopProductByMethod(5, productId1).get(0);
 
-		order_list.setTotalamt(totalamt);
+		// Double totalamt =
+		// leaseBusinessService.calculateTotalRentPrice(productId1,
+		// productCount1, lease_period,
+		// product_ext_shop11.getOriginalPrice());
+
 		order_list.setStatus("01");
 		order_list.setOrderType(orderType);
 		order_list.setUserId(userId);
 		order_list.setUserAddressId(userAddressId);
-		order_list.setProviderid(product_ext_shop11.getProduct().getProviderId());
-		
-		order_list.setOrderId(UtilDate.getNowDateNo_() + "0" + orderType
-				+ product_ext_shop11.getProduct().getProviderId() + (new Random().nextInt(899999) + 100000));
+		String fixedProviderId = "01";//TBD
+		order_list.setOrderId(
+				UtilDate.getNowDateNo_() + "0" + orderType + fixedProviderId + (new Random().nextInt(899999) + 100000));
 		order_list.setCreateTime(new Date());
-	//	order_list.setRequireinvoice(Short.parseShort(request.getParameter("requireinvoice")));
-		order_list.setInvoicetype((short)invoicetype);
-	//  order_list.setInvoicetitle(request.getParameter("invoicetitle"));
-	//	order_list.setInvoicecontent(request.getParameter("invoicecontent"));
+		// order_list.setRequireinvoice(Short.parseShort(request.getParameter("requireinvoice")));
+		order_list.setInvoicetype((short) invoicetype);
+		// order_list.setInvoicetitle(request.getParameter("invoicetitle"));
+		// order_list.setInvoicecontent(request.getParameter("invoicecontent"));
 		order_list.setPaymentway(paymentway);
-	//	order_list.setInvoiceprinted((short) 0);
+		// order_list.setInvoiceprinted((short) 0);
 		order_list.setPayofflineflag(payofflineflag.shortValue());
 		order_list.setValidflag((short) 1);
 		order_list.setRemark(remark);
 
+		order_list.setLastUpdateTime(new Date());
+
+		List<Order_detail> order_details = new ArrayList<Order_detail>();
+		for (ShopTemp shopTemp : shopTempList) {
+			productService.updateStockNumber(shopTemp.getProduct().getProductId(), 0 - shopTemp.getCount());
+			// 同一订单
+			
+			order_list.setProviderid(shopTemp.getProviderId());
+			Order_detail order_detail = new Order_detail();
+			order_detail.setOrderId(order_list.getOrderId());
+			double totalamt = leaseBusinessService.calculateTotalRentPrice(shopTemp.getProduct().getProductId(),
+					shopTemp.getCount(), shopTemp.getLeaseCycle(), shopTemp.getYajin());
+			order_list.setTotalamt(order_list.getTotalamt() + totalamt);
+			order_detail.setTotalamt(totalamt);
+			order_detail.setPrice(shopTemp.getPrice());
+			order_detail.setProductId(shopTemp.getProduct().getProductId());
+			order_detail.setOrderType(orderType);
+			order_detail.setQuantity((short) shopTemp.getCount());
+			order_list.setPayofflineflag(payofflineflag.shortValue());
+			order_detail.setValidflag((short) 1);
+			order_details.add(order_detail);
+			detailDao.insert(order_detail);
+
+			// lease
+			Lease lease = new Lease();
+			lease.setProductId(shopTemp.getProduct().getProductId());
+			lease.setLeaseType(shopTemp.getLeaseType());
+			lease.setLeaseCycle(shopTemp.getLeaseCycle());
+			lease.setUserId(userId);
+			lease.setOrderId(order_list.getOrderId());
+			leaseDaoService.saveLease(lease);
+
+		}
+
+		order_list.setOrder_detail(order_details);
 		commonDao.insert(order_list);
 
-		order_detail = new Order_detail();
-		order_detail.setOrderId(order_list.getOrderId());
-
-		order_detail.setProductId(product_ext_shop11.getProductId());
-		order_detail.setOrderType(orderType);
-		order_detail.setQuantity((short)productCount1);
-
-		order_detail.setTotalamt(totalamt);
-
-		order_detail.setValidflag((short) 1);
-		
-		detailDao.insert(order_detail);
-		List<Order_detail> order_details=new ArrayList<Order_detail>();
-		order_details.add(order_detail);
-		
-		order_list.setOrder_detail(order_details);
-		
 		return order_list;
 	}
 
@@ -635,7 +656,6 @@ public class Order_listServiceImpl implements Order_listService {
 		}
 		return false;
 	}
-	
 
 	@Override
 	public boolean deleteOrderList(String orderId, HttpServletRequest request) {
@@ -852,7 +872,7 @@ public class Order_listServiceImpl implements Order_listService {
 					order_detail.setProduct(bigDeal.getProduct());
 				}
 				order_list.setOrder_detail(detailsList);
-			} else if (order_list.getOrderType() == 1||order_list.getOrderType() == 100) {
+			} else if (order_list.getOrderType() == 1 || order_list.getOrderType() == 100) {
 				List<Order_detail> detailsList = detailService.getOrderdetailByMethod(1, null, order_list.getOrderId());
 				// .findByHql("from Order_detail where orderId=?", );
 				for (Order_detail order_detail : detailsList) {

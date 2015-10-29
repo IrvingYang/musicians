@@ -9,7 +9,25 @@ public class ShopTemp {
 	private double price;
 	private double totalamt;
 	private String providerId;
+	private int leaseCycle;
+	private int leaseType;
+	private double yajin; 
 	
+	public void setYajin(double yajin) {
+		this.yajin = yajin;
+	}
+	
+	public double getYajin() {
+		return yajin;
+	}
+	
+	public void setLeaseCycle(int leaseCycle) {
+		this.leaseCycle = leaseCycle;
+	}
+	
+	public int getLeaseCycle() {
+		return leaseCycle;
+	}
 	
 	public double getTotalamt() {
 		return totalamt;
@@ -41,6 +59,14 @@ public class ShopTemp {
 	}
 	public void setPrice(double price) {
 		this.price = price;
+	}
+	
+	public void setLeaseType(int leaseType) {
+		this.leaseType = leaseType;
+	}
+
+	public int getLeaseType() {
+		return leaseType;
 	}
 
 }
