@@ -29,6 +29,10 @@ html {
 nav button.btn{
 	font-size: 12px;
 }
+nav span.badge{
+	background-color: #73B528;
+	min-width: 30px;
+}
 .footer-extend{
 	background: #fff;
 	margin-top: 25px;
