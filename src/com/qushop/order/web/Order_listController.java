@@ -174,22 +174,22 @@ public class Order_listController {
 		modelMap.put("test", "testvalue");
 		//调用支付接口
 		
-		switch (orderType) {
-			case 1:
-				return "redirect:orderList.do";
-			case 2:
-			case 3:
-				return "redirect:orderList.do?orderType="+orderType;
-			case 4:
-				return "redirect:orderList.do";
-			case 5:
-				return "redirect:orderList.do";
-			case 100:
-				//return "forward:/order/orderList/orderList.shtml?orderType="+orderType;
-			default:
-				break;
-		}
-		return null;
+//		switch (orderType) {
+//			case 1:
+//				return "redirect:orderList.do";
+//			case 2:
+//			case 3:
+//				return "redirect:orderList.do?orderType="+orderType;
+//			case 4:
+//				return "redirect:orderList.do";
+//			case 5:
+//				return "redirect:orderList.do";
+//			case 100:
+//				//return "forward:/order/orderList/orderList.shtml?orderType="+orderType;
+//			default:
+//				break;
+//		}
+		return "redirect:orderList.do?orderType="+orderType;
 	}
 	
 	@RequestMapping(value="cancelOrder.action",method=RequestMethod.POST)
@@ -262,12 +262,6 @@ public class Order_listController {
 	@RequestMapping("orderList.do")
 	public String getOrderList(String action,String pageNostr,String pageSizestr,HttpServletRequest request)
 	{
-		//=======
-		Object obj = request.getSession().getAttribute(Constants.LOGIN_USER);
-		if(obj==null){
-			request.setAttribute("returnURL","/order/orderList/orderList.do");
-			return "web/signup";
-		}
 		
 		Integer pageNo = 0;
 		Integer pageSize = 12;
