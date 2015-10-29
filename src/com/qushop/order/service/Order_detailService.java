@@ -16,6 +16,8 @@ public interface Order_detailService {
 	 */
 	public List<Order_detail> getOrderdetailByMethod(int type,Oper oper,String...params);
 	
+	public Order_detail getOrderdetail(String productId, String orderId,int orderType) ;
+	
 	public boolean deleteOrderDetail(String orderIds);
 	
 }

@@ -268,7 +268,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<section class="col-lg-9 col-md-9 col-sm-9 m_xs_bottom_30">
 						<h2 class="tt_uppercase color_dark m_bottom_25">购物车</h2>
 						<!--cart table-->
-						<form action="order/orderList/addOrder_list.action" method="post" id="orderForm">
+						<form action="order/orderList/addOrder_list.do" method="post" id="orderForm">
 						<input type="hidden" value="" id="orderTypeInput" name="orderType"/>
 						<input type="hidden" value="" id="groupbuyid" name="groupbuyid"/>
 						<input type="hidden" value="" id="bigdealid" name="bigdealid"/>

@@ -42,8 +42,7 @@
 					</a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="user/user/userCenter.do">我的资料</a></li>
-							<li><a href="order/orderList/orderList.do?orderType=1">我的商品订单</a></li>
-							<li><a href="order/orderList/orderList.do?orderType=100">我的租赁订单</a></li>
+							<li><a href="order/orderList/orderList.do">我的订单</a></li>
 							<li class="divider"></li>
 							<li><a href="user/user/logout.action">登出</a></li>
 						</ul></li>

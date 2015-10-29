@@ -14,6 +14,7 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import com.qushop.order.entity.Order_detail;
 import com.qushop.order.entity.Order_list;
 import com.qushop.prod.entity.Product_ext_shop;
 import com.qushop.user.entity.User;
@@ -70,7 +71,7 @@ public class Lease implements Serializable {
 	private User user;
 	
 	@Transient
-	private Order_list leaseOrderList;
+	private Order_detail order_detail;
 
 	
 	public void setOrderId(String orderId) {
@@ -82,12 +83,12 @@ public class Lease implements Serializable {
 		return orderId;
 	}
 	
-	public void setLeaseOrderList(Order_list leaseOrderList) {
-		this.leaseOrderList = leaseOrderList;
+	public void setLeaseOrderDetail(Order_detail order_detail) {
+		this.order_detail = order_detail;
 	}
 	
-	public Order_list getLeaseOrderList() {
-		return leaseOrderList;
+	public Order_detail getLeaseOrderList() {
+		return order_detail;
 	}
 	
 	
