@@ -95,6 +95,10 @@
 										<tr>
 											<td colspan="6"><strong>${order.createTime}&nbsp;&nbsp;</strong>
 												<div class="pull-right">
+												<c:choose>
+													<c:when test="${order.orderType == 100}">
+														<h3>租赁订单</h3></c:when>
+												</c:choose>
 													<em>订单号：${order.orderId}</em> <span class="order_delete"><a>X</a></span>
 												</div></td>
 										</tr>

@@ -13,7 +13,9 @@ import com.qushop.musicains.entity.Lease;
 import com.qushop.musicains.entity.LeaseConfig;
 import com.qushop.musicains.entity.Repo;
 import com.qushop.musicains.service.LeaseDaoService;
+import com.qushop.order.entity.Order_detail;
 import com.qushop.order.entity.Order_list;
+import com.qushop.order.service.Order_detailService;
 import com.qushop.order.service.Order_listService;
 import com.qushop.prod.service.Product_ext_shopService;
 import com.qushop.user.entity.User;
@@ -33,7 +35,7 @@ public class LeaseDaoServiceImpl implements LeaseDaoService {
 	
 	
 	@Resource
-	Order_listService order_listService;
+	Order_detailService order_detailService;
 
 	@Override
 	public void saveLease(Lease lease) {
@@ -57,8 +59,8 @@ public class LeaseDaoServiceImpl implements LeaseDaoService {
 		for (Lease lease : reposList) {
 			lease.setExt_shop(ext_shopService.getShopProductByMethod(5, lease.getProductId()).get(0));
 			lease.setUser((User) userService.getUserByMethod(6, lease.getUserId()+"").get(0));
-			List<Order_list> leaseOrderList = order_listService.getOrder_listByUserIdAndMethod(3, lease.getUserId(), 100, lease.getOrderId());
-			lease.setLeaseOrderList(leaseOrderList.get(0));
+			Order_detail leasedetail = order_detailService.getOrderdetail(lease.getProductId(),lease.getOrderId(),100);
+			lease.setLeaseOrderDetail(leasedetail);
 		}
 		return reposList;
 	}
@@ -79,8 +81,8 @@ public class LeaseDaoServiceImpl implements LeaseDaoService {
 		for (Lease lease : reposList) {
 			lease.setExt_shop(ext_shopService.getShopProductByMethod(5, lease.getProductId()).get(0));
 			lease.setUser((User) userService.getUserByMethod(6, lease.getUserId()).get(0));
-			List<Order_list> leaseOrderList = order_listService.getOrder_listByUserIdAndMethod(3, lease.getUserId(), 100, lease.getOrderId());
-			lease.setLeaseOrderList(leaseOrderList.get(0));
+			Order_detail leasedetail = order_detailService.getOrderdetail(lease.getProductId(),lease.getOrderId(),100);
+			lease.setLeaseOrderDetail(leasedetail);
 		}
 		return reposList;
 	}
@@ -113,8 +115,8 @@ public class LeaseDaoServiceImpl implements LeaseDaoService {
 		for (Lease lease : leaseList) {
 			lease.setExt_shop(ext_shopService.getShopProductByMethod(5, lease.getProductId()).get(0));
 			lease.setUser((User) userService.getUserByMethod(6, lease.getUserId()+"").get(0));
-			List<Order_list> leaseOrderList = order_listService.getOrder_listByUserIdAndMethod(3, lease.getUserId(), 100, lease.getOrderId());
-			lease.setLeaseOrderList(leaseOrderList.get(0));
+			Order_detail leasedetail = order_detailService.getOrderdetail(lease.getProductId(),lease.getOrderId(),100);
+			lease.setLeaseOrderDetail(leasedetail);
 		}
 		return leaseList.get(0);
 	}

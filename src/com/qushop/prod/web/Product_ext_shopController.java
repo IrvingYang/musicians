@@ -218,8 +218,11 @@ public class Product_ext_shopController {
 		return "web/productShopDetail";
 	}
 
+	/*
+	 * use ProductController operationCart
+	 */
 	@RequestMapping("opCart.html")
-	@Deprecated
+	@Deprecated()
 	public String opCart(String action, String productId, Integer count, HttpServletRequest request) {
 		// String userId = "";
 		// Object obj =

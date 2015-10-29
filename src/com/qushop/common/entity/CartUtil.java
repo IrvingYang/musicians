@@ -6,90 +6,78 @@ import java.util.Map;
 import com.qushop.prod.entity.Product_ext_shop;
 
 public class CartUtil {
-	
-	private Map<String,Cart> map = new HashMap<String, Cart>();
-	
-	public Map<String, Cart> getMap() {
+
+	private Map<String, CartItem> map = new HashMap<String, CartItem>();
+
+	public Map<String, CartItem> getMap() {
 		return map;
 	}
 
-	public void setMap(Map<String, Cart> map) {
+	public void setMap(Map<String, CartItem> map) {
 		this.map = map;
 	}
 
 	/**
 	 * 添加购物车
+	 * 
 	 * @param productId
 	 * @param ext_shop
 	 * @param count
 	 */
-	public void addCart(String productId,Product_ext_shop ext_shop,Integer count){
+	public void addCart(String productId, Product_ext_shop ext_shop, int count) {
+
+		int itemCount = count;
+		double itemSubtotal;
+		double itemPrice;
+
+		if (map.containsKey(productId)) {
+			CartItem cart = map.get(productId);
+			if (ext_shop.getPromoteflag() == 1) {
+				itemPrice = ext_shop.getPromotePrice();
+				itemSubtotal = cart.getSubtotal() + ext_shop.getPromotePrice() * count;
+			} else {
+				itemPrice = ext_shop.getOriginalPrice();
+				itemSubtotal = cart.getSubtotal() + ext_shop.getOriginalPrice() * count;
+			}
+		} else {
+			if (ext_shop.getPromoteflag() == 1) {
+				itemPrice = ext_shop.getPromotePrice();
+				itemSubtotal = ext_shop.getPromotePrice() * count;
+			} else {
+				itemPrice = ext_shop.getOriginalPrice();
+				itemSubtotal = ext_shop.getOriginalPrice() * count;
+			}
+		}
 		
-		Cart cart = null;
-		if(map.containsKey(productId)){
-			cart = map.get(productId);
-			if(cart==null)
-			{
-				cart = new Cart();
-			}
-			cart.setExt_shop(ext_shop);
-			cart.setCount(count);
-			if(ext_shop.getPromoteflag()==1)
-			{
-				cart.setPrice(ext_shop.getPromotePrice());
-				cart.setSubtotal(cart.getSubtotal()+ext_shop.getPromotePrice()*count);
-			}
-			else
-			{
-				cart.setPrice(ext_shop.getOriginalPrice());
-				cart.setSubtotal(cart.getSubtotal()+ext_shop.getOriginalPrice()*count);
-			}
-			map.put(productId, cart);
-		}
-		else{
-			cart = new Cart();
-			cart.setCount(1);
-			cart.setExt_shop(ext_shop);
-			if(ext_shop.getPromoteflag()==1)
-			{
-				cart.setPrice(ext_shop.getPromotePrice());
-				cart.setSubtotal(ext_shop.getPromotePrice()*count);
-			}
-			else
-			{
-				cart.setPrice(ext_shop.getOriginalPrice());
-				cart.setSubtotal(ext_shop.getOriginalPrice()*count);
-			}
-			map.put(productId, cart);
-		}
+		CartItem cart = new CartItem(ext_shop, itemCount, itemPrice, itemSubtotal);
+		map.put(productId, cart);
 	}
-	
+
 	/**
-	 * xiugai 
+	 * 
 	 * @param productId
 	 * @param ext_shop
 	 * @param count
 	 */
-	public void updateCart(String productId,Product_ext_shop ext_shop,Integer count){
-		
-		Cart cart = null;
+	public void updateCart(String productId, Product_ext_shop ext_shop, Integer count) {
+
+		CartItem cart = null;
 		cart = map.get(productId);
 		cart.setCount(count);
-		if(ext_shop.getPromoteflag()==1)
-		{
-			cart.setSubtotal(ext_shop.getPromotePrice()*count);
-		}
-		else
-		{
-			cart.setSubtotal(ext_shop.getOriginalPrice()*count);
+		if (ext_shop.getPromoteflag() == 1) {
+			cart.setSubtotal(ext_shop.getPromotePrice() * count);
+		} else {
+			cart.setSubtotal(ext_shop.getOriginalPrice() * count);
 		}
 		map.put(productId, cart);
 	}
+
 	/**
 	 * 删除
+	 * 
 	 * @param productId
 	 */
-	public void deleteCart(String productId){
+	public void deleteCart(String productId) {
 		map.remove(productId);
 	}
 }

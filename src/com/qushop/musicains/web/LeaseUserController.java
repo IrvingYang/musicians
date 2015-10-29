@@ -50,10 +50,14 @@ public class LeaseUserController {
 	@Resource
 	Order_listService order_listService;
 
+	/*
+	 * not used
+	 */
 	@RequestMapping(value = "makeALease.do", method = RequestMethod.POST)
 	@ResponseBody
-	public Lease makeALease(HttpServletRequest request, String productId, String productTypeId, int count, int leaseType,
-			int leaseCycle, String addressId) {
+	@Deprecated
+	public Lease makeALease(HttpServletRequest request, String productId, String productTypeId, int count,
+			int leaseType, int leaseCycle, String addressId) {
 		User_Ext_Personal user_Ext_Personal = (User_Ext_Personal) request.getSession()
 				.getAttribute(Constants.LOGIN_USER);
 		User user = user_Ext_Personal.getUser();
@@ -95,16 +99,16 @@ public class LeaseUserController {
 		int lease_period = leaseCycle;
 		String requireInvoice = request.getParameter("requireinvoice");
 
-		Order_list addedLeaseOrder = order_listService.addLeaseOrder((short) 100, user.getUserId(), addressId, 0,
-				productId1, productCount, lease_period, (short) 1, "", "01");
-
-		lease.setLeaseOrderList(addedLeaseOrder);
-
-		lease.setOrderId(addedLeaseOrder.getOrderId());
+//		Order_list addedLeaseOrder = order_listService.addLeaseOrder((short) 100, user.getUserId(), addressId, 0,
+//				productId1, productCount, lease_period, (short) 1, "", "01");
+//
+//		lease.setLeaseOrderDetail(addedLeaseOrder.getOrder_detail().get(0));
+//
+//		lease.setOrderId(addedLeaseOrder.getOrderId());
 
 		leaseDaoService.saveLease(lease);
 
-		 return lease;
+		return lease;
 	}
 
 	@RequestMapping(value = "payALease.action", method = RequestMethod.POST)
@@ -142,5 +146,5 @@ public class LeaseUserController {
 		List<LeaseConfig> leaseList = leaseConfigService.getLeaseConfigList(productTypeId);
 		return leaseList;
 	}
-	
+
 }
