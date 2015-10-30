@@ -7,7 +7,29 @@ div.fixed-table-container{
 .buy-btn-group{
 	margin-top: 10px;
 }
+.buy-btn-group{
+	margin-top: 10px;
+}
+.small-icon ul li:not(:last-child){
+	margin-bottom: 10px;
+}
+.small-icon ul li img{
+	width: 60px;
+	height: 75px;
+}
+.small-icon ul li div{
+    width: 66px;
+    height: 81px;
+    text-align: center;
+    padding: 2px;;
+}
+.small-icon ul li.active div{
+    border: 1px solid #fabd00
+}
 /* rent modal */
 div.rent.modal .modal-dialog .modal-content{
 	padding: 8px;
+}
+nav .badge{
+	background-color: #2B773B;
 }

@@ -39,7 +39,7 @@
 
 
 <script type="text/javascript">
-	$(document)
+	jQuery(document)
 			.ready(
 					function() {
 						$("#pcommit")
