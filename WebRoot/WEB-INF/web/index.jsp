@@ -14,7 +14,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>购物车</title>
+<title>乐星网</title>
 <link rel="stylesheet" href="resources/css/bootstrap.css">
 <link rel="stylesheet" href="resources/css/bootstrap-theme.css">
 <link rel="stylesheet" href="resources/css/sticky-footer.css">

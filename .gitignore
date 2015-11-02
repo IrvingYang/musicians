@@ -40,3 +40,5 @@ classes/*
 .settings/org.eclipse.jdt.core.prefs
 
 /WebContent
+
+WebRoot/etc/jdbc.properties

@@ -26,6 +26,7 @@ import com.qushop.musicains.service.LeaseDaoService;
 import com.qushop.musicains.service.business.LeaseBusinessService;
 import com.qushop.order.entity.Order_detail;
 import com.qushop.order.entity.Order_list;
+import com.qushop.order.pojo.OrderListResult;
 import com.qushop.order.service.Order_detailService;
 import com.qushop.order.service.Order_listService;
 import com.qushop.prod.entity.Product;
@@ -839,8 +840,9 @@ public class Order_listServiceImpl implements Order_listService {
 	}
 
 	@Override
-	public List<Order_list> getAllOrderList(String userId, PagePojo pagePojo) {
-
+	public OrderListResult getAllOrderList(String userId, PagePojo pagePojo) {
+		
+		
 		String hql = "from Order_list where providerid='0001' and validflag=1  and userId=? order by createTime desc";
 
 		List<Order_list> orderLists = commonDao.findPagingByHql(hql, pagePojo.getPageno(), pagePojo.getPagesize(),
@@ -890,8 +892,8 @@ public class Order_listServiceImpl implements Order_listService {
 			// order_list.setExpress(expressService.getExpressByMethod(2,
 			// order_list.getExpressvendor()).get(0));
 		}
-
-		return orderLists;
+		OrderListResult orderListResult=new OrderListResult(totalcount, orderLists);
+		return orderListResult;
 	}
 
 	@Override

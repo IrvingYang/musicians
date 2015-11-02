@@ -16,14 +16,16 @@
 <base href="<%=basePath%>" />
 <title>订单列表</title>
 <link rel="stylesheet" href="resources/css/bootstrap.css">
+<link rel="stylesheet" href="resources/css/bootstrap-table.css">
 <link rel="stylesheet" href="resources/css/sticky-footer.css">
 <link rel="stylesheet" href="resources/css/non-responsive.css">
 <link rel="stylesheet" href="resources/css/bootstrap-dashboard.css">
 <!-- <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet"> -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="resources/css/star-rating.css">
 <link rel="stylesheet" href="resources/css/global.css">
-<link rel="stylesheet" href="resources/css/custom.css"/>
+<link rel="stylesheet" href="resources/css/custom.css" />
 </head>
 <body>
 	<!-- header -->
@@ -39,30 +41,40 @@
 					<div class="row">
 						<div class="col-lg-6">
 							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">商品订单</a></li>
+								<li role="presentation" class="active"><a href="#home"
+									aria-controls="home" role="tab" data-toggle="tab">商品订单</a></li>
+								<li role="presentation"><a href="#profile"
+									aria-controls="profile" role="tab" data-toggle="tab">租赁订单</a></li>
+								<li role="presentation"><a href="#messages"
+									aria-controls="messages" role="tab" data-toggle="tab">回购订单</a></li>
+								<li role="presentation"><a href="#settings"
+									aria-controls="settings" role="tab" data-toggle="tab">whatever</a></li>
 							</ul>
-
 						</div>
 					</div>
 
-					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+						aria-labelledby="myModalLabel">
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
 									<h4 class="modal-title" id="myModalLabel">评价打分</h4>
 								</div>
 								<div class="modal-body">
-									<input type="hidden" id="mproductId">
-									<input type="hidden" id="morderId">
+									<input type="hidden" id="mproductId"> <input
+										type="hidden" id="morderId">
 									<dl>
 										<dt>产品名称:</dt>
 										<dd id="mproductName"></dd>
 										<dt>打分:</dt>
 										<dd>
-											<input id="input-rating" value="0" type="number" class="rating" min=0 max=5 step=1 data-size="sm" data-stars="5">
+											<input id="input-rating" value="0" type="number"
+												class="rating" min=0 max=5 step=1 data-size="sm"
+												data-stars="5">
 										</dd>
 										<dt>评价:</dt>
 										<dd>
@@ -72,8 +84,10 @@
 
 								</div>
 								<div class="modal-footer">
-									<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-									<button type="button" class="btn btn-primary" onclick="onSubmit()">提交</button>
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">取消</button>
+									<button type="button" class="btn btn-primary"
+										onclick="onSubmit()">提交</button>
 								</div>
 							</div>
 						</div>
@@ -95,18 +109,21 @@
 										<tr>
 											<td colspan="6"><strong>${order.createTime}&nbsp;&nbsp;</strong>
 												<div class="pull-right">
-												<c:choose>
-													<c:when test="${order.orderType == 100}">
-														<h3>租赁订单</h3></c:when>
-												</c:choose>
+													<c:choose>
+														<c:when test="${order.orderType == 100}">
+															<h3>租赁订单</h3>
+														</c:when>
+													</c:choose>
 													<em>订单号：${order.orderId}</em> <span class="order_delete"><a>X</a></span>
 												</div></td>
 										</tr>
 										<c:set var="flag" value="0" />
 										<c:forEach items="${order.order_detail}" var="order_detail">
 											<tr>
-												<td><a href="eshop/shopProduct/productShopDetail.html?productId=${order_detail.product.productId}"> <img
-														class="img-thumbnail img-responsive" src="${order_detail.product.productimglist[2].path}" /> <span>${order_detail.product.productName}</span>
+												<td><a
+													href="eshop/shopProduct/productShopDetail.html?productId=${order_detail.product.productId}">
+														<img class="img-thumbnail img-responsive"
+														src="${order_detail.product.productimglist[2].path}" /> <span>${order_detail.product.productName}</span>
 												</a></td>
 												<td>￥${order_detail.price}</td>
 												<td>${order_detail.quantity}</td>
@@ -117,29 +134,67 @@
 														<td rowspan="2"><a href="javascript:;">${order.status eq '02' || order.status eq '08'?'已完成订单':'未完成订单' }</a></td>
 													</c:when>
 												</c:choose>
-												<td>
-												<c:set var="reviewflag" value="0" /> <c:forEach items="${order.productReviews}" var="productReview">
-														<c:choose><c:when test="${productReview.productId == order_detail.product.productId}">
-															<c:set var="reviewflag" value="1" />
-														</c:when>
+												<td><c:set var="reviewflag" value="0" /> <c:forEach
+														items="${order.productReviews}" var="productReview">
+														<c:choose>
+															<c:when
+																test="${productReview.productId == order_detail.product.productId}">
+																<c:set var="reviewflag" value="1" />
+															</c:when>
 														</c:choose>
-													</c:forEach>
-													<c:choose>
-													<c:when test="${reviewflag==0}">
-														<a href="javascript:;" data-toggle="modal" data-target="#myModal" data-product-id="${order_detail.product.productId}"
-															data-product-name="${order_detail.product.productName}" data-order-id="${order_detail.orderId}"> 评价</a>
-													</c:when>
+													</c:forEach> <c:choose>
+														<c:when test="${reviewflag==0}">
+															<a href="javascript:;" data-toggle="modal"
+																data-target="#myModal"
+																data-product-id="${order_detail.product.productId}"
+																data-product-name="${order_detail.product.productName}"
+																data-order-id="${order_detail.orderId}"> 评价</a>
+														</c:when>
 													</c:choose></td>
 											</tr>
 										</c:forEach>
 									</c:forEach>
 								</tbody>
 							</table>
-							<div id="pageDiv" class="pages">
-								<a href="javascript">上一页</a> <a class="active" href="javascript">1</a> <a href="javascript">2</a> <a href="javascript">3</a> <a
-									href="javascript">4</a> <a href="javascript">5</a> <a href="javascript">下一页</a>
+						</div>
+						<div role="tabpanel" class="tab-pane" id="profile">
+							<table class="address-list" id="table-orders" data-toggle="table"
+								data-url="order/orderList/orderList22.do"
+								data-page-list="[10, 20]" data-side-pagination="server"
+								data-pagination="true" data-search="true">
+								<thead>
+									<tr>
+										<th data-field="createTime" data-align="center"
+											data-sortable="true">创建时间</th>
+										<th data-field="orderType" data-align="center"
+											data-sortable="false">订单类型</th>
+										<th data-field="orderId" data-align="center"
+											data-sortable="false">区/县</th>
+										<th data-field="totalamt" data-sortable="false">街道地址</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						<div role="tabpanel" class="tab-pane" id="messages">
+							<div class="container">
+								<h1>Sub Table</h1>
+								<p>
+									Use
+									<code>onExpandRow</code>
+									event to handle your detail view.
+								</p>
+								<table id="table" data-detail-view="true">
+									<thead>
+										<tr>
+											<th data-field="id">ID</th>
+											<th data-field="name">Item Name</th>
+											<th data-field="price">Item Price</th>
+										</tr>
+									</thead>
+								</table>
 							</div>
 						</div>
+						<div role="tabpanel" class="tab-pane" id="settings">...4</div>
 					</div>
 
 				</div>
@@ -148,24 +203,26 @@
 		</div>
 	</div>
 
-	<jsp:include page="/WEB-INF/web/common/footer-nav.jsp"></jsp:include>
 
-<script type="text/javascript" src="resources/js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="resources/js/bootstrap.js"></script>
-<script type="text/javascript" src="resources/js/laypage.js"></script>
-<script type="text/javascript" src="resources/js/star-rating.js"></script>
-<script type="text/javascript" src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script type="text/javascript" src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+	<script type="text/javascript" src="resources/js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="resources/js/bootstrap.js"></script>
+	<script type="text/javascript" src="resources/js/bootstrap-table.js"></script>
+	<script type="text/javascript" src="resources/js/laypage.js"></script>
+	<script type="text/javascript" src="resources/js/star-rating.js"></script>
+	<script type="text/javascript"
+		src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script type="text/javascript"
+		src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
 	<script type="text/javascript">
-	
-			function onSubmit(){
-			var productId=$("#mproductId").val();
-			var productComments=$("#productComments").val();
-			var rate=$("#input-rating").val();
-			var orderId=$("#morderId").val();
-			
-				alert(productComments);
+		function onSubmit() {
+			var productId = $("#mproductId").val();
+			var productComments = $("#productComments").val();
+			var rate = $("#input-rating").val();
+			var orderId = $("#morderId").val();
+
+			alert(productComments);
 			$.post("eshop/productreview/addProductReview.action", {
 				'productId' : productId,
 				'productComments' : productComments,
@@ -175,54 +232,68 @@
 				$('#myModal').modal('hide');
 				window.location.reload()
 			});
-			
-				
-			}
-			
-			$(document).ready(function() {
-				$('#lorders').addClass('active');		
-			});
-			
-			
-			
-			$('#myModal')
-			.on(
-					'show.bs.modal',
-					function(e) {
-						var productId = $(e.relatedTarget).data('product-id');
-						var productName = $(e.relatedTarget).data('product-name');
-						var orderId = $(e.relatedTarget).data('order-id');
-						$('#mproductName').text(productName);
-						$('#mproductId').val(productId);
-						$('#morderId').val(orderId);
-						
-					});
-			
-			
-			
-			
-			
-	
-	        laypage({
-			    cont: $('#pageDiv'), //容器。值支持id名、原生dom对象，jquery对象,
-			    pages: ${page.totalpage}, //总页数
-			    curr: ${page.pageno+1},
-			    skip: false, //是否开启跳页
-			    groups: 5, //连续显示分页数
-			    first: '首页', //若不显示，设置false即可
-			    last: '尾页', //若不显示，设置false即可
-			    prev: '<', //若不显示，设置false即可
-			    next: '>', //若不显示，设置false即可
-			    jump: function(obj){
-			    	if(document.readyState == "complete" || document.readyState == "COMPLETE"){
-			    		if(obj.curr > ${page.totalpage}){//判断下一页是否有效
-			    			return;
-			    		}
-			    		$("#pageNo").val(obj.curr);
-				    	$("#pageForm").submit();
-			    	}
-			    }
-			});
-	 	</script>
+		}
+
+		$(document)
+				.ready(
+						function() {
+							$('#lorders').addClass('active');
+
+							$('#table-orders > tbody > tr')
+									.each(
+											function() {
+												$(
+														"<tr class='backgrand:red'><td>abcd</td><td>abcd</td><td>abcd</td><td>abcd</td></tr><tr><td>abcd</td><td>abcd</td><td>abcd</td><td>abcd</td></tr>")
+														.insertAfter($(this));
+											});
+						});
+
+		$('#myModal').on('show.bs.modal', function(e) {
+			var productId = $(e.relatedTarget).data('product-id');
+			var productName = $(e.relatedTarget).data('product-name');
+			var orderId = $(e.relatedTarget).data('order-id');
+			$('#mproductName').text(productName);
+			$('#mproductId').val(productId);
+			$('#morderId').val(orderId);
+
+		});
+	</script>
+	<script>
+    var $table = $('#table');
+    $(function () {
+        buildTable($table, 8, 1);
+    });
+    function expandTable($detail, cells) {
+        buildTable($detail.html('<table></table>').find('table'), cells, 1);
+    }
+    function buildTable($el, cells, rows) {
+        var i, j, row,
+                columns = [],
+                data = [];
+        for (i = 0; i < cells; i++) {
+            columns.push({
+                field: 'field' + i,
+                title: 'Cell' + i,
+                sortable: true
+            });
+        }
+        for (i = 0; i < rows; i++) {
+            row = {};
+            for (j = 0; j < cells; j++) {
+                row['field' + j] = 'Row-' + i + '-' + j;
+            }
+            data.push(row);
+        }
+        $el.bootstrapTable({
+            columns: columns,
+            data: data,
+            detailView: cells > 1,
+            onExpandRow: function (index, row, $detail) {
+                expandTable($detail, cells - 1);
+            }
+        });
+    }
+</script>
+	<jsp:include page="/WEB-INF/web/common/footer-nav.jsp"></jsp:include>
 </body>
 </html>
