@@ -27,6 +27,7 @@ import com.qushop.dict.entity.Brand_vendor;
 import com.qushop.musicains.service.business.LeaseBusinessService;
 import com.qushop.order.entity.Order_detail;
 import com.qushop.order.entity.Order_list;
+import com.qushop.order.pojo.OrderListResult;
 import com.qushop.order.service.Order_listService;
 import com.qushop.prod.entity.Product;
 import com.qushop.prod.entity.ProductType;
@@ -122,7 +123,7 @@ public class Order_listController {
 					shopTemp.setYajin((double) productMap.get("yajin"));
 					shopTemp.setLeaseCycle(Integer.valueOf((String) productMap.get("leaseCycle")));
 					shopTemp.setTotalamt(shopPrice * productCount);
-					shopTemp.setLeaseType((int)productMap.get("leaseType"));
+					shopTemp.setLeaseType((int) productMap.get("leaseType"));
 				}
 
 				shopTemp.setProduct(product);
@@ -301,7 +302,7 @@ public class Order_listController {
 		}
 
 		List<Order_list> ordersList1 = order_listService
-				.getAllOrderList(PublicUtil.getUserOfSession(request).getUserId(), pagePojo);
+				.getAllOrderList(PublicUtil.getUserOfSession(request).getUserId(), pagePojo).getRows();
 		request.setAttribute("orderList", ordersList1);
 
 		// if("notfinished".equals(action)){
@@ -320,6 +321,22 @@ public class Order_listController {
 		request.setAttribute("flag", "shop");
 		request.setAttribute("page", pagePojo);
 		return "web/orders";
+	}
+
+	@RequestMapping("orderList2.do")
+	@ResponseBody
+	public OrderListResult getOrderList2(int limit, int offset, HttpServletRequest request) {
+
+		PagePojo pagePojo = new PagePojo();
+		int pageNO=offset/limit;
+		pagePojo.setPageno(pageNO);
+		pagePojo.setPagesize(limit);
+
+		OrderListResult allOrderList = order_listService
+				.getAllOrderList(PublicUtil.getUserOfSession(request).getUserId(), pagePojo);
+		request.setAttribute("orderList", allOrderList.getRows());
+
+		return allOrderList;
 	}
 
 	@RequestMapping("addOrder.shtml")

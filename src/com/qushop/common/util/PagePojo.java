@@ -9,6 +9,7 @@ public class PagePojo {
 	private int nextpage;
 	private int prepage;
 	private int currentpage;
+	private int offset;
 	private String searchKey;
 	
 	public void setSearchKey(String searchKey) {
@@ -19,6 +20,14 @@ public class PagePojo {
 		return searchKey;
 	}
 	
+	
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
+	
+	public int getOffset() {
+		return offset;
+	}
 	
 	public int getPageno() {
 		return pageno;
