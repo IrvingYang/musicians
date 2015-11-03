@@ -160,9 +160,9 @@
 							</table>
 						</div>
 						<div role="tabpanel" class="tab-pane" id="profile">
-							<table class="address-list" id="table-orders" data-toggle="table"
+							<table class="address-list table table-bordered" id="table-orders" data-toggle="table"
 								data-url="order/orderList/orderList2.do"
-								data-page-list="[10, 20]" data-side-pagination="server"
+								data-page-list="[1, 2]" data-side-pagination="server"
 								data-pagination="true" data-search="true">
 								<thead>
 									<tr>
@@ -185,7 +185,7 @@
 									<code>onExpandRow</code>
 									event to handle your detail view.
 								</p>
-								<table id="table" data-detail-view="true">
+								<table id="table" class="table table-bordered" data-detail-view="true">
 									<thead>
 										<tr>
 											<th data-field="id">ID</th>
