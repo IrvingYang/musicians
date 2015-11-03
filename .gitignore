@@ -42,3 +42,5 @@ classes/*
 /WebContent
 
 WebRoot/etc/jdbc.properties
+
+WebRoot/etc/jdbc.properties

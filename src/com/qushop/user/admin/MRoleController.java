@@ -46,13 +46,13 @@ public class MRoleController {
 					if("dialog".equals(action)){
 						return "lookDialog/lookUpRole";
 					}
-					return "roleList";
+					return "admin/roleList";
 				case 2:
 					List list = new ArrayList();
 					UrlList urlList = null;
 					roleserbvice.getUrlList2(list,urlList,PublicUtil.getOper(request));
 					request.setAttribute("arrangeRoleUrlList", list);
-					return "roleAuthorityList";
+					return "admin/roleAuthorityList";
 			}
 
 		return "admin/index";
