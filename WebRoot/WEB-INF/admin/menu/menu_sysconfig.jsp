@@ -9,8 +9,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<div class="accordionContent">
 		<ul class="tree treeFolder">
-			<li><a href="manage/role/getAllRoleInfo.do?type=1" target="navTab" rel="RoleInfo">角色信息</a></li>
-<!-- 			<li><a href="manage/role/arrangeRoleUrlList.do" target="navTab" rel="RoleAuthority">角色权限</a></li> -->
+		<!-- 		<li><a href="manage/role/getAllRoleInfo.do?type=1" target="navTab" rel="RoleInfo">角色信息</a></li>
+		<li><a href="manage/role/arrangeRoleUrlList.do" target="navTab" rel="RoleAuthority">角色权限</a></li> -->
 			<li><a href="manage/oper/operList.do" target="navTab" rel="OpertoRole">操作员管理</a></li>
 			<li><a href="manage/oper/toEditInfo.do" target="navTab" rel="OpertoInfo">修改我的信息</a></li>
 			<li><a href="manage/oper/toEditPassword.do" target="navTab" rel="OpertoPwd">修改登录密码</a></li>

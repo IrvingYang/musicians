@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="accordionContent">
 		<ul class="tree treeFolder">
 			<li><a href="manage/ad/getAllAdvertising.do" target="navTab" rel="ad">所有广告信息</a></li>
-			<li><a href="trip/modulerecommend/getTripModuleRecommendList.do" target="navTab" rel="moduleRecommend">乐享生活</a></li>
+			<!-- <li><a href="trip/modulerecommend/getTripModuleRecommendList.do" target="navTab" rel="moduleRecommend">乐享生活</a></li> -->
 		</ul>
 	</div>
 </div>

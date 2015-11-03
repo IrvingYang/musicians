@@ -18,7 +18,7 @@ public interface ProductReviewService {
 	 */
 	public List<ProductReview> getProductReviewByMethod(int type,String ...params);
 	
-	public boolean deleteProductReview(String productId,String userId,Date commentsDate,HttpServletRequest request);
+	public boolean deleteProductReview(String reviewId,HttpServletRequest request);
 
 	public boolean deleteProductReviewByProduct(String productId,Oper oper);
 	
