@@ -1,0 +1,12 @@
+table.first img {
+	width: 60px;
+	height: 60px;
+	float: left;
+}
+
+table.first img+span {
+	display: inline-block;
+	vertical-align: inherit;
+	line-height: 60px;
+	padding-left: 8px;
+}
