@@ -26,6 +26,8 @@
 <link rel="stylesheet" href="resources/css/star-rating.css">
 <link rel="stylesheet" href="resources/css/global.css">
 <link rel="stylesheet" href="resources/css/custom.css" />
+<link rel="stylesheet" href="resources/css/orders.css"/>
+<script type="text/javascript" src="resources/js/jquery-1.11.1.min.js"></script>
 </head>
 <body>
 	<!-- header -->
@@ -95,7 +97,7 @@
 					<!-- Tab panes -->
 					<div class="tab-content">
 						<div role="tabpanel" class="tab-pane active" id="home">
-							<table class="table table-bordered">
+							<table class="table table-bordered first">
 								<tbody>
 									<tr class="order_title">
 										<th>商品</th>
@@ -130,8 +132,8 @@
 												<c:choose>
 													<c:when test="${flag == 0}">
 														<c:set var="flag" value="1" />
-														<td rowspan="2">￥${order.totalamt}</td>
-														<td rowspan="2"><a href="javascript:;">${order.status eq '02' || order.status eq '08'?'已完成订单':'未完成订单' }</a></td>
+														<td>￥${order.totalamt}</td>
+														<td><a href="javascript:;">${order.status eq '02' || order.status eq '08'?'已完成订单':'未完成订单' }</a></td>
 													</c:when>
 												</c:choose>
 												<td><c:set var="reviewflag" value="0" /> <c:forEach
@@ -159,7 +161,7 @@
 						</div>
 						<div role="tabpanel" class="tab-pane" id="profile">
 							<table class="address-list" id="table-orders" data-toggle="table"
-								data-url="order/orderList/orderList22.do"
+								data-url="order/orderList/orderList2.do"
 								data-page-list="[10, 20]" data-side-pagination="server"
 								data-pagination="true" data-search="true">
 								<thead>
@@ -203,9 +205,6 @@
 		</div>
 	</div>
 
-
-
-	<script type="text/javascript" src="resources/js/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="resources/js/bootstrap.js"></script>
 	<script type="text/javascript" src="resources/js/bootstrap-table.js"></script>
 	<script type="text/javascript" src="resources/js/laypage.js"></script>
