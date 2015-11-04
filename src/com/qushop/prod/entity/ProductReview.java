@@ -12,7 +12,9 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -30,18 +32,15 @@ import com.qushop.user.entity.User_Ext_Personal;
 @Table(name="tb_productreview")
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 public class ProductReview implements Serializable{
+	private static final long serialVersionUID = 3709424260840447319L;
 
 	@Id
-	@GeneratedValue(generator="genericGenerator")
-	@GenericGenerator(name="genericGenerator",strategy="assigned")
+	@GeneratedValue(strategy = GenerationType.AUTO,generator="REVIEW_SEQ")
+    @SequenceGenerator(name="REVIEW_SEQ",sequenceName="REVIEW_SEQ")
+	private int reviewId;//租赁ID
+
 	private String productId;
-	@Id
-	@GeneratedValue(generator="genericGenerator")
-	@GenericGenerator(name="genericGenerator",strategy="assigned")
 	private String userId;
-	@Id
-	@GeneratedValue(generator="genericGenerator")
-	@GenericGenerator(name="genericGenerator",strategy="assigned")
 	private Date commentsDate;
 	private String productComments;
 	private short rate;
@@ -55,7 +54,14 @@ public class ProductReview implements Serializable{
 	@Transient
 	private User user;
 	
+	public int getReviewId() {
+		return reviewId;
+	}
 	
+	
+	public void setReviewId(int reviewId) {
+		this.reviewId = reviewId;
+	}
 	
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;

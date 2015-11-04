@@ -40,7 +40,7 @@ public class Order_detailServiceImpl implements Order_detailService {
 		return detailsList;
 	}
 
-	public Order_detail getOrderdetail(String productId, String orderId,int orderType) {
+	public Order_detail getOrderdetail(String productId, String orderId,short orderType) {
 		List<Order_detail> detailsList = new ArrayList<Order_detail>();
 		detailsList = commonDao.findByHql("from Order_detail where productId=? and orderId=? and orderType=? and validflag=1", productId,orderId,orderType);
 		return detailsList.get(0);

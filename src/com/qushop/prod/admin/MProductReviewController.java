@@ -36,16 +36,13 @@ public class MProductReviewController {
 	
 	@RequestMapping("deleteProductReview.do")
 	@ResponseBody
-	public Object deleteProductReview(String deleteKeyWord,HttpServletRequest request) throws ParseException{
+	public Object deleteProductReview(String[] deleteKeyWord,HttpServletRequest request) throws ParseException{
 
 		boolean bool = false;
-		String keyWords[] = deleteKeyWord.split(",");
+		//String keyWords[] = deleteKeyWord.split(",");
 		
-		for (String key : keyWords) {
-			String keys[] = key.split("and");
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			Date commentsDate = format.parse(keys[2]); 
-			bool = service.deleteProductReview(keys[0], keys[1], commentsDate,request);
+		for (String key : deleteKeyWord) {
+			bool = service.deleteProductReview(key,request);
 		}
 		if(bool){
 			return DwzUtil.opSuccess("操作成功", "review");

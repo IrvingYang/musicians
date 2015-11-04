@@ -68,13 +68,12 @@ public class ProductReviewServiceImpl implements ProductReviewService {
 	}
 
 	@Override
-	public boolean deleteProductReview(String productId, String userId, Date commentsDate, HttpServletRequest request) {
+	public boolean deleteProductReview(String reviewId, HttpServletRequest request) {
 
 		try {
 			return commonDao.executeBySql(
-					"update tb_productreview set validflag=0,operid=?,lastupdatetime=? where productId in (" + productId
-							+ ") and userId=? and commentsDate=? and validflag=1",
-					PublicUtil.getOper(request).getOperId(), new Date(), productId, userId, commentsDate);
+					"update tb_productreview set validflag=0, operid=?, lastupdatetime=? where reviewId=? and validflag=1",
+					PublicUtil.getOper(request).getOperId(), new Date(), reviewId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

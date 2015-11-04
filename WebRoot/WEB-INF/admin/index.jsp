@@ -12,7 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <base href="<%=basePath %>" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=7" />
-<title>彝家优品后台管理系统</title>
+<title>乐星网后台管理系统</title>
 
 <link href="<%=basePath %>manage/themes/default/style.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="<%=basePath %>manage/themes/css/core.css" rel="stylesheet" type="text/css" media="screen"/>
@@ -75,14 +75,14 @@ $(function(){
 			<div id="navMenu">
 				<ul>
 					<li class="selected"><a href="manage/menu/product.do"><span>商品管理</span></a></li>
-					<li><a href="manage/menu/groupbuy.do"><span>团购管理</span></a></li>
+					<!-- <li><a href="manage/menu/groupbuy.do"><span>团购管理</span></a></li>
 					<li><a href="manage/menu/bigdeal.do"><span>大宗交易管理</span></a></li>
-					<li><a href="manage/menu/provider.do"><span>合作社管理</span></a></li>
+					<li><a href="manage/menu/provider.do"><span>合作社管理</span></a></li> -->
 					<li><a href="manage/menu/order.do"><span>订单管理</span></a></li>
 					<li><a href="manage/menu/user.do"><span>会员管理</span></a></li>
-					<li><a href="manage/menu/travel.do"><span>趣旅游管理</span></a></li>
+					<!-- <li><a href="manage/menu/travel.do"><span>趣旅游管理</span></a></li>
 					<li><a href="manage/menu/activity.do"><span>趣采摘管理</span></a></li>
-					<li><a href="manage/menu/blogs.do"><span>趣分享管理</span></a></li>
+					<li><a href="manage/menu/blogs.do"><span>趣分享管理</span></a></li> -->
 					<li><a href="manage/menu/advertising.do"><span>广告管理</span></a></li>
 					<li><a href="manage/menu/dict.do"><span>基本信息管理</span></a></li>
 					<li><a href="manage/menu/programa.do"><span>栏目管理</span></a></li>

@@ -26,12 +26,12 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${reviewsList}" var="review" varStatus="state">
-				<tr rel="${review.productId}and${review.userId}and${review.commentsDate}">
+				<tr rel="${review.reviewId}">
 					<td>${state.index+1}</td>
 					<td>${review.product.productName}</td>
 					<td>${review.rate}</td>
 					<td>${empty review.productComments?"暂无评论":review.productComments}</td>
-					<td>${review.userPersonal.user.userName}</td>
+					<td>${review.user.userName}</td>
 					<td>${review.commentsDate}</td>
 					<td>${review.lastUpdateTime}</td>
 				</tr>
@@ -75,6 +75,7 @@
 			        var selected = $("#reviewDatatables").children("tbody").children(".selected");
 			        var productIds = '';
  					$.each(selected, function(index, data){
+ 						alert($(data).attr("rel"));
  						if(index==0){
  	 						productIds+=$(data).attr("rel")==undefined?"":$(data).attr("rel");
  						}else{
