@@ -10,3 +10,10 @@ table.first img+span {
 	line-height: 60px;
 	padding-left: 8px;
 }
+table.first  tr td:not([colspan]){
+	vertical-align: middle;
+	text-align: center;
+}
+.tab-content{
+	padding: 10px;
+}

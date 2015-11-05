@@ -132,8 +132,8 @@
 												<c:choose>
 													<c:when test="${flag == 0}">
 														<c:set var="flag" value="1" />
-														<td>￥${order.totalamt}</td>
-														<td><a href="javascript:;">${order.status eq '02' || order.status eq '08'?'已完成订单':'未完成订单' }</a></td>
+														<td class="rowspan" rowspan="${fn:length(order.order_detail)}">￥${order.totalamt}</td>
+														<td class="rowspan" rowspan="${fn:length(order.order_detail)}"><a href="javascript:;">${order.status eq '02' || order.status eq '08'?'已完成订单':'未完成订单' }</a></td>
 													</c:when>
 												</c:choose>
 												<td><c:set var="reviewflag" value="0" /> <c:forEach
