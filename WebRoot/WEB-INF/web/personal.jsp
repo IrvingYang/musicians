@@ -154,83 +154,85 @@
 
 	<jsp:include page="/WEB-INF/web/common/footer-nav.jsp"></jsp:include>
 
-	
-<script src="resources/js/bootstrap.min.js"></script>
-<script src="resources/js/bootstrap-table.js"></script>
-<script src="js/qushop/AreaData_min.js"></script>
-<script src="js/qushop/Area.js"></script>
-<script src="resources/js/jqBootstrapValidation.js"></script>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	
-<script>
-	$(function(){ 
-		$("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); 
-	});
-	
-	function defaultRow(value, row, index){
-		if( row.defaultflag == 1){
-			return ['<span class="default-value">' + value + '</span><span class="default">默认地址</span>'];	
-		}else{
-			return ['<span>' + value + '</span>'];
+
+	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="resources/js/bootstrap-table.js"></script>
+	<script src="js/qushop/AreaData_min.js"></script>
+	<script src="js/qushop/Area.js"></script>
+	<script src="resources/js/jqBootstrapValidation.js"></script>
+	<script src="resources/js/html5shiv.min.js"></script>
+	<script src="resources/js/respond.min.js"></script>
+
+	<script>
+		$(function() {
+			$("input,select,textarea").not("[type=submit]")
+					.jqBootstrapValidation();
+		});
+
+		function defaultRow(value, row, index) {
+			if (row.defaultflag == 1) {
+				return [ '<span class="default-value">' + value
+						+ '</span><span class="default">默认地址</span>' ];
+			} else {
+				return [ '<span>' + value + '</span>' ];
+			}
+
 		}
-		
-	}
-		
-	function nameFormatter(value, row) {
-		return value ? '<strong>' + value + '</strong> 收 ' : '';
-	}
 
-	function priceFormatter(value) {
-		// 16777215 == ffffff in decimal
-		var color = '#' + Math.floor(Math.random() * 6777215).toString(16);
-		return '<div  style="color: ' + color + '">'
-				+ '<i class="glyphicon glyphicon-usd"></i>'
-				+ value.substring(1) + '</div>';
-	}
-
-	function operateFormatter(value, row, index) {
-		return [
-				'<a class="like" href="javascript:void(0)" title="Like">',
-				'<i class="glyphicon glyphicon-heart"></i>',
-				'</a>',
-				'<a class="edit ml10" href="javascript:void(0)" title="Edit" id="editAdd" value="修改" data-toggle="modal" data-target="#myModal" data-area-id="'
-						+ row.areaId
-						+ '" '
-						+ 'data-postcode="'
-						+ row.postCode
-						+ '" data-street-address="'
-						+ row.street
-						+ '" data-user-address-id="'
-						+ row.userAddressId
-						+ '" '
-						+ 'data-name="'
-						+ row.name
-						+ '" data-telephone="'
-						+ row.telephone
-						+ '">',
-				'<i class="glyphicon glyphicon-edit"></i>',
-				'</a>',
-				'<a class="remove ml10" href="javascript:void(0)" title="Remove">',
-				'<i class="glyphicon glyphicon-remove"></i>', '</a>' ]
-				.join('');
-	}
-
-	window.operateEvents = {
-		'click .like' : function(e, value, row, index) {
-			// alert('You click like icon, row: ' + JSON.stringify(row));
-			console.log(value, row, index);
-		},
-		'click .edit' : function(e, value, row, index) {
-			// alert('You click edit icon, row: ' + JSON.stringify(row)); 
-
-		},
-		'click .remove' : function(e, value, row, index) {
-			//alert('You click remove icon, row: ' + JSON.stringify(row));
-			deleteAddress(row.userAddressId + '');
+		function nameFormatter(value, row) {
+			return value ? '<strong>' + value + '</strong> 收 ' : '';
 		}
-	};
-</script>
+
+		function priceFormatter(value) {
+			// 16777215 == ffffff in decimal
+			var color = '#' + Math.floor(Math.random() * 6777215).toString(16);
+			return '<div  style="color: ' + color + '">'
+					+ '<i class="glyphicon glyphicon-usd"></i>'
+					+ value.substring(1) + '</div>';
+		}
+
+		function operateFormatter(value, row, index) {
+			return [
+					'<a class="like" href="javascript:void(0)" title="Like">',
+					'<i class="glyphicon glyphicon-heart"></i>',
+					'</a>',
+					'<a class="edit ml10" href="javascript:void(0)" title="Edit" id="editAdd" value="修改" data-toggle="modal" data-target="#myModal" data-area-id="'
+							+ row.areaId
+							+ '" '
+							+ 'data-postcode="'
+							+ row.postCode
+							+ '" data-street-address="'
+							+ row.street
+							+ '" data-user-address-id="'
+							+ row.userAddressId
+							+ '" '
+							+ 'data-name="'
+							+ row.name
+							+ '" data-telephone="'
+							+ row.telephone
+							+ '">',
+					'<i class="glyphicon glyphicon-edit"></i>',
+					'</a>',
+					'<a class="remove ml10" href="javascript:void(0)" title="Remove">',
+					'<i class="glyphicon glyphicon-remove"></i>', '</a>' ]
+					.join('');
+		}
+
+		window.operateEvents = {
+			'click .like' : function(e, value, row, index) {
+				// alert('You click like icon, row: ' + JSON.stringify(row));
+				setDefaultAddress(row.userAddressId + '');
+			},
+			'click .edit' : function(e, value, row, index) {
+				// alert('You click edit icon, row: ' + JSON.stringify(row)); 
+
+			},
+			'click .remove' : function(e, value, row, index) {
+				//alert('You click remove icon, row: ' + JSON.stringify(row));
+				deleteAddress(row.userAddressId + '');
+			}
+		};
+	</script>
 
 
 
