@@ -152,8 +152,7 @@
 	});
 	
 	function defaultRow(value, row, index){
-		//TODO row.defaultflag ==1
-		if(index == 0){
+		if( row.defaultflag == 1){
 			return ['<span class="default-value">' + value + '</span><span class="default">默认地址</span>'];	
 		}else{
 			return ['<span>' + value + '</span>'];
