@@ -29,4 +29,6 @@ public interface UserAddressService {
 	
 	public boolean deleteUserAddressByUserIds(String userIds);
 	
+	public UserAddress getDefaultUserAddress(String userId);
+	
 }

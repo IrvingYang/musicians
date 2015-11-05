@@ -125,4 +125,21 @@ public class UserAddressServiceImpl implements UserAddressService {
 		return commonDao.executeBySql("update tb_useraddress set validflag=0 where userId in ("+userIds+")");
 	}
 
+	@Override
+	public UserAddress getDefaultUserAddress(String userId) {
+
+		List<UserAddress> addressesList = commonDao.findByHql("from UserAddress where userId=? and validflag=1 and defaultflag=1",userId);
+		for (UserAddress userAddress : addressesList) {
+			List<District> districtsList = districtService.getDistrictByMethod(4, userAddress.getDistrictId());
+			List<Object> usersList = userService.getUserByMethod(3, userAddress.getUserId());
+			if(districtsList!=null && districtsList.size()>0){
+				userAddress.setDistrict(districtsList.get(0));
+			}
+			if(usersList!=null && usersList.size()>0){
+				userAddress.setUser_Ext_Personal((User_Ext_Personal) usersList.get(0));
+			}
+		}
+		return addressesList.get(0);
+	}
+
 }
