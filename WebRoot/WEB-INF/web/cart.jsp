@@ -50,45 +50,39 @@
 
 								<c:forEach items="${sessionScope.shopping_cart.map}" var="cart">
 									<c:choose>
-										<c:when test="${cart.value['cartType']==0 }">
-											<tr>
-												<td><img
-													src="${cart.value['product'].productimglist[0].path}" /></td>
-												<td><a class="text-primary">
-														${cart.value['product'].productName } </a>
-													<p class="text-info" id="productId">${cart.value['product'].productId}</p>
-													<p class="text-success">有现货，随时可发出</p></td>
-												<td>
-													<div>
-														<p id="aprice">${cart.value['currentPrice']}</p>
-													</div>
-												</td>
-												<td>
-													<div class="input-group" style="width: 120px">
-														<span class="input-group-btn">
-															<button type="button" class="btn btn-danger btn-number"
-																data-type="minus" data-field="count">
-																<span class="glyphicon glyphicon-minus"></span>
-															</button>
-														</span> <input type="text" class="form-control input-number"
-															value="${cart.value['productCount']}" min="1" max="100"
-															name="count" id="count"> <span
-															class="input-group-btn">
-															<button type="button" class="btn btn-success btn-number"
-																data-type="plus" data-field="count">
-																<span class="glyphicon glyphicon-plus"></span>
-															</button>
-														</span>
-													</div>
-												</td>
-												<td>
-													<div>
-														<p id="subtotal">￥
-															${cart.value['currentPrice']*cart.value['productCount']}</p>
-													</div>
-												</td>
-											</tr>
-										</c:when>
+									<c:when test="${cart.value['cartType']==0 }">
+									<tr>
+										<td> <img src="${cart.value['product'].productimglist[0].path}" /></td>
+										<td><a class="text-primary"> ${cart.value['product'].productName } </a>
+											<p class="text-info" id="productId">${cart.value['product'].productId}</p>
+											<p class="text-success">有现货，随时可发出</p>
+										</td>
+										<td>
+											<div>
+												<p id="aprice">${cart.value['currentPrice']}</p>
+											</div>
+										</td>
+										<td>
+											<div class="input-group" style="width: 120px">
+												<span class="input-group-btn">
+													<button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="count">
+														<span class="glyphicon glyphicon-minus"></span>
+													</button>
+												</span>
+												<input type="text" class="form-control input-number" value="${cart.value['productCount']}" min="1" max="100" name="count" id="count">
+												<span class="input-group-btn">
+													<button type="button" class="btn btn-success btn-number" data-type="plus" data-field="count">
+														<span class="glyphicon glyphicon-plus"></span>
+													</button>
+												</span>
+											</div>
+										</td>
+										<td>
+											<div>
+												<p id="subtotal">￥ ${cart.value['currentPrice']*cart.value['productCount']}</p>
+											</div>
+										</td>
+									</tr></c:when>
 									</c:choose>
 								</c:forEach>
 							</table>
@@ -96,89 +90,79 @@
 					</div>
 				</div>
 
-
+				
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<p id="myPopover" class="help-block" data-container="body"
-							data-toggle="popover" data-placement="right"
-							data-content="请选择收货人地址">
+						<p id="myPopover" class="help-block" data-container="body" data-toggle="popover" data-placement="right" data-content="请选择收货人地址">
 						<h3 class="panel-title">租赁商品</h3>
 						</p>
 
 					</div>
 
 					<div class="panel-body">
-						<table class="table table-bordered">
-							<tr>
-								<th colspan="2"><span>商品</span></th>
-								<th><span>押金</span></th>
-								<th><span>数量</span></th>
-								<th><span>租赁周期</span></th>
-								<th><span>小计</span></th>
-							</tr>
+					<table class="table table-bordered">
+								<tr>
+									<th colspan="2"><span>商品</span></th>
+									<th><span>押金</span></th>
+									<th><span>数量</span></th>
+									<th><span>租赁周期</span></th>
+									<th><span>小计</span></th>
+								</tr>
 
-							<c:forEach items="${sessionScope.shopping_cart.map}" var="cart">
-								<c:choose>
+								<c:forEach items="${sessionScope.shopping_cart.map}" var="cart">
+									<c:choose>
 									<c:when test="${cart.value['cartType']==2 }">
-										<tr>
-											<td><img
-												src="${cart.value['product'].productimglist[0].path}" /></td>
-											<td><a class="text-primary">
-													${cart.value['product'].productName } </a>
-												<p class="text-info" id="productId">${cart.value['product'].productId}</p>
-												<p class="text-success">有现货，随时可发出</p></td>
-											<td>
-												<div>
-													<p id="aprice">${cart.value['yajin']}</p>
-												</div>
-											</td>
-											<td>
-												<div class="input-group" style="width: 120px">
-													<span class="input-group-btn">
-														<button type="button" class="btn btn-danger btn-number"
-															data-type="minus" data-field="count">
-															<span class="glyphicon glyphicon-minus"></span>
-														</button>
-													</span> <input type="text" class="form-control input-number"
-														value="${cart.value['productCount']}" min="1" max="100"
-														name="count" id="count"> <span
-														class="input-group-btn">
-														<button type="button" class="btn btn-success btn-number"
-															data-type="plus" data-field="count">
-															<span class="glyphicon glyphicon-plus"></span>
-														</button>
-													</span>
-												</div>
-											</td>
-											<td>
-												<div>
-													<p id="leaseCycle">${cart.value['leaseCycle']}</p>
-												</div>
-											</td>
-
-											<td>
-												<div>
-													<p id="subtotal">￥
-														${cart.value['yajin']*cart.value['productCount']}</p>
-												</div>
-											</td>
-										</tr>
-									</c:when>
-								</c:choose>
-							</c:forEach>
-						</table>
-
-
+									<tr>
+										<td> <img src="${cart.value['product'].productimglist[0].path}" /></td>
+										<td><a class="text-primary"> ${cart.value['product'].productName } </a>
+											<p class="text-info" id="productId">${cart.value['product'].productId}</p>
+											<p class="text-success">有现货，随时可发出</p>
+										</td>
+										<td>
+											<div>
+												<p id="aprice">${cart.value['yajin']}</p>
+											</div>
+										</td>
+										<td>
+											<div class="input-group" style="width: 120px">
+												<span class="input-group-btn">
+													<button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="count">
+														<span class="glyphicon glyphicon-minus"></span>
+													</button>
+												</span>
+												<input type="text" class="form-control input-number" value="${cart.value['productCount']}" min="1" max="100" name="count" id="count">
+												<span class="input-group-btn">
+													<button type="button" class="btn btn-success btn-number" data-type="plus" data-field="count">
+														<span class="glyphicon glyphicon-plus"></span>
+													</button>
+												</span>
+											</div>
+										</td>
+										<td>
+											<div>
+												<p id="leaseCycle"> ${cart.value['leaseCycle']} </p>
+											</div>
+										</td>
+										
+										<td>
+											<div>
+												<p id="subtotal">￥ ${cart.value['yajin']*cart.value['productCount']}</p>
+											</div>
+										</td>
+									</tr></c:when>
+									</c:choose>
+								</c:forEach>
+							</table>
+					
+					
 					</div>
 				</div>
-
-
+				
+				
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<p id="myPopover" class="help-block" data-container="body"
-							data-toggle="popover" data-placement="right"
-							data-content="请选择收货人地址">
+						<p id="myPopover" class="help-block" data-container="body" data-toggle="popover" data-placement="right" data-content="请选择收货人地址">
 						<h3 class="panel-title">收货人信息</h3>
 						</p>
 
@@ -188,10 +172,8 @@
 						<form>
 							<c:forEach items="${userAddressesList}" var="add1">
 								<div class="radio">
-									<label><input type="radio" id="${add1.userAddressId}"
-										name="radio-btn">${add1.stateId } ${add1.cityId }
-										${add1.districtId} ${add1.street} <b>${add1.name}</b> 收
-										${add1.telephone}</label>
+									<label><input type="radio" id="${add1.userAddressId}" name="radio-btn">${add1.stateId } ${add1.cityId } ${add1.districtId}
+										${add1.street} <b>${add1.name}</b> 收 ${add1.telephone}</label>
 								</div>
 							</c:forEach>
 						</form>
@@ -203,17 +185,15 @@
 	<div class="footer" style="height: 50px">
 		<div class="container-fluid">
 			<p class="text-right">
-				<span> 总价： <em id="total" class="text-danger"></em></span> <small>共<em
-					id="totalCount" class="text-danger"></em>件商品
-				</small> <a class="btn btn-lg btn-danger" id="submitOrder"
-					onclick="submit()" role="button">提交订单</a>
+				<span> 总价： <em id="total" class="text-danger"></em></span> <small>共<em id="totalCount" class="text-danger"></em>件商品
+				</small> <a class="btn btn-lg btn-danger" id="submitOrder" onclick="submit()" role="button">提交订单</a>
 			</p>
 		</div>
 	</div>
-	<script src="resources/js/jquery-1.11.1.min.js"></script>
-	<script src="resources/js/bootstrap.js"></script>
+<script src="resources/js/jquery-1.11.1.min.js"></script>
+<script src="resources/js/bootstrap.js"></script>
 
-	<script src="resources/js/html5shiv.min.js"></script>
+<script src="resources/js/html5shiv.min.js"></script>
 	<script src="resources/js/respond.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -290,7 +270,7 @@
 				//TBD orderType should be 4
 				var url = "order/orderList/addOrder_list.do";
 				var paymentway = "01";
-
+				
 				var form = $('<form action="' + url + '" method="post">'
 						+ '<input type="text" name="userAddressId" value="'+selected+'" hidden="true"/>'
 						+ '<input type="text" name="requireinvoice" value="'+1+'" hidden="true"/>'
