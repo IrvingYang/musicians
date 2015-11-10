@@ -22,6 +22,7 @@
 <link rel="stylesheet" href="resources/css/custom.css">
 <link rel="stylesheet" href="resources/css/bootstrap-dashboard.css">
 <link rel="stylesheet" href="resources/css/global.css">
+<link rel="stylesheet" href="resources/css/cart.css"/>
 </head>
 <body>
 	<!-- header -->
@@ -40,7 +41,7 @@
 							<h3 class="panel-title">购买商品</h3>
 						</div>
 						<div class="panel-body">
-							<table class="table table-bordered">
+							<table class="table table-bordered cart">
 								<tr>
 									<th colspan="2"><span>商品</span></th>
 									<th><span>价格</span></th>

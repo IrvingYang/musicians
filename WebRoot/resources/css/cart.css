@@ -1,0 +1,11 @@
+table.cart img{
+	width: 60px;
+	height: 60px;
+}
+table.cart tbody td{
+	vertical-align: middle;
+}
+table.cart tbody td:first-child{
+	text-align: center;
+	width: 80px;
+}

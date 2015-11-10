@@ -33,3 +33,21 @@ div.rent.modal .modal-dialog .modal-content{
 nav .badge{
 	background-color: #2B773B;
 }
+.modal-title{
+	font-size: 18px;
+}
+div.rent.modal .modal-body > .row{
+	margin-bottom: 10px;
+}
+div.rent.modal .modal-body > .row.name label:last-child{
+	padding-left: 0;
+}
+div.rent.modal .modal-body > .row.table{
+	padding-left: 95px;
+}
+div.rent.modal .modal-body > .row > label.control-label{
+	width: 90px;
+}
+div.rent.modal .modal-body > .row > label.price{
+	padding-left: 0;
+}
