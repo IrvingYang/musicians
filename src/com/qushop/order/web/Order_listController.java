@@ -354,7 +354,6 @@ public class Order_listController {
 		}
 		order_listService.addShopOrder(cartUtil, PublicUtil.getUserOfSession(request).getUserId(), userAddressId, 0,
 				request);
-
 		request.setAttribute("pageNostr", "1");
 		request.setAttribute("action", "notfinished");
 		request.setAttribute("pageSizestr", "12");

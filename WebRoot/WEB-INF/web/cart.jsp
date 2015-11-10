@@ -48,7 +48,7 @@
 									<th><span>小计</span></th>
 								</tr>
 
-								<c:forEach items="${sessionScope.shopping_cart.map}" var="cart">
+								<c:forEach items="${sessionScope.shopping_cart.map}" var="cart" varStatus="status">
 									<c:choose>
 									<c:when test="${cart.value['cartType']==0 }">
 									<tr>
@@ -65,13 +65,13 @@
 										<td>
 											<div class="input-group" style="width: 120px">
 												<span class="input-group-btn">
-													<button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="count">
+													<button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="count${status.count}">
 														<span class="glyphicon glyphicon-minus"></span>
 													</button>
 												</span>
-												<input type="text" class="form-control input-number" value="${cart.value['productCount']}" min="1" max="100" name="count" id="count">
+												<input type="text" class="form-control input-number" value="${cart.value['productCount']}" min="1" max="100"  name="count${status.count}"  id="count">
 												<span class="input-group-btn">
-													<button type="button" class="btn btn-success btn-number" data-type="plus" data-field="count">
+													<button type="button" class="btn btn-success btn-number" data-type="plus" data-field="count${status.count}">
 														<span class="glyphicon glyphicon-plus"></span>
 													</button>
 												</span>
@@ -88,7 +88,6 @@
 							</table>
 						</div>
 					</div>
-				</div>
 
 				
 				<div class="panel panel-default">
@@ -100,7 +99,7 @@
 					</div>
 
 					<div class="panel-body">
-					<table class="table table-bordered">
+					<table id="leaseCart" class="table table-bordered">
 								<tr>
 									<th colspan="2"><span>商品</span></th>
 									<th><span>押金</span></th>
@@ -126,13 +125,13 @@
 										<td>
 											<div class="input-group" style="width: 120px">
 												<span class="input-group-btn">
-													<button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="count">
+													<button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="lcount${status.count}">
 														<span class="glyphicon glyphicon-minus"></span>
 													</button>
 												</span>
-												<input type="text" class="form-control input-number" value="${cart.value['productCount']}" min="1" max="100" name="count" id="count">
+												<input type="text" class="form-control input-number" value="${cart.value['productCount']}" min="1" max="100" name="lcount${status.count}" id="count">
 												<span class="input-group-btn">
-													<button type="button" class="btn btn-success btn-number" data-type="plus" data-field="count">
+													<button type="button" class="btn btn-success btn-number" data-type="plus" data-field="lcount${status.count}">
 														<span class="glyphicon glyphicon-plus"></span>
 													</button>
 												</span>
@@ -164,8 +163,6 @@
 					<div class="panel-heading">
 						<p id="myPopover" class="help-block" data-container="body" data-toggle="popover" data-placement="right" data-content="请选择收货人地址">
 						<h3 class="panel-title">收货人信息</h3>
-						</p>
-
 					</div>
 
 					<div class="panel-body">
@@ -181,6 +178,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 	<div class="footer" style="height: 50px">
 		<div class="container-fluid">
@@ -237,7 +235,7 @@
 					'productId' : pid,
 					'cartType' : '0',
 				}, function() {
-					window.location.reload()
+				//	window.location.reload()
 				});
 
 				$("#total").text('￥' + total);
@@ -271,6 +269,14 @@
 				var url = "order/orderList/addOrder_list.do";
 				var paymentway = "01";
 				
+				var rowCount = $('#leaseCart tr').length;
+				
+				var orderTypes='<input type="text" name="orderTypes" value="'+1+'" hidden="true"/>'
+				
+				if (rowCount >1){
+					orderTypes += '<input type="text" name="orderTypes" value="'+100+'" hidden="true"/>'
+				}
+				
 				var form = $('<form action="' + url + '" method="post">'
 						+ '<input type="text" name="userAddressId" value="'+selected+'" hidden="true"/>'
 						+ '<input type="text" name="requireinvoice" value="'+1+'" hidden="true"/>'
@@ -279,8 +285,7 @@
 						+ '<input type="text" name="invoicetitle" value="'+"xx"+'" hidden="true"/>'
 						+ '<input type="text" name="invoicecontent" value="'+"xx"+'" hidden="true"/>'
 						+ '<input type="text" name="remark" value="'+"dummy"+'" hidden="true"/>'
-						+ '<input type="text" name="orderTypes" value="'+1+'" hidden="true"/>'
-						+ '<input type="text" name="orderTypes" value="'+100+'" hidden="true"/>'
+						+ orderTypes
 						+ '<input type="text" name="payofflineflag" value="'+"0"+'" hidden="true"/>'
 						+ '</form>');
 				$('body').append(form);
