@@ -45,12 +45,12 @@
 		
 									<div class="form-group">
 										<label for="exampleInputEmail1">邮箱</label>
-										<input type="email" class="form-control" id="lemail" name="username" placeholder="邮箱" data-validation-email-message=“请填写邮箱地址” >
+										<input type="email" class="form-control" id="lemail" name="username" placeholder="邮箱" required>
 										 <p class="help-block"></p>
 									</div>
 									<div class="form-group">
 										<label for="exampleInputPassword1">密码</label>
-										<input type="password" class="form-control" id="lpassword" name="password" placeholder="密码">
+										<input type="password" class="form-control" id="lpassword" name="password" placeholder="密码" required>
 										 <p class="help-block"></p>
 									</div>
 		
@@ -64,25 +64,25 @@
 								<input type="hidden" value="${returnURL}" name="returnURL" />
 								<div class="form-group">
 									<label>用户名：</label>
-									<input class="form-control" type="text" id="suer_name" name="userName" placeholder="用户名必须在4-12个字节之间" />
+									<input class="form-control" type="text" id="suer_name" name="userName" minlength="4" maxlength="12" placeholder="用户名必须在4-12个字节之间" required/>
 									<span class="error"></span>
 								</div>
 		
 								<div class="form-group">
 									<label>手机号码：</label>
-									<input class="form-control" type="text" id="telephone" name="telephone" placeholder="手机号码必须11位数字" />
+									<input class="form-control" type="number" id="telephone" name="telephone" minlength="11" maxlength="11" placeholder="手机号码必须11位数字" />
 									<span class="error"></span>
 								</div>
 		
 								<div class="form-group">
 									<label>密码：</label>
-									<input type="password" class="form-control" id="spassword" name="password" placeholder="密码必须在6-16位之间" />
+									<input type="password" class="form-control" id="spassword" name="password" minlength="6" maxlength="12" placeholder="密码必须在6-16位之间" required/>
 									<span class="error"></span>
 								</div>
 		
 								<div class="form-group">
 									<label>确认密码：</label>
-									<input type="password" class="form-control" id="surepassword" />
+									<input type="password" class="form-control" id="surepassword" minlength="6" maxlength="12" required/>
 									<span class="error"></span>
 								</div>
 		
@@ -107,8 +107,8 @@
 <script src="resources/js/jquery-1.11.1.min.js"></script>
 <script src="resources/js/bootstrap.min.js"></script>
 <script src="resources/js/jqBootstrapValidation.js"></script>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<script src="resources/js/html5shiv.min.js"></script>
+<script src="resources/js/respond.min.js"></script>
 <script>
   $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 </script>
