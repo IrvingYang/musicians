@@ -51,11 +51,11 @@
 
 				<li class="dropdown navbar-right"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">购物车 <span
 						class="badge">${fn:length(sessionScope.shopping_cart.map)}</span></a>
-					<ul class="dropdown-menu" role="menu">
+					<ul class="dropdown-menu cart" role="menu">
 						<c:forEach items="${sessionScope.shopping_cart.map}" var="cart">
 							<c:choose>
 							<c:when test="${cart.value['cartType']==0 }">
-							<li style="width: 300px">
+							<li style="width: 300px" class="per">
 								<%-- 	key = ${cart.key}, value = ${cart.value}<br> --%> <%-- <input type="text" hidden="true" id="aproductId"
 												name="aproductId" value="${cart.value['product'].productId}">
 											<span class="cart_proImg"> <img
@@ -81,7 +81,7 @@
 							</c:when>
 							
 							<c:when test="${cart.value['cartType']==2 }">
-							<li style="width: 300px">
+							<li style="width: 300px" class="per">
 								<ul class="list-inline">
 									<li><img src="${cart.value['product'].productimglist[0].path}"></li>
 									<li>
@@ -97,7 +97,6 @@
 							</c:when>
 							</c:choose>
 						</c:forEach>
-						<li class="divider"></li>
 						<li class="text-right"><button type="button" class="btn btn-danger btn-sm" onClick="parent.location='eshop/shopProduct/cartList.do'">去结算</button></li>
 					</ul></li>
 			</ul>

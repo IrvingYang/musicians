@@ -9,3 +9,8 @@ table.address-list .default{
 table.address-list .default-value{
 	line-height: 24px;
 }
+table.address-list td a.like,
+table.address-list td a.edit,
+table.address-list td a.remove{
+	margin: 0 5px;
+}
