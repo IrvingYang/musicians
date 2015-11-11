@@ -96,7 +96,7 @@
 
 
 								<div>
-									<div class="modal fade" id="myModal" tabindex="-1"
+									<div class="modal fade edit-address" id="myModal" tabindex="-1"
 										role="dialog" aria-labelledby="myModalLabel">
 										<div class="modal-dialog" role="document">
 											<div class="modal-content">
@@ -108,29 +108,39 @@
 													<h4 class="modal-title" id="myModalLabel">管理我的地址</h4>
 												</div>
 												<div class="modal-body">
-													<select id="seachprov" name="seachprov"
-														onchange="changeComplexProvince(this.value, sub_array, 'seachcity', 'seachdistrict');">
-													</select>&nbsp;&nbsp; <select id="seachcity" name="homecity"
-														onchange="changeCity(this.value,'seachdistrict','seachdistrict');">
-													</select>&nbsp;&nbsp; <span id="seachdistrict_div"> <select
-														id="seachdistrict" name="seachdistrict">
-													</select></span> <input hidden="true" id="userAddressId"> <input
-														hidden="true" id="action" value="add">
-													<p>
-														邮编： <input type="text" id="postCode"
+													<div class="address">
+														<div class="col-sm-4">
+															<select id="seachprov" name="seachprov" class="form-control col-sm-4"
+															onchange="changeComplexProvince(this.value, sub_array, 'seachcity', 'seachdistrict');"></select>
+														</div>
+														<div class="col-sm-4">
+															<select id="seachcity" name="homecity" class="form-control"
+															onchange="changeCity(this.value,'seachdistrict','seachdistrict');">
+															</select>
+														</div>
+														<div class="col-sm-4">
+															<span id="seachdistrict_div"> 
+															<select	id="seachdistrict" name="seachdistrict" class="form-control">
+															</select></span>
+														</div>
+													</div>
+													<div>
+														<input hidden="true" id="userAddressId"> 
+														<input hidden="true" id="action" value="add">
+													</div>
+													<p class="first">
+														邮编： <input type="text" class="form-control sg" id="postCode"
 															data-validation-required-message="xxxxxxxxxxxxxxx"
 															required>
-													<p class="help-block"></p>
 													</p>
 													<p>
-														地址： <input type="text" id="streetAddress">
+														地址： <input type="text" class="form-control sg" id="streetAddress">
 													</p>
 													<p>
-														收货人: <input type="text" id="name"
-															value="${sessionScope.user.user.userName}">
+														收货人: <input type="text" class="form-control sg" id="name" value="${sessionScope.user.user.userName}">
 													</p>
 													<p>
-														手机: <input type="text" id="telephone">
+														手机: <input type="text" class="form-control sg" id="telephone">
 													</p>
 
 												</div>
