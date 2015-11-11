@@ -13,6 +13,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.qushop.prod.entity.Product;
+import com.qushop.prod.entity.ProductReview;
 import com.qushop.prod.entity.Product_ext_bigDeal;
 import com.qushop.prod.entity.Product_ext_groupBuy;
 
@@ -47,6 +48,8 @@ public class Order_detail  implements Serializable {
 	private short quantity;
 	private double totalamt;
 	private short validflag;
+	
+	private ProductReview productReview;
 	/**
 	 * 0: 没发货
 	 * 1：发货
@@ -61,6 +64,24 @@ public class Order_detail  implements Serializable {
 	private Product_ext_groupBuy groupBuy;
 	@Transient
 	private Product_ext_bigDeal bigDeal;
+	@Transient
+	private Order_list order_list;
+	
+	public void setProductReview(ProductReview productReview) {
+		this.productReview = productReview;
+	}
+	
+	public ProductReview getProductReview() {
+		return productReview;
+	}
+	
+	public void setOrder_list(Order_list order_list) {
+		this.order_list = order_list;
+	}
+	
+	public Order_list getOrder_list() {
+		return order_list;
+	}
 	
 	public void setDeliverStatus(short deliverStatus) {
 		this.deliverStatus = deliverStatus;

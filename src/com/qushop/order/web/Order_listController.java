@@ -24,10 +24,13 @@ import com.qushop.common.util.PublicUtil;
 import com.qushop.common.util.ShopTemp;
 import com.qushop.common.util.ShoppingCart;
 import com.qushop.dict.entity.Brand_vendor;
+import com.qushop.musicains.entity.Lease;
+import com.qushop.musicains.service.LeaseDaoService;
 import com.qushop.musicains.service.business.LeaseBusinessService;
 import com.qushop.order.entity.Order_detail;
 import com.qushop.order.entity.Order_list;
 import com.qushop.order.pojo.OrderListResult;
+import com.qushop.order.pojo.OrderDetailResult;
 import com.qushop.order.service.Order_listService;
 import com.qushop.prod.entity.Product;
 import com.qushop.prod.entity.ProductType;
@@ -49,6 +52,9 @@ public class Order_listController {
 
 	@Resource
 	LeaseBusinessService leaseBusinessService;
+	
+	@Resource
+	LeaseDaoService leaseDaoService;
 
 	@RequestMapping(value = "addOrder_list.do", method = RequestMethod.POST)
 	public Object addOrder_list(String userAddressId, short orderTypes[], Integer payofflineflag,
@@ -338,6 +344,26 @@ public class Order_listController {
 
 		return allOrderList;
 	}
+	
+	
+	@RequestMapping("shopOrderList.do")
+	@ResponseBody
+	public OrderDetailResult<Order_detail> getShopOrderList( HttpServletRequest request) {
+		List<Order_detail> allOrderList2 = order_listService.getAllShopOrderList(PublicUtil.getUserOfSession(request).getUserId());
+		OrderDetailResult<Order_detail> orderListResult2=new OrderDetailResult<Order_detail>();
+		orderListResult2.setData(allOrderList2);
+		return orderListResult2;
+	}
+	
+	@RequestMapping("leaseOrderList.do")
+	@ResponseBody
+	public OrderDetailResult<Lease> getleaseOrderList( HttpServletRequest request) {
+		List<Lease> leaseListByUserId = leaseDaoService.getLeaseListByUserId(PublicUtil.getUserOfSession(request).getUserId());
+		OrderDetailResult<Lease> orderListResult2=new OrderDetailResult<Lease>();
+		orderListResult2.setData(leaseListByUserId);
+		return orderListResult2;
+	}
+	
 
 	@RequestMapping("addOrder.shtml")
 	public String addOrder_list(HttpServletRequest request, String userAddressId) {

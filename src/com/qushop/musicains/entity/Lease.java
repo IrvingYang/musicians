@@ -83,11 +83,12 @@ public class Lease implements Serializable {
 		return orderId;
 	}
 	
-	public void setLeaseOrderDetail(Order_detail order_detail) {
+	public void setOrder_detail(Order_detail order_detail) {
 		this.order_detail = order_detail;
 	}
 	
-	public Order_detail getLeaseOrderList() {
+	
+	public Order_detail getOrder_detail() {
 		return order_detail;
 	}
 	

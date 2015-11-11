@@ -105,10 +105,15 @@ public class ProductReviewServiceImpl implements ProductReviewService {
 	
 	
 	
-	public List<ProductReview> getProductReviewByOrderId(String orderId){
-		String sql = "from ProductReview where orderId=?";
-		List<ProductReview> findByHql = commonDao.findByHql(sql,orderId);
-		return findByHql;
+	public ProductReview getProductReviewByOrderId(String orderId, String productId){
+		String sql = "from ProductReview where orderId=? and productId=?";
+		List<ProductReview> findByHql = commonDao.findByHql(sql,orderId,productId);
+		if(null!=findByHql&&findByHql.size()>0){
+			return findByHql.get(0);
+		}else{
+			return null;
+		}
+		
 	}
 
 	@Override

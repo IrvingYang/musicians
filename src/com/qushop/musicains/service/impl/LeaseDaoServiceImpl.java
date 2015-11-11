@@ -60,7 +60,7 @@ public class LeaseDaoServiceImpl implements LeaseDaoService {
 			lease.setExt_shop(ext_shopService.getShopProductByMethod(5, lease.getProductId()).get(0));
 			lease.setUser((User) userService.getUserByMethod(6, lease.getUserId()+"").get(0));
 			Order_detail leasedetail = order_detailService.getOrderdetail(lease.getProductId(),lease.getOrderId(),(short)100);
-			lease.setLeaseOrderDetail(leasedetail);
+			lease.setOrder_detail(leasedetail);
 		}
 		return reposList;
 	}
@@ -82,7 +82,7 @@ public class LeaseDaoServiceImpl implements LeaseDaoService {
 			lease.setExt_shop(ext_shopService.getShopProductByMethod(5, lease.getProductId()).get(0));
 			lease.setUser((User) userService.getUserByMethod(6, lease.getUserId()).get(0));
 			Order_detail leasedetail = order_detailService.getOrderdetail(lease.getProductId(),lease.getOrderId(),(short)100);
-			lease.setLeaseOrderDetail(leasedetail);
+			lease.setOrder_detail(leasedetail);
 		}
 		return reposList;
 	}
@@ -116,7 +116,7 @@ public class LeaseDaoServiceImpl implements LeaseDaoService {
 			lease.setExt_shop(ext_shopService.getShopProductByMethod(5, lease.getProductId()).get(0));
 			lease.setUser((User) userService.getUserByMethod(6, lease.getUserId()+"").get(0));
 			Order_detail leasedetail = order_detailService.getOrderdetail(lease.getProductId(),lease.getOrderId(),(short)100);
-			lease.setLeaseOrderDetail(leasedetail);
+			lease.setOrder_detail(leasedetail);
 		}
 		return leaseList.get(0);
 	}
