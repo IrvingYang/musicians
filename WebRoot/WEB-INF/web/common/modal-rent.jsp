@@ -1,21 +1,21 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<div class="modal fade" id="rentModal" tabindex="-1" role="dialog" aria-labelledby="myRentModalLabel">
+<div class="modal fade rent" id="rentModal" tabindex="-1" role="dialog" aria-labelledby="myRentModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title" id="myRentModalLabel">租赁</h4>
+				<h3 class="modal-title" id="myRentModalLabel">租赁</h3>
 			</div>
 			<div class="modal-body">
-				<div class="row">
+				<div class="row name">
 					<label class="col-md-2 control-label" id="yajin">租赁物品:</label> <label class="col-md-2" id="pname">${shop.product.productName}</label>
 				</div>
-				<div class="row">
-					<table id="records_table" border='1'>
+				<div class="row table">
+					<table class="table table-bordered" id="records_table" border='1'>
 
 					</table>
 				</div>
@@ -44,9 +44,14 @@
 							</table>
 						</div> -->
 				<div class="row">
-					<label class="col-md-2 control-label" id="yajin">押金:</label> <label class="col-md-2" id="priceTag">${shop.product.shopPrice}</label> <label
-						class="col-md-2 control-label">租金:</label> <label class="col-md-2" id="zujin"></label> <label class="col-md-2 control-label">合计:</label> <label
-						class="col-md-2" id="sum"></label>
+					<label class="col-md-2 control-label" id="yajin">押金:</label>
+					<label class="col-md-2 price" id="priceTag">${shop.product.shopPrice}</label>
+					<label class="col-md-2 control-label">租金:</label>
+					<label class="col-md-2" id="zujin"></label>
+					<div class="pull-right">
+						<label class="col-md-2 control-label">合计:</label>
+						<label class="col-md-2" id="sum"></label>
+					</div>
 				</div>
 				<div class="row"></div>
 			</div>
@@ -96,7 +101,7 @@
 		        		firstZujin= item.money;
 		        	}
 		        	
-		        	radioHTML +='<label id="label'+j+'" class="btn btn-danger btn-xs '+active+'"> <input type="radio" name="options" id="option'+j+'" value="'+item.money+'" data-period="'+item.day+'" autocomplete="off"'+checked+ '>'+item.day+'<span> 天 </span>'+'</label>'
+		        	radioHTML +='<label id="label'+j+'" class="btn btn-success '+active+'"> <input type="radio" name="options" id="option'+j+'" value="'+item.money+'" data-period="'+item.day+'" autocomplete="off"'+checked+ '>'+item.day+'<span> 天 </span>'+'</label>'
 		        });
 		        
 		        firstline +='</tr></thead>'
