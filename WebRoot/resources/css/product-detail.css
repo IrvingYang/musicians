@@ -51,3 +51,6 @@ div.rent.modal .modal-body > .row > label.control-label{
 div.rent.modal .modal-body > .row > label.price{
 	padding-left: 0;
 }
+div.rent.modal .modal-body > .row > .heji label{
+	width: 60px;
+}
