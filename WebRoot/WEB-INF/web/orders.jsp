@@ -21,17 +21,14 @@
 <link rel="stylesheet" href="resources/css/non-responsive.css">
 <link rel="stylesheet" href="resources/css/bootstrap-dashboard.css">
 <!-- <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet"> -->
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="resources/css/font-awesome.min.css">
 <link rel="stylesheet" href="resources/css/star-rating.css">
 <link rel="stylesheet" href="resources/css/global.css">
 <link rel="stylesheet" href="resources/css/custom.css" />
 <link rel="stylesheet" href="resources/css/orders.css" />
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="resources/css/jquery.dataTables.min.css" />
 <script type="text/javascript" src="resources/js/jquery-1.11.3.min.js"></script>
-<script type="text/javascript"
-	src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="resources/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
 	<!-- header -->
