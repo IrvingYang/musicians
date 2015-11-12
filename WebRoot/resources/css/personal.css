@@ -14,3 +14,13 @@ table.address-list td a.edit,
 table.address-list td a.remove{
 	margin: 0 5px;
 }
+.modal.edit-address .modal-body > p{
+	margin: 10px 15px 0;
+	font-size: 14px;
+}
+.modal.edit-address .modal-body .address{
+	overflow: hidden;
+}
+.modal.edit-address .modal-title{
+	font-size: 18px;
+}
