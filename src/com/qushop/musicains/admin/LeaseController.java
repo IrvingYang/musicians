@@ -76,7 +76,7 @@ public class LeaseController {
 
 		Lease leaseByLeaseId = leaseService.getLeaseByLeaseId(leaseId[0]);
 
-		request.setAttribute("orderList", leaseByLeaseId.getLeaseOrderList());
+		request.setAttribute("orderList", leaseByLeaseId.getLeaseOrderDetail());
 		return "admin/orderbusiness/delivery";
 	}
 

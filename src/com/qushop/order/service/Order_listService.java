@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.qushop.common.entity.CartUtil;
 import com.qushop.common.util.PagePojo;
 import com.qushop.common.util.ShopTemp;
+import com.qushop.order.entity.Order_detail;
 import com.qushop.order.entity.Order_list;
 import com.qushop.order.pojo.OrderListResult;
 import com.qushop.user.entity.Oper;
@@ -49,6 +50,9 @@ public interface Order_listService {
 	public List<Order_list> getFinishedOrderList(String userId,PagePojo pagePojo);
 
 	public OrderListResult getAllOrderList(String userId,PagePojo pagePojo);
+	
+	public List<Order_detail> getAllShopOrderList(String userId);
+
 
 	public List existsOrderListByProductId(String userId,String productId);
 

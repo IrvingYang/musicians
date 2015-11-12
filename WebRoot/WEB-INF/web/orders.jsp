@@ -27,7 +27,11 @@
 <link rel="stylesheet" href="resources/css/global.css">
 <link rel="stylesheet" href="resources/css/custom.css" />
 <link rel="stylesheet" href="resources/css/orders.css" />
-<script type="text/javascript" src="resources/js/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" />
+<script type="text/javascript" src="resources/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
 	<!-- header -->
@@ -49,8 +53,6 @@
 									aria-controls="profile" role="tab" data-toggle="tab">租赁订单</a></li>
 								<li role="presentation"><a href="#messages"
 									aria-controls="messages" role="tab" data-toggle="tab">回购订单</a></li>
-								<li role="presentation"><a href="#settings"
-									aria-controls="settings" role="tab" data-toggle="tab">whatever</a></li>
 							</ul>
 						</div>
 					</div>
@@ -97,171 +99,37 @@
 					<!-- Tab panes -->
 					<div class="tab-content">
 						<div role="tabpanel" class="tab-pane active" id="home">
-							<table class="table table-bordered first">
-								<tbody>
-									<tr class="order_title">
+							<table id="table2">
+								<thead>
+									<tr>
+										<th></th>
 										<th>商品</th>
-										<th>单价（元）</th>
+										<th>原价（元）</th>
 										<th>数量</th>
-										<th>实付款（元）</th>
+										<th>实付款</th>
 										<th>交易状态</th>
 										<th>评价打分</th>
 									</tr>
-									<c:forEach items="${orderList}" var="order">
-										<c:choose>
-											<c:when test="${order.orderType == 1}">
+								</thead>
 
-												<tr>
-													<td colspan="6"><strong>${order.createTime}&nbsp;&nbsp;</strong>
-														<div class="pull-right">
-															<em>订单号：${order.orderId}</em> <span class="order_delete"><a>X</a></span>
-														</div></td>
-												</tr>
-												<c:set var="flag" value="0" />
-												<c:forEach items="${order.order_detail}" var="order_detail">
-													<tr>
-														<td><a
-															href="eshop/shopProduct/productShopDetail.html?productId=${order_detail.product.productId}">
-																<img class="img-thumbnail img-responsive"
-																src="${order_detail.product.productimglist[2].path}" />
-																<span>${order_detail.product.productName}</span>
-														</a></td>
-														<td>￥${order_detail.price}</td>
-														<td>${order_detail.quantity}</td>
-														<c:choose>
-															<c:when test="${flag == 0}">
-																<c:set var="flag" value="1" />
-																<td class="rowspan"
-																	rowspan="${fn:length(order.order_detail)}">￥${order.totalamt}</td>
-																<td class="rowspan"
-																	rowspan="${fn:length(order.order_detail)}"><a
-																	href="javascript:;">${order.status eq '02' || order.status eq '08'?'已完成订单':'未完成订单' }</a></td>
-															</c:when>
-														</c:choose>
-														<td><c:set var="reviewflag" value="0" /> <c:forEach
-																items="${order.productReviews}" var="productReview">
-																<c:choose>
-																	<c:when
-																		test="${productReview.productId == order_detail.product.productId}">
-																		<c:set var="reviewflag" value="1" />
-																	</c:when>
-																</c:choose>
-															</c:forEach> <c:choose>
-																<c:when test="${reviewflag==0}">
-																	<a href="javascript:;" data-toggle="modal"
-																		data-target="#myModal"
-																		data-product-id="${order_detail.product.productId}"
-																		data-product-name="${order_detail.product.productName}"
-																		data-order-id="${order_detail.orderId}"> 评价</a>
-																</c:when>
-															</c:choose></td>
-													</tr>
-
-												</c:forEach>
-											</c:when>
-										</c:choose>
-									</c:forEach>
-								</tbody>
 							</table>
 						</div>
 						<div role="tabpanel" class="tab-pane" id="profile">
-							<table class="table table-bordered first">
-								<tbody>
-									<tr class="order_title">
+							<table id="leaseTable">
+								<thead>
+									<tr>
+										<th></th>
 										<th>商品</th>
-										<th>单价（元）</th>
-										<th>数量</th>
-										<th>实付款（元）</th>
+										<th>押金（元）</th>
+										<th>租期（天）</th>
+										<th>总金额（押金+租金）</th>
 										<th>交易状态</th>
 										<th>评价打分</th>
 									</tr>
-									<c:forEach items="${orderList}" var="order">
-										<c:choose>
-											<c:when test="${order.orderType == 100}">
-
-												<tr>
-													<td colspan="6"><strong>${order.createTime}&nbsp;&nbsp;</strong>
-														<div class="pull-right">
-															<em>订单号：${order.orderId}</em> <span class="order_delete"><a>X</a></span>
-														</div></td>
-												</tr>
-												<c:set var="flag" value="0" />
-												<c:forEach items="${order.order_detail}" var="order_detail">
-													<tr>
-														<td><a
-															href="eshop/shopProduct/productShopDetail.html?productId=${order_detail.product.productId}">
-																<img class="img-thumbnail img-responsive"
-																src="${order_detail.product.productimglist[2].path}" />
-																<span>${order_detail.product.productName}</span>
-														</a></td>
-														<td>￥${order_detail.price}</td>
-														<td>${order_detail.quantity}</td>
-														<c:choose>
-															<c:when test="${flag == 0}">
-																<c:set var="flag" value="1" />
-																<td class="rowspan"
-																	rowspan="${fn:length(order.order_detail)}">￥${order.totalamt}</td>
-																<td class="rowspan"
-																	rowspan="${fn:length(order.order_detail)}"><a
-																	href="javascript:;">${order.status eq '02' || order.status eq '08'?'已完成订单':'未完成订单' }</a></td>
-															</c:when>
-														</c:choose>
-														<td><c:set var="reviewflag" value="0" /> <c:forEach
-																items="${order.productReviews}" var="productReview">
-																<c:choose>
-																	<c:when
-																		test="${productReview.productId == order_detail.product.productId}">
-																		<c:set var="reviewflag" value="1" />
-																	</c:when>
-																</c:choose>
-															</c:forEach> <c:choose>
-																<c:when test="${reviewflag==0}">
-																	<a href="javascript:;" data-toggle="modal"
-																		data-target="#myModal"
-																		data-product-id="${order_detail.product.productId}"
-																		data-product-name="${order_detail.product.productName}"
-																		data-order-id="${order_detail.orderId}"> 评价</a>
-																</c:when>
-															</c:choose></td>
-													</tr>
-
-												</c:forEach>
-											</c:when>
-										</c:choose>
-									</c:forEach>
-								</tbody>
+								</thead>
 							</table>
-
 						</div>
-						<div role="tabpanel" class="tab-pane" id="messages">
-							<table id="table2"></table>
-
-
-						</div>
-						<div role="tabpanel" class="tab-pane" id="settings">
-							<div class="container">
-								<h1>Sub Table</h1>
-								<p>
-									Use
-									<code>onExpandRow</code>
-									event to handle your detail view.
-								</p>
-								<table id="table" data-toggle="table" data-detail-view="true"
-									data-url="order/orderList/orderList2.do" data-height="400"
-									data-side-pagination="server" data-pagination="true"
-									data-page-list="[5, 10, 20, 50, 100, 200]" data-search="true"
-									data-detail-formatter="detailFormatter">
-									<thead>
-										<tr>
-											<th data-field="orderId">ID</th>
-											<th data-field="orderType">Item Name</th>
-											<th data-field="order_detail.0.totalamt">Item Price</th>
-										</tr>
-									</thead>
-								</table>
-							</div>
-
-						</div>
+						<div role="tabpanel" class="tab-pane" id="messages"></div>
 					</div>
 
 				</div>
@@ -284,7 +152,7 @@
 			var rate = $("#input-rating").val();
 			var orderId = $("#morderId").val();
 
-			alert(productComments);
+			//alert(productComments);
 			$.post("eshop/productreview/addProductReview.action", {
 				'productId' : productId,
 				'productComments' : productComments,
@@ -292,7 +160,7 @@
 				'rate' : rate
 			}, function() {
 				$('#myModal').modal('hide');
-				window.location.reload()
+				//	window.location.reload()
 			});
 		}
 
@@ -301,13 +169,241 @@
 						function() {
 							$('#lorders').addClass('active');
 
-							$('#table-orders > tbody > tr')
-									.each(
-											function() {
-												$(
-														"<tr class='backgrand:red'><td>abcd</td><td>abcd</td><td>abcd</td><td>abcd</td></tr><tr><td>abcd</td><td>abcd</td><td>abcd</td><td>abcd</td></tr>")
-														.insertAfter($(this));
+							var table = $('#table2')
+									.DataTable(
+											{
+												"ajax" : "order/orderList/shopOrderList.do",
+												"columns" : [
+														{
+															"data" : "order_list"
+														},
+														{
+															"data" : "product"
+														},
+														{
+															"data" : "product.shopPrice"
+														},
+														{
+															"data" : "quantity"
+														},
+														{
+															"data" : "totalamt"
+														},
+														{
+															"data" : "deliverStatus"
+														}, {
+															"data" : "product"
+														}
+
+												],
+												"columnDefs" : [
+														{
+															"visible" : false,
+															"targets" : 0
+														},
+														{
+															"targets" : 1,
+															"render" : function(
+																	data, type,
+																	full, meta) {
+																return '<img src="'+data.productimglist[2].path+'"><a>'
+																		+ data.productName
+																		+ '</a>';
+															}
+														},
+														{
+															"targets" : 5,
+															"render" : function(
+																	data, type,
+																	full, meta) {
+																if (data == '02'
+																		|| data == '08') {
+																	return '已完成订单'
+																} else {
+																	return '未完成订单'
+																}
+																;
+															}
+														},
+														{
+															"targets" : 6,
+															"render" : function(
+																	data, type,
+																	full, meta) {
+
+																if (full.productReview == null) {
+																	return '<a href="javascript:;" data-toggle="modal"'+'data-target="#myModal"'+ 'data-product-id="'+data.productId+'" '+'data-product-name="'+data.productName+'" '+'data-order-id="'+full.orderId+'"'+' > 评价</a>'
+																} else {
+																	return '已评价'
+																}
+															}
+														} ],
+												"order" : [ [ 0, 'asc' ] ],
+												"displayLength" : 25,
+												"drawCallback" : function(
+														settings) {
+													var api = this.api();
+													var rows = api.rows({
+														page : 'current'
+													}).nodes();
+													var last = null;
+
+													api
+															.column(
+																	0,
+																	{
+																		page : 'current'
+																	})
+															.data()
+															.each(
+																	function(
+																			group,
+																			i) {
+																		if (last !== group.orderId) {
+																			$(
+																					rows)
+																					.eq(
+																							i)
+																					.before(
+																							'<tr class="group"><td colspan="6"> 订单号：'
+																									+ group.orderId
+																									+ '<span> 创建时间：</span>'
+																									+ group.createTime
+																									+ '</td></tr>');
+
+																			last = group.orderId;
+																		}
+																	});
+												}
 											});
+
+							// Order by the grouping
+							$('#table2 tbody').on(
+									'click',
+									'tr.group',
+									function() {
+										var currentOrder = table.order()[0];
+										if (currentOrder[0] === 2
+												&& currentOrder[1] === 'asc') {
+											table.order([ 0, 'desc' ]).draw();
+										} else {
+											table.order([ 0, 'asc' ]).draw();
+										}
+									});
+							
+							var table = $('#leaseTable')
+							.DataTable(
+									{
+										"ajax" : "order/orderList/leaseOrderList.do",
+										"columns" : [
+												{
+													"data" : "order_detail.order_list"
+												},
+												{
+													"data" : "order_detail.product"
+												},
+												{
+													"data" : "order_detail.product.shopPrice"
+												},
+												{
+													"data" : "leaseCycle"
+												},
+												{
+													"data" : "order_detail.totalamt"
+												},
+												{
+													"data" : "order_detail.deliverStatus"
+												}, 
+												{
+													"data" : "order_detail.product"
+												}
+
+										],
+										"columnDefs" : [
+												{
+													"visible" : false,
+													"targets" : 0
+												},
+												{
+													"targets" : 1,
+													"render" : function(
+															data, type,
+															full, meta) {
+														return '<img src="'+data.productimglist[2].path+'"><a>'
+																+ data.productName
+																+ '</a>';
+													}
+												},
+												{
+													"targets" : 5,
+													"render" : function(
+															data, type,
+															full, meta) {
+														if (data == '02'
+																|| data == '08') {
+															return '已完成订单'
+														} else {
+															return '未完成订单'
+														}
+														;
+													}
+												},
+												{
+													"targets" : 6,
+													"render" : function(
+															data, type,
+															full, meta) {
+
+														if (full.productReview == null) {
+															return '<a href="javascript:;" data-toggle="modal"'+'data-target="#myModal"'+ 'data-product-id="'+data.productId+'" '+'data-product-name="'+data.productName+'" '+'data-order-id="'+full.orderId+'"'+' > 评价</a>'
+														} else {
+															return '已评价'
+														}
+													}
+												} ],
+										"order" : [ [ 0, 'asc' ] ],
+										"displayLength" : 25,
+										"drawCallback" : function(
+												settings) {
+											var api = this.api();
+											var rows = api.rows({
+												page : 'current'
+											}).nodes();
+											var last = null;
+
+											api
+													.column(
+															0,
+															{
+																page : 'current'
+															})
+													.data()
+													.each(
+															function(
+																	group,
+																	i) {
+																if (last !== group.orderId) {
+																	$(
+																			rows)
+																			.eq(
+																					i)
+																			.before(
+																					'<tr class="group"><td colspan="6"> 订单号：'
+																							+ group.orderId
+																							+ '<span> 创建时间：</span>'
+																							+ group.createTime
+																							+ '</td></tr>');
+
+																	last = group.orderId;
+																}
+															});
+										}
+									});
+							
+							
+							
+							
+
 						});
 
 		$('#myModal').on('show.bs.modal', function(e) {
@@ -331,12 +427,12 @@
 				  for (j = 0; j < cells; j++) {
 				      row['field' + j] = 'Row-' + i + '-' + j;
 				  } */
-				
+
 				if (key == "order_detail") {
 					html.push("<table><tbody>");
 					$.each(value, function(n, value1) { //array
 						//alert(n + ' n= ' + value1.orderId);
-					//	row = {};
+						//	row = {};
 						html.push("<tr>");
 						$.each(value1, function(key2, value2) {
 							// alert(key2+"   "+value2);
@@ -348,13 +444,15 @@
 									sortable : true
 								});
 							}
-							
-							if(key2=='product'){
-								html.push("<td>" + value2.productimglist[2].path + "</td>");
-							}else{
+
+							if (key2 == 'product') {
+								html.push("<td>"
+										+ value2.productimglist[2].path
+										+ "</td>");
+							} else {
 								html.push("<td>" + value2 + "</td>");
 							}
-							
+
 							//data.push(key2) = + ' key2= ' + value2);
 						});
 						html.push("</tr>");
@@ -370,7 +468,7 @@
 					});
 					html.push("</tbody></table>");
 				}
-				
+
 			});
 			return html.join('');
 		}

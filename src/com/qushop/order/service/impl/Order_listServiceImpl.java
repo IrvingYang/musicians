@@ -355,7 +355,7 @@ public class Order_listServiceImpl implements Order_listService {
 		order_list.setOrderType(orderType);
 		order_list.setUserId(userId);
 		order_list.setUserAddressId(userAddressId);
-		String fixedProviderId = "01";//TBD
+		String fixedProviderId = "01";// TBD
 		order_list.setOrderId(
 				UtilDate.getNowDateNo_() + "0" + orderType + fixedProviderId + (new Random().nextInt(899999) + 100000));
 		order_list.setCreateTime(new Date());
@@ -375,7 +375,7 @@ public class Order_listServiceImpl implements Order_listService {
 		for (ShopTemp shopTemp : shopTempList) {
 			productService.updateStockNumber(shopTemp.getProduct().getProductId(), 0 - shopTemp.getCount());
 			// 同一订单
-			
+
 			order_list.setProviderid(shopTemp.getProviderId());
 			Order_detail order_detail = new Order_detail();
 			order_detail.setOrderId(order_list.getOrderId());
@@ -841,8 +841,7 @@ public class Order_listServiceImpl implements Order_listService {
 
 	@Override
 	public OrderListResult getAllOrderList(String userId, PagePojo pagePojo) {
-		
-		
+
 		String hql = "from Order_list where providerid='0001' and validflag=1  and userId=? order by createTime desc";
 
 		List<Order_list> orderLists = commonDao.findPagingByHql(hql, pagePojo.getPageno(), pagePojo.getPagesize(),
@@ -881,9 +880,10 @@ public class Order_listServiceImpl implements Order_listService {
 					Product_ext_shop product = ext_shopService.getShopProductByMethod(5, order_detail.getProductId())
 							.get(0);
 					order_detail.setProduct(product.getProduct());
+					order_detail.setProductReview(productReviewService
+							.getProductReviewByOrderId(order_list.getOrderId(), product.getProductId()));
 				}
 				order_list.setOrder_detail(detailsList);
-				order_list.setProductReviews(productReviewService.getProductReviewByOrderId(order_list.getOrderId()));
 				order_list.setUserAddress(userAddressService
 						.getUserAddressByMethod(3, order_list.getUserAddressId(), order_list.getUserId()).get(0));
 				order_list.setPayment_Method(
@@ -892,7 +892,7 @@ public class Order_listServiceImpl implements Order_listService {
 			// order_list.setExpress(expressService.getExpressByMethod(2,
 			// order_list.getExpressvendor()).get(0));
 		}
-		OrderListResult orderListResult=new OrderListResult(totalcount, orderLists);
+		OrderListResult orderListResult = new OrderListResult(totalcount, orderLists);
 		return orderListResult;
 	}
 
@@ -942,4 +942,73 @@ public class Order_listServiceImpl implements Order_listService {
 		listDao.insert(order_list);
 
 	}
+
+	@Override
+	public List<Order_detail> getAllShopOrderList(String userId) {
+
+		List<Order_detail> order_details = getAllOrderListByOrderType(userId, "1");
+
+		return order_details;
+	}
+
+
+	public Order_list getOrderListByOrderId(String orderId) {
+		String hql = "from Order_list where orderId=? and validflag=1 order by createTime desc";
+
+		List<Order_list> orderLists = commonDao.findByHql(hql, orderId);
+
+		Order_list order_list = null;
+
+		if (orderLists != null && orderLists.size() == 1) {
+			order_list = orderLists.get(0);
+			User user = (User) userService.getUserByMethod(11, order_list.getUserId()).get(0);
+			order_list.setUser(user);
+			order_list.setUserAddress(userAddressService
+					.getUserAddressByMethod(3, order_list.getUserAddressId(), order_list.getUserId()).get(0));
+			order_list
+					.setPayment_Method(payment_MethodService.getPayMentByMethod(2, order_list.getPaymentway()).get(0));
+
+			// order_list.setExpress(expressService.getExpressByMethod(2,
+			// order_list.getExpressvendor()).get(0));
+		}
+		return order_list;
+	}
+
+	private List<Order_detail> getAllOrderListByOrderType(String userId, String orderType) {
+
+		String hql = "from Order_list where providerid='0001' and validflag=1  and userId=? and orderType =1 order by createTime desc";
+
+		List<Order_list> orderLists = commonDao.findByHql(hql, userId);
+
+		List<Order_detail> order_details = new ArrayList<Order_detail>();
+
+		for (Order_list order_list : orderLists) {
+
+			User user = (User) userService.getUserByMethod(11, order_list.getUserId()).get(0);
+			order_list.setUser(user);
+
+			if (order_list.getOrderType() == 1 || order_list.getOrderType() == 100) {
+				List<Order_detail> detailsList = detailService.getOrderdetailByMethod(1, null, order_list.getOrderId());
+				// .findByHql("from Order_detail where orderId=?", );
+				for (Order_detail order_detail : detailsList) {
+					Product_ext_shop product = ext_shopService.getShopProductByMethod(5, order_detail.getProductId())
+							.get(0);
+					order_detail.setOrder_list(order_list);
+					order_detail.setProduct(product.getProduct());
+					order_detail.setProductReview(productReviewService
+							.getProductReviewByOrderId(order_list.getOrderId(), product.getProductId()));
+					order_details.add(order_detail);
+				}
+				// order_list.setOrder_detail(detailsList);
+				order_list.setUserAddress(userAddressService
+						.getUserAddressByMethod(3, order_list.getUserAddressId(), order_list.getUserId()).get(0));
+				order_list.setPayment_Method(
+						payment_MethodService.getPayMentByMethod(2, order_list.getPaymentway()).get(0));
+			}
+			// order_list.setExpress(expressService.getExpressByMethod(2,
+			// order_list.getExpressvendor()).get(0));
+		}
+		return order_details;
+	}
+
 }

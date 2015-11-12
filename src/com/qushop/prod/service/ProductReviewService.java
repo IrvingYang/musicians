@@ -26,6 +26,6 @@ public interface ProductReviewService {
 	
 	public boolean addProductReview(String productId,Integer rate,String productComments,String orderId,String userId);
 	
-	public List<ProductReview> getProductReviewByOrderId(String orderId);
+	public ProductReview getProductReviewByOrderId(String orderId,String productId);
 	
 }
