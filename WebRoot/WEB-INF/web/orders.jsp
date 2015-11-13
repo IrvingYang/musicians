@@ -96,7 +96,7 @@
 					<!-- Tab panes -->
 					<div class="tab-content">
 						<div role="tabpanel" class="tab-pane active" id="home">
-							<table id="table2">
+							<table id="table2" class="table cell-border">
 								<thead>
 									<tr>
 										<th></th>
@@ -112,7 +112,7 @@
 							</table>
 						</div>
 						<div role="tabpanel" class="tab-pane" id="profile">
-							<table id="leaseTable">
+							<table id="leaseTable" class="table cell-border">
 								<thead>
 									<tr>
 										<th></th>
