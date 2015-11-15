@@ -48,7 +48,7 @@
 					<label class="col-md-2 price" id="priceTag">${shop.product.shopPrice}</label>
 					<label class="col-md-2 control-label">租金:</label>
 					<label class="col-md-2" id="zujin"></label>
-					<div class="pull-right">
+					<div class="pull-right heji">
 						<label class="col-md-2 control-label">合计:</label>
 						<label class="col-md-2" id="sum"></label>
 					</div>
