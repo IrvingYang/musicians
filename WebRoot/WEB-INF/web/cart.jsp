@@ -100,7 +100,7 @@
 					</div>
 
 					<div class="panel-body">
-					<table id="leaseCart" class="table table-bordered">
+					<table id="leaseCart" class="table table-bordered rent">
 								<tr>
 									<th colspan="2"><span>商品</span></th>
 									<th><span>押金</span></th>
