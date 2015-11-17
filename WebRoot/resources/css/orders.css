@@ -1,19 +1,33 @@
-table.first img {
+table.rent img,
+table.order img{
 	width: 60px;
 	height: 60px;
+}
+table.rent tbody td,
+table.order tbody td{
+	vertical-align: middle;
+}
+table.rent tbody td:first-child,
+table.order tbody td:first-child{
+	text-align: center;
+	width: 80px;
+}
+table.rent a,
+table.order a{
+	cursor: pointer;
+}
+table td.create .left{
 	float: left;
 }
-
-table.first img+span {
-	display: inline-block;
-	vertical-align: inherit;
-	line-height: 60px;
-	padding-left: 8px;
-}
-table.first  tr td:not([colspan]){
-	vertical-align: middle;
-	text-align: center;
+table td.create .right{
+	float: right;
 }
 .tab-content{
-	padding: 10px;
+	margin: 10px 0;
+}
+.tab-content .dataTables_filter{
+	margin-right: 10px;
+}
+.tab-content .dataTables_length{
+	margin-left: 10px;
 }
