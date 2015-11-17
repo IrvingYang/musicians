@@ -96,7 +96,7 @@
 					<!-- Tab panes -->
 					<div class="tab-content">
 						<div role="tabpanel" class="tab-pane active" id="home">
-							<table id="table2" class="table cell-border">
+							<table id="table2" class="table cell-border rent">
 								<thead>
 									<tr>
 										<th></th>
@@ -112,7 +112,7 @@
 							</table>
 						</div>
 						<div role="tabpanel" class="tab-pane" id="profile">
-							<table id="leaseTable" class="table cell-border">
+							<table id="leaseTable" class="table cell-border order">
 								<thead>
 									<tr>
 										<th></th>
@@ -203,9 +203,9 @@
 															"render" : function(
 																	data, type,
 																	full, meta) {
-																return '<img src="'+data.productimglist[2].path+'"><a>'
+																return '<a><img src="'+data.productimglist[2].path+'"><div>'
 																		+ data.productName
-																		+ '</a>';
+																		+ '</div></a>';
 															}
 														},
 														{
@@ -262,11 +262,11 @@
 																					.eq(
 																							i)
 																					.before(
-																							'<tr class="group"><td colspan="6"> 订单号：'
+																							'<tr class="group"><td colspan="6" class="create"><span class="left"><span>订单号:</span>'
 																									+ group.orderId
-																									+ '<span> 创建时间：</span>'
+																									+ '</span><span class="right"><span> 创建时间：</span>'
 																									+ group.createTime
-																									+ '</td></tr>');
+																									+ '</span></td></tr>');
 
 																			last = group.orderId;
 																		}
@@ -287,120 +287,115 @@
 											table.order([ 0, 'asc' ]).draw();
 										}
 									});
-							
+
 							var table = $('#leaseTable')
-							.DataTable(
-									{
-										"ajax" : "order/orderList/leaseOrderList.do",
-										"columns" : [
-												{
-													"data" : "order_detail.order_list"
-												},
-												{
-													"data" : "order_detail.product"
-												},
-												{
-													"data" : "order_detail.product.shopPrice"
-												},
-												{
-													"data" : "leaseCycle"
-												},
-												{
-													"data" : "order_detail.totalamt"
-												},
-												{
-													"data" : "order_detail.deliverStatus"
-												}, 
-												{
-													"data" : "order_detail.product"
-												}
-
-										],
-										"columnDefs" : [
-												{
-													"visible" : false,
-													"targets" : 0
-												},
-												{
-													"targets" : 1,
-													"render" : function(
-															data, type,
-															full, meta) {
-														return '<img src="'+data.productimglist[2].path+'"><a>'
-																+ data.productName
-																+ '</a>';
-													}
-												},
-												{
-													"targets" : 5,
-													"render" : function(
-															data, type,
-															full, meta) {
-														if (data == '02'
-																|| data == '08') {
-															return '已完成订单'
-														} else {
-															return '未完成订单'
+									.DataTable(
+											{
+												"ajax" : "order/orderList/leaseOrderList.do",
+												"columns" : [
+														{
+															"data" : "order_detail.order_list"
+														},
+														{
+															"data" : "order_detail.product"
+														},
+														{
+															"data" : "order_detail.product.shopPrice"
+														},
+														{
+															"data" : "leaseCycle"
+														},
+														{
+															"data" : "order_detail.totalamt"
+														},
+														{
+															"data" : "order_detail.deliverStatus"
+														},
+														{
+															"data" : "order_detail.product"
 														}
-														;
-													}
-												},
-												{
-													"targets" : 6,
-													"render" : function(
-															data, type,
-															full, meta) {
 
-														if (full.productReview == null) {
-															return '<a href="javascript:;" data-toggle="modal"'+'data-target="#myModal"'+ 'data-product-id="'+data.productId+'" '+'data-product-name="'+data.productName+'" '+'data-order-id="'+full.orderId+'"'+' > 评价</a>'
-														} else {
-															return '已评价'
-														}
-													}
-												} ],
-										"order" : [ [ 0, 'asc' ] ],
-										"displayLength" : 25,
-										"drawCallback" : function(
-												settings) {
-											var api = this.api();
-											var rows = api.rows({
-												page : 'current'
-											}).nodes();
-											var last = null;
-
-											api
-													.column(
-															0,
-															{
-																page : 'current'
-															})
-													.data()
-													.each(
-															function(
-																	group,
-																	i) {
-																if (last !== group.orderId) {
-																	$(
-																			rows)
-																			.eq(
-																					i)
-																			.before(
-																					'<tr class="group"><td colspan="6"> 订单号：'
-																							+ group.orderId
-																							+ '<span> 创建时间：</span>'
-																							+ group.createTime
-																							+ '</td></tr>');
-
-																	last = group.orderId;
+												],
+												"columnDefs" : [
+														{
+															"visible" : false,
+															"targets" : 0
+														},
+														{
+															"targets" : 1,
+															"render" : function(
+																	data, type,
+																	full, meta) {
+																return '<a><img src="'+data.productimglist[2].path+'"><div>'
+																		+ data.productName
+																		+ '</div></a>';
+															}
+														},
+														{
+															"targets" : 5,
+															"render" : function(
+																	data, type,
+																	full, meta) {
+																if (data == '02'
+																		|| data == '08') {
+																	return '已完成订单'
+																} else {
+																	return '未完成订单'
 																}
-															});
-										}
-									});
-							
-							
-							
-							
+																;
+															}
+														},
+														{
+															"targets" : 6,
+															"render" : function(
+																	data, type,
+																	full, meta) {
 
+																if (full.productReview == null) {
+																	return '<a href="javascript:;" data-toggle="modal"'+'data-target="#myModal"'+ 'data-product-id="'+data.productId+'" '+'data-product-name="'+data.productName+'" '+'data-order-id="'+full.orderId+'"'+' > 评价</a>'
+																} else {
+																	return '已评价'
+																}
+															}
+														} ],
+												"order" : [ [ 0, 'asc' ] ],
+												"displayLength" : 25,
+												"drawCallback" : function(
+														settings) {
+													var api = this.api();
+													var rows = api.rows({
+														page : 'current'
+													}).nodes();
+													var last = null;
+
+													api
+															.column(
+																	0,
+																	{
+																		page : 'current'
+																	})
+															.data()
+															.each(
+																	function(
+																			group,
+																			i) {
+																		if (last !== group.orderId) {
+																			$(
+																					rows)
+																					.eq(
+																							i)
+																					.before(
+																							'<tr class="group"><td colspan="6" class="create"><span class="left"><span>订单号:</span>'
+																									+ group.orderId
+																									+ '</span><span class="right"><span> 创建时间：</span>'
+																									+ group.createTime
+																									+ '</span></td></tr>');
+
+																			last = group.orderId;
+																		}
+																	});
+												}
+											});
 						});
 
 		$('#myModal').on('show.bs.modal', function(e) {
