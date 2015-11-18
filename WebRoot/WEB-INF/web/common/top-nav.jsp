@@ -41,7 +41,7 @@
 							<span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu personal" role="menu">
-							<li><a href="user/user/userCenter.do">我的资料1</a></li>
+							<li><a href="user/user/userCenter.do">我的资料</a></li>
 							<li><a href="order/orderList/orderList.do">我的订单</a></li>
 							<li class="divider"></li>
 							<li><a href="user/user/logout.action">登出</a></li>
