@@ -198,8 +198,6 @@
 		</div>
 	</div>
 
-	<jsp:include page="/WEB-INF/web/common/footer-nav.jsp"></jsp:include>
-
 	<script src="resources/js/bootstrap.js"></script>
 	<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 	<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
