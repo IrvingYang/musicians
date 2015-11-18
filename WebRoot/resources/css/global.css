@@ -135,7 +135,8 @@ ul.cart > li.per{
 ul.cart > li.per:first-child{
 	padding-top: 0;
 }
-.navbar-nav>li>.dropdown-menu.cart{
+.navbar-nav>li>.dropdown-menu.cart,
+.navbar-nav>li>.dropdown-menu.personal{
 	margin-top: 0;
 }
 ul.cart > li.per img{
