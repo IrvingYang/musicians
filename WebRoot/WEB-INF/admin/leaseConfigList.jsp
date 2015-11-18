@@ -16,7 +16,7 @@ $(function(){
 });
 </script>
 
-<div class="pageHeader">
+<%-- <div class="pageHeader">
 	<form onsubmit="return navTabSearch(this);" action="manage/order/getAllOrder_List.do" method="post">
 	<input type="hidden" name="typeId" value="100"/>
 	<div class="searchBar">
@@ -47,15 +47,13 @@ $(function(){
 		</div>
 	</div>
 	</form>
-</div>
+</div> --%>
 <div class="pageContent" layoutH="40">
 	<div class="panelBar">
 		<ul class="toolBar">
-<!-- 			<li><a class="add" href="manage/order/getOrderDetail.do?typeId=1&group=false&orderId={null}" target="dialog" mask="true" max="true" width="960" height="500" title="订单商品详细" id="productOrderDetail"><span>查看详细</span></a></li> -->
-			<li><a class="delete" href="manage/lease/deleteProduct.do?typeId=1&orderId={null}" target="ajaxTodo" title="确定要删除吗?" id="leaseDelete" ><span>删除</span></a></li>
-			<li><a class="edit" href="manage/lease/orderBusiness.do?action=confirmpay&typeId=1&orderId={null}" target="ajaxTodo"  title="确认第一条订单已经收到付款?" id="leaseConfirmpay"><span>确认付款</span></a></li>
-			<li><a class="edit" href="manage/order/todelivery.do?orderId={null}" mask="true" target="dialog" id="leaseDelivery"  title="确认已经发货?" width="600" height="300" rel="productOrderdelivery"><span>发货</span></a></li>
-<!-- 			<li><a class="edit" href="manage/product/orderBusiness.do?endOrder&typeId=1&orderId={null}" target="ajaxTodo" id="productOrderok" title="确认交易完成?"><span>已完成</span></a></li> -->
+			<li><a class="add" href="manage/leaseConfig/toAdd.do" target="navTab" title="添加租赁设置" id="leaseAdd"><span>添加</span></a></li>
+			<li><a class="edit" href="manage/leaseConfig/toUpdate.do?lcId={null}" target="navTab" title="修改租赁设置" id="leaseEdit"><span>修改</span></a></li>
+			<li><a class="delete" href="manage/leaseConfig/deleteProduct.do?typeId=1&orderId={null}" target="ajaxTodo" title="确定要删除吗?" id="leaseDelete" ><span>删除</span></a></li>
 			<c:if test="${sessionScope.admin.partnerflag==0}">
 				<li id="leasemine"  class="edit">显示非自营订单信息
 					<label><input type="radio" name="leasemine" value="1" checked="checked"/>是</label>
@@ -69,66 +67,34 @@ $(function(){
 		<thead>
 			<tr>
 				<th>租赁编号</th>
-				<th>用户ID</th>
-				<th>租赁产品名称</th>
-				<th>租赁类型</th>
-				<th>总价格</th>
-				<th>租赁状态</th>
+				<th>天数</th>
 				<th>租金</th>
-				<th>创建时间</th>
-				<th>租赁周期</th>
-				<th>续租租赁订单</th>
-				<th>结束时间</th>
-				<th>实际结束时间</th>
+				<th>产品类型(ID)</th>
+				<th>押金比例</th>
+				<th>更新时间</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${leaseList}" var="lease" varStatus="status">
+			<c:forEach items="${leaseConfigList}" var="lease" varStatus="status">
 				<c:set value="" var="class"/>
-				<c:if test="${sessionScope.admin.partnerflag==0}">
-					<c:if test="${sessionScope.admin.providerId!=lease.providerId}">
-						<c:set value="productordermine" var="class"/>
-					</c:if>
-				</c:if>
-				<tr rel="${lease.leaseId}" class="${classes}">
-					<td>${lease.leaseId}</td>
-					<td>${lease.userId}</td>
-					<td>${lease.ext_shop.product.productName}</td>
-					<td>${lease.leaseType}</td>
-					<td>￥${lease.order_detail.totalamt}</td>
-					<td>
-						<c:choose>
-							<c:when test="${lease.status eq '01'}">已下单</c:when>
-							<c:when test="${lease.status eq '02'}">已付款</c:when>
-							<c:when test="${lease.status eq '03'}">已发货</c:when>
-							<c:when test="${lease.status eq '04'}">已收货</c:when>
-							<c:when test="${lease.status eq '05'}">已完成</c:when>
-						</c:choose>
-					</td>
-					<td>${lease.ext_shop.originalPrice}</td>
-					<td>${lease.createTime}</td>
-					<td>${lease.leaseCycle} 天</td>
-					<td>${lease.continueId}</td>
-					<td>${lease.shouldEndTime}</td>
-					<td>${lease.realEndTime }</td>
+				<tr rel="${lease.lcId}" class="${classes}">
+					<td>${lease.lcId} </td>
+					<td>${lease.day} 天 </td>
+					<td>￥${lease.money}</td>
+					<td>${lease.productType.typeName} (${lease.productTypeId})</td>
+					<td>${lease.depositPercent*100} %</td>
+					<td>${lease.lastUpdateTime}</td>
 				</tr>
 			</c:forEach>
-			
 		</tbody>
 		<tfoot>
 			<tr>
 				<th>租赁编号</th>
-				<th>用户ID</th>
-				<th>租赁产品名称</th>
-				<th>租赁类型</th>
-				<th>总价格</th>
-				<th>租赁状态</th>
+				<th>天数</th>
 				<th>租金</th>
-				<th>创建时间</th>
-				<th>租赁周期</th>
-				<th>续租租赁订单</th>
-				<th>结束时间</th>
-				<th>实际结束时间</th>
+				<th>产品类型(ID)</th>
+				<th>押金比例</th>
+				<th>更新时间</th>
 			</tr>
 		</tfoot>
 	</table>
@@ -160,15 +126,13 @@ $(function(){
 							if(index==0){
 		 						productIds+=$(data).attr("rel")==undefined?"":$(data).attr("rel");
 							}else{
-								productIds+="&leaseId="+$(data).attr("rel");
+								productIds+="&lcId="+$(data).attr("rel");
 							}
 						});
-					$("#leaseDelivery").attr("href","manage/lease/todelivery.do?leaseId="+(productIds==""?"{null}":productIds));
-					$("#leaseConfirmpay").attr("href","manage/lease/business.do?action=confirmpay&leaseId="+(productIds==""?"{null}":productIds)); 
-// 					$("#productOrderok").attr("href","manage/order/orderBusiness.do?action=endOrder&typeId=1&orderId="+(productIds==""?"{null}":productIds)); 
-					
-					$("#leaseDelete").attr("href","manage/lease/deleteLease.do?typeId=1&leaseId="+(productIds==""?"{null}":productIds));
-// 					$("#productOrderDetail").attr("href","manage/order/getOrderDetail.do?group=false&orderId="+(productIds==""?"{null}":productIds)); 
+												
+					$("#leaseAdd").attr("href","manage/leaseConfig/toAdd.do");
+					$("#leaseEdit").attr("href","manage/leaseConfig/toUpdate.do?lcId="+(productIds==""?"{null}":productIds));
+					$("#leaseDelete").attr("href","manage/leaseConfig/toDelete?lcId="+(productIds==""?"{null}":productIds));
 			  } );
 		</script>
 </div>
