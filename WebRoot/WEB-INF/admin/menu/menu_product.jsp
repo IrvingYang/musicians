@@ -7,7 +7,6 @@
 	</div>
 	<div class="accordionContent">
 		<ul class="tree treeFolder">
-			
 			<li><a href="manage/productType/getAllProductType.do" target="navTab" rel="productType">商品类型</a></li>
 			<li><a href="manage/product/productList.do" target="navTab" rel="product">商品管理</a></li>
 			<li><a href="manage/productshop/queryAllProductShop.do?typeId=0" target="navTab" rel="productShop">商城商品</a></li>
@@ -16,7 +15,7 @@
 			<li><a href="manage/promote/getAllPromoteProduct.do" target="navTab" rel="promote">商品促销</a></li>
 			<li><a href="manage/relation/getAllRelationProduct.do" target="navTab" rel="relation">关联商品</a></li>
 			<li><a href="manage/review/getAllProductReview.do" target="navTab" rel="review">商品评价</a></li>
-			
+			<li><a href="manage/leaseConfig/getAllLeaseConfig.do" target="navTab" rel="leaseConfig">租赁管理</a></li>
 		</ul>
 	</div>
 </div>
