@@ -44,14 +44,12 @@
 							</table>
 						</div> -->
 				<div class="row">
-					<label class="col-md-2 control-label" id="yajin">押金:</label>
-					<label class="col-md-2 price" id="priceTag">${shop.product.shopPrice}</label>
-					<label class="col-md-2 control-label">租金:</label>
+					<label class="col-md-1 control-label" id="yajin">押金:</label>
+					<label class="col-md-2 price" id="priceTag"></label>
+					<label class="col-md-1 control-label">租金:</label>
 					<label class="col-md-2" id="zujin"></label>
-					<div class="pull-right heji">
-						<label class="col-md-2 control-label">合计:</label>
-						<label class="col-md-2" id="sum"></label>
-					</div>
+					<label class="col-md-2 control-label heji">合计:</label>
+					<label class="col-md-2" id="sum"></label>
 				</div>
 				<div class="row"></div>
 			</div>
@@ -66,10 +64,6 @@
 </div>
 
 <script type="application/javascript">
-	
-	
-	
-
 		function nameFormatter(value, row) {
 			return value ? '<strong>' + value + '</strong> 收 ' : '';
 		}
@@ -99,9 +93,10 @@
 		        		checked = 'checked';
 		        		active = 'active'
 		        		firstZujin= item.money;
+		        		firstYajin= ${shop.product.shopPrice}*(item.depositPercent)
 		        	}
 		        	
-		        	radioHTML +='<label id="label'+j+'" class="btn btn-success '+active+'"> <input type="radio" name="options" id="option'+j+'" value="'+item.money+'" data-period="'+item.day+'" autocomplete="off"'+checked+ '>'+item.day+'<span> 天 </span>'+'</label>'
+		        	radioHTML +='<label id="label'+j+'" class="btn btn-success '+active+'"> <input type="radio" name="options" id="option'+j+'" value="'+item.money+'" data-period="'+item.day+'" data-percent="'+ item.depositPercent+'" autocomplete="off"'+checked+ '>'+item.day+'<span> 天 </span>'+'</label>'
 		        });
 		        
 		        firstline +='</tr></thead>'
@@ -115,6 +110,8 @@
 		        $('#records_table').append(trHTML);
 		        
 		        $('#zujin').html(firstZujin);
+		        
+		        $('#priceTag').html(firstYajin);
 		        
 		        $('#sum').html(firstZujin*1+$('#priceTag').text()*1);
 		    }
@@ -224,7 +221,9 @@
             
             $("#period_selection").on("change", function () {
                var myZujin = $("#period_selection").find(":radio:checked").first().val();
+               var myYajin = $("#period_selection").find(":radio:checked").first().attr('data-percent');;
                $('#zujin').text(myZujin);
+               $('#priceTag').text((myYajin*${shop.product.shopPrice}).toFixed(2));
                $('#sum').html(myZujin*1+$('#priceTag').text()*1);
             })
             
