@@ -12,3 +12,12 @@ table.rent tbody td:first-child{
 	text-align: center;
 	width: 80px;
 }
+.footer{
+	position: fixed;
+}
+.footer p > a{
+	margin-top: 3px;
+}
+body > .container{
+	padding-bottom: 80px;
+}

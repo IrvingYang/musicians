@@ -6,7 +6,6 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -24,6 +23,7 @@
 <link rel="stylesheet" href="resources/css/global.css" />
 <link rel="stylesheet" href="resources/css/custom.css" />
 <link rel="stylesheet" href="resources/css/index.css" />
+<script src="resources/js/jquery-1.11.1.min.js"></script>
 </head>
 <body class="join-index">
 	<!-- header -->
@@ -198,8 +198,8 @@
 		</div>
 	</div>
 
-	
-	<script src="resources/js/jquery-1.11.3.min.js"></script>
+	<jsp:include page="/WEB-INF/web/common/footer-nav.jsp"></jsp:include>
+
 	<script src="resources/js/bootstrap.js"></script>
 	<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 	<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
