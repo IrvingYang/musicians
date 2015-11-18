@@ -64,7 +64,7 @@
 							<input type="hidden" name="productType.productTypeId" value="${productType.parentProductType.productTypeId}" />
 							<input type="text" class="required" name="productType.typeName" class="parentName" readonly="readonly" value="${productType.parentProductType.typeName}"  lookupGroup="productType" /> 
 							<c:if test="${action eq 'add'}">
-								<a class="btnLook" href="manage/productType/getAllProductType.do?action=dialog&level=2" lookupGroup="productType">查找选择二级商品类型</a>
+								<a class="btnLook" href="manage/productType/getAllProductType.do?action=dialog&level=2" lookupGroup="productType">查找选择三级商品类型</a>
 							</c:if>
 						</dd>
 					</dl>
