@@ -149,3 +149,12 @@ ul.cart > li:last-child{
 ul.cart ul ul{
 	list-style: none;
 }
+label.error {
+	font-weight: normal;
+	margin-top: 2px;
+    color: red;
+    font-style: italic;
+}
+input.error {
+    border: 1px dotted red;
+}
