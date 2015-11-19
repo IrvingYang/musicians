@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int exists(String userName) {
 		
-		int count = Integer.parseInt(baseDao.findByHql("select count(*) from User").get(0)+"");
+		int count = Integer.parseInt(baseDao.findByHql("select count(*) from User where userName=?",userName).get(0)+"");
 		return count;
 	}
 
