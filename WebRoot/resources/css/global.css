@@ -12,9 +12,6 @@ body{
     background: #f0f0f0;
 }
 body {font: 16px tahoma, "microsoft yahei", "\5FAE\8F6F\96C5\9ED1"; background: #e6e6e6; color: #333;}
-body > div.container{
-	padding-top: 70px;
-}
 body > div.row{
 	margin: 0;
 }
@@ -29,6 +26,12 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 html {
     background: #ededed;
+}
+.row.second{
+	padding-top: 50px;
+}
+.container.main{
+	padding-top: 0;
 }
 nav button.btn{
 	font-size: 12px;
@@ -148,4 +151,12 @@ ul.cart > li:last-child{
 }
 ul.cart ul ul{
 	list-style: none;
+}
+label.error {
+	font-weight: normal;
+	margin-top: 2px;
+    color: red;
+}
+input.error {
+    border: 1px dotted red;
 }
