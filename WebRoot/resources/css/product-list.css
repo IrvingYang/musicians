@@ -256,18 +256,22 @@ ul .dropdown-submenu{
 	height: 25px;
 }
 .btn-black{
-	background-image: linear-gradient(to bottom,#000000 0,#000000 100%);
-	border-color: #000000;
+	background-image: linear-gradient(to bottom,#262626 0,#262626 100%);
+	border-color: #262626;
+	color: #ccc;
+	padding: 6px 0;
 }
 .btn-black:active:focus, 
 .btn-black:active:hover{
-	background-color: #000000;
-	border-color: #000000;
+	background-color: #262626;
+	border-color: #262626;
+	color: #fff;
 }
 .btn-black:focus, .btn-black:hover {
-    background-color: #000000;
-    border-color: #000000;
+    background-color: #262626;
+    border-color: #262626;
     background-position: 0 -15px;
+    color: #fff;
 }
 /* dropdown hover */
 .dropdown:hover > ul.dropdown-menu {
