@@ -1,3 +1,11 @@
 .join-index a.join{
 	margin-top: 10px;
 }
+.carousel-control.right.index{
+	right: 10px;
+	top: 220px;
+}
+.carousel-control.left.index{
+	left: 10px;
+	top: 220px;
+}

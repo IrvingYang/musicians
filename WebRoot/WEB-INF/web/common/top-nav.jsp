@@ -104,24 +104,24 @@
 	</div>
 </nav>
 
- <!-- <div class="row">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".main-nav">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse main-nav">
-                <ul class="nav navbar-nav">
-                    <li><a href="#">商城</a></li>
-                    <li class="divider-vertical"></li>
-                    <li><a href="#about">教育</a></li>
-                    <li class="divider-vertical"></li>
-                    <li><a href="#contact">论坛</a></li>
-                    <li class="divider-vertical"></li>
-                </ul>
-            </div>
+<div class="row second">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".main-nav">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
         </div>
-    </div> -->
+        <div class="collapse navbar-collapse main-nav">
+            <ul class="nav navbar-nav">
+                <li><a href="#">商城</a></li>
+                <li class="divider-vertical"></li>
+                <li><a href="#about">教育</a></li>
+                <li class="divider-vertical"></li>
+                <li><a href="#contact">论坛</a></li>
+                <li class="divider-vertical"></li>
+            </ul>
+        </div>
+    </div>
+</div>
