@@ -106,22 +106,25 @@
 
 <div class="row second">
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".main-nav">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div class="collapse navbar-collapse main-nav">
-            <ul class="nav navbar-nav">
-                <li><a href="#">商城</a></li>
-                <li class="divider-vertical"></li>
-                <li><a href="#about">教育</a></li>
-                <li class="divider-vertical"></li>
-                <li><a href="#contact">论坛</a></li>
-                <li class="divider-vertical"></li>
-            </ul>
-        </div>
+		<div class="dropdown" id="left-dropdown">
+			<a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-black">商品分类:<span id="typeSelected" class="caret"></span></a>
+			<ul class="dropdown-menu mega-dropdown-menu row left-menu" role="menu" aria-labelledby="dropdownMenu">
+				<c:forEach items="${productTypeList}" var="fproduct">
+					<li class="dropdown-submenu"><a tabindex="-1">${fproduct.typeName}</a>
+						<ul id="myid" class="dropdown-menu mega-dropdown-menu row category-list">
+							<c:forEach items="${fproduct.childTypeList}" var="sproduct" varStatus="sStatus">
+								<div class="category-container">
+									<div class="category-heading"><a id="${sproduct.productTypeId}">${sproduct.typeName}</a></div>
+									<ul>
+										<c:forEach items="${sproduct.childTypeList}" var="tproduct">
+											<li><a id="${tproduct.productTypeId}">${tproduct.typeName }</a></li>
+										</c:forEach>
+									</ul>
+								</div>
+							</c:forEach>
+						</ul></li>
+				</c:forEach>
+			</ul>
+		</div>
     </div>
 </div>
