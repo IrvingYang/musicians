@@ -34,9 +34,9 @@
 		<div class="col-sm-3 col-md-2 left-menu">
 			<h3 class="" style="display: none;">精确搜索</h3>
 			<div class="left-view">
-				<div class="dropdown">
-					<a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-info">商品分类:<span id="typeSelected" class="caret"></span></a>
-					<ul class="dropdown-menu mega-dropdown-menu row" role="menu" aria-labelledby="dropdownMenu">
+				<div class="dropdown" id="left-dropdown">
+					<a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-info btn-black">商品分类:<span id="typeSelected" class="caret"></span></a>
+					<ul class="dropdown-menu mega-dropdown-menu row left-menu" role="menu" aria-labelledby="dropdownMenu">
 						<c:forEach items="${productTypeList}" var="fproduct">
 							<li class="dropdown-submenu"><a tabindex="-1">${fproduct.typeName}</a>
 								<ul id="myid" class="dropdown-menu mega-dropdown-menu row category-list">
@@ -50,10 +50,6 @@
 											</ul>
 										</div>
 									</c:forEach>
-									<div class="category-container">
-										<a href="href:javascript:;"><img src="resources/images/nav_img01.gif"></a> <a href="href:javascript:;"><img
-											src="resources/images/nav_img01.gif"></a>
-									</div>
 								</ul></li>
 						</c:forEach>
 					</ul>

@@ -222,13 +222,13 @@
 .dropdown-submenu > .dropdown-menu.category-list{
     width: 510px;
 	padding: 10px 0 10px 20px;
+	margin: 0;
 }
 .category-container{
-	border-bottom: 1px solid #e6e6e6;
 	padding: 7px 0;
 	float: left;
     width: 100px;
-    height: 200px;
+    height: 100%;
     margin-right: 20px;
 }
 .category-container ul{
@@ -246,4 +246,30 @@
 .category-container ul li a:hover,
 .category-container ul li a:active{
 	text-decoration: underline;
+}
+ul.left-menu{
+	width: 200px;
+	margin: 0;
+	padding: 5px 0;
+}
+ul .dropdown-submenu{
+	height: 25px;
+}
+.btn-black{
+	background-image: linear-gradient(to bottom,#000000 0,#000000 100%);
+	border-color: #000000;
+}
+.btn-black:active:focus, 
+.btn-black:active:hover{
+	background-color: #000000;
+	border-color: #000000;
+}
+.btn-black:focus, .btn-black:hover {
+    background-color: #000000;
+    border-color: #000000;
+    background-position: 0 -15px;
+}
+/* dropdown hover */
+.dropdown:hover > ul.dropdown-menu {
+    display: block;
 }
