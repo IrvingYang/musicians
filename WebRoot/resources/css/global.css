@@ -12,6 +12,9 @@ body{
     background: #f0f0f0;
 }
 body {font: 16px tahoma, "microsoft yahei", "\5FAE\8F6F\96C5\9ED1"; background: #e6e6e6; color: #333;}
+body > div.container{		
+	padding-top: 70px;		
+}
 body > div.row{
 	margin: 0;
 }

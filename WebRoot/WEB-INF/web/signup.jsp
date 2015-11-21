@@ -35,8 +35,8 @@
 					<ul class="nav nav-tabs" role="tablist">
 						<li role="presentation" class="active"><a href="#sign"
 							aria-controls="sign" role="tab" data-toggle="tab">登陆</a></li>
-						<li role="presentation"><a href="#register"
-							aria-controls="register" role="tab" data-toggle="tab">注册</a></li>
+						<!-- <li role="presentation"><a href="#register"
+							aria-controls="register" role="tab" data-toggle="tab">注册</a></li> -->
 					</ul>
 					<!-- Tab panes -->
 					<div class="tab-content">
@@ -45,11 +45,11 @@
 								<form id="login_form" action="user/user/login.shtml"
 									method="POST">
 									<input type="hidden" value="${returnURL}" name="returnURL" />
-
+									<span class="error">${result}</span>
 									<div class="form-group">
 										<label for="exampleInputEmail1">邮箱</label> <input type="email"
 											class="form-control" id="lemail" name="username"
-											placeholder="邮箱" required>
+											value="${userName}" placeholder="请输入用户名" required>
 										<p class="help-block"></p>
 									</div>
 									<div class="form-group">
@@ -64,45 +64,86 @@
 								</form>
 							</div>
 						</div>
-						<div role="tabpanel" class="tab-pane" id="register">
-							<form id="sign_form" action="user/user/register.shtml"
-								method="POST">
-								<input type="hidden" value="${returnURL}" name="returnURL" />
-								<div class="form-group">
-									<label>用户名：</label> <input class="form-control" type="email"
-										id="userName" name="userName" />
-								</div>
-
-								<div class="form-group">
-									<label>手机号码：</label> <input class="form-control" type="number"
-										id="telephone" name="telephone" minlength="11" maxlength="11" />
-								</div>
-
-								<div class="form-group">
-									<label>密码：</label> <input type="password" class="form-control"
-										id="spassword" name="password" required="required"/>
-								</div>
-
-								<div class="form-group">
-									<label>确认密码：</label> <input type="password"
-										class="form-control" id="confirm_password" name="confirm_password" /> 
-								</div>
-
-								<div class="form-group">
-									<label>邮箱：</label> <input class="form-control" type="email"
-										id="email" name="email" /> <span class="error"></span>
-								</div>
-
-								<input id="sign_in" type="submit" class="btn btn-primary"
-									value="注册" />
-							</form>
-						</div>
+						<div role="tabpanel" class="tab-pane" id="register"></div>
 					</div>
 				</div>
 			</div>
-			<span class="or">or</span>
-			<div class="col-sm-6 right"></div>
+			<div class="col-sm-6 right">
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="active"><a href="#register"
+						aria-controls="register" role="tab" data-toggle="tab">注册</a></li>
+				</ul>
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="register">
+						<form id="sign_form" action="user/user/register.shtml"
+							method="POST">
+							<input type="hidden" value="${returnURL}" name="returnURL" />
+							<div class="form-group">
+								<label>用户名：</label> <input class="form-control" type="email"
+									id="userName" name="userName" />
+							</div>
+
+							<div class="form-group">
+								<label>手机号码：</label> <input class="form-control " type="tel"
+									id="telephone" name="telephone" minlength="11" maxlength="11" />
+							</div>
+					</div>
+
+					<div class="form-group has-feedback">
+						<label>验证码：</label>
+						<div class="row">
+							<div class="col-xs-6">
+								<input class="form-control " type="number" id="code" name="code"
+									required="required" />
+							</div>
+							<div class="col-xs-5">
+								<button class="btn-sm btn-danger" id="send_pwd">获取动态密码</button>
+							</div>
+						</div>
+					</div>
+
+
+					<!-- 	<div class="common-reg">
+
+									Auth code input
+									<div class="form-group">
+										<div class="col-md-offset-1 col-xs-5">
+											<input id="login_auth" name="login_auth" type="text"
+												placeholder="请输入验证码" class="form-control input-md"
+												required="">
+										</div>
+										<div class="col-xs-6">
+											<img alt="动态验证码" class="auth-img" src="" />
+										</div>
+									</div>
+								</div> -->
+
+					<div class="form-group">
+						<label>密码：</label> <input type="password" class="form-control"
+							id="spassword" name="password" required="required"
+							data-msg="请设定密码" />
+					</div>
+
+					<div class="form-group">
+						<label>确认密码：</label> <input type="password" class="form-control"
+							id="confirm_password" name="confirm_password" />
+					</div>
+
+					<div class="form-group">
+						<label>邮箱：</label> <input class="form-control" type="email"
+							id="email" name="email" /> <span class="error"></span>
+					</div>
+
+					<input id="sign_in" type="submit" class="btn btn-primary"
+						value="注册" />
+					</form>
+
+				</div>
+			</div>
+
 		</div>
+	</div>
 	</div>
 	<script src="resources/js/jquery-1.11.3.min.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script>
@@ -110,57 +151,85 @@
 	<script src="resources/js/html5shiv.min.js"></script>
 	<script src="resources/js/respond.min.js"></script>
 	<script>
+		var fcode;
+	
 		$.validator.setDefaults({
 			submitHandler : function(form) {
-				
-			
-				 $.ajax({
-						data: {userName:$("#userName").val()}, // get the form data
-				        type: "POST", // GET or POST
-				        url: "user/user/exists.action", // the file to call
-				        success: function(response) { // on success..
-				        	console.log(response)
-				        	if(response =='exists'){ 
-				        		alert("用户名已经存在，请更换");
-				        	}else{
-				        		form.submit();
-				        	}
-				        }
-				 });
-		}
+
+				$.ajax({
+					data : {
+						userName : $("#userName").val()
+					}, // get the form data
+					type : "POST", // GET or POST
+					url : "user/user/exists.action", // the file to call
+					success : function(response) { // on success..
+						console.log(response)
+						if (response == 'exists') {
+							alert("用户名已经存在，请更换");
+						} else {
+							if(fcode==$('#code').val()){
+								form.submit();
+							}else {
+								alert("验证码有误，请校验后输入");
+							}
+						}
+					}
+				});
+			}
 		});
 
-	/* 	$('#sign_form').submit(function() {
-			/* $.ajax({
-				data: {userName:$("#userName").val()}, // get the form data
-		        type: "POST", // GET or POST
-		        url: "user/user/exists.action", // the file to call
-		        success: function(response) { // on success..
-		        	console.log(response)
-		        	if(response =='exists'){ 
-		        		alert("用户名已经存在，请更换");
-		        	}else { 
-					    $.ajax({ // create an AJAX call...
-					        data: $(this).serialize(), // get the form data
-					        type: $(this).attr('method'), // GET or POST
-					        url: $(this).attr('action'), // the file to call
-					        success: function(response) { // on success..
-					        	console.log(response);
-					        	if(response=='success'){ 
-					        		alert("创建成功");
-					        	}
-					        	//  $('#created').html(response); // update the DIV
-					        }
-					    });
-		        		
-		       	}
-		        }
+		/* $('.common-reg').hide();
+		$('#telephone').on('blur', function (e) {
+			alert(111);
+		    var v = $(this).val();
+		    if (isNaN(v)) {
+		        $('.common-reg').show(400);
+		      //  $('#login_pwd').focus();
+		    } else {
+		        $('.common-reg').hide(400);
+		    }
+		}); */
+		$('#send_pwd').on('click', function(e) {
+			var tel = $('#telephone');
+			tel.validate();
+			if (!tel.valid()) {
+				alert("请输入正确的手机号");
+				return;
+			}
+			;
+			if ($(this).attr('disabled'))
+				return;
 			
+			fcode=randomNum(6);
+			
+			$.ajax({
+				data : {
+					telephone :$("#telephone").val(),
+					code : fcode
+				}, // get the form data
+				type : "POST", // GET or POST
+				url : "user/user/checkCode.action"
 			});
 			
-		   // return false; // cancel original event to prevent form submitting
-		}); */
-		
+			
+			var $b = $(this), c = 10;
+			$b.text('10秒后重发');
+			$b.attr('disabled', true);
+			var it = setInterval(function() {
+				c -= 1;
+				if (c <= 0) {
+
+					$b.removeAttr('disabled');
+					$b.text('获取动态密码');
+					clearInterval(it);
+					return;
+				}
+
+				$b.text(c + '秒后重发');
+
+			}, 1000);
+		});
+
 		$().ready(function() {
 			$("#sign_form").validate({
 				rules : {
@@ -210,6 +279,14 @@
 				}
 			});
 		});
+		
+		function randomNum(n){ 
+		    var t=''; 
+		    for(var i=0;i<n;i++){ 
+		        t+=Math.floor(Math.random()*10); 
+		    } 
+		    return t; 
+		} 
 	</script>
 </body>
 </html>

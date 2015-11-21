@@ -28,12 +28,14 @@
 <body>
 	<!-- header -->
 	<jsp:include page="/WEB-INF/web/common/top-nav.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/web/common/top-nav2.jsp"></jsp:include>
 	<!-- content -->
 	<div class="container main">
 		<a class="top_ad" href="javascript:;"> <img src="resources/images/top_ad.jpeg"></a>
 		<div class="col-sm-3 col-md-2 left-menu">
 			<h3 class="" style="display: none;">精确搜索</h3>
 			<div class="left-view">	
+
 				<div class="brand according">
 					<strong data-target="brand">
 						<span class="facetArrow"></span>

@@ -168,8 +168,6 @@
 				</ol>
 			</div>
 		</div>
-		<%-- 
-		暂时屏蔽
 		<div class="row">
 			<!-- 商品描述 -->
 			<div class="center-block">
@@ -178,7 +176,6 @@
 			</div>
 		</div>
 		
- --%>
 		<div>
 			<div id="filter-bar"></div>
 			<table id="tbl" data-toggle="table" data-url="eshop/productreview/getProductReviewById.action?productId=${shop.product.productId}" data-flat="true"

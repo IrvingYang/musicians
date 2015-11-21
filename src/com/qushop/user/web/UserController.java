@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.qushop.common.service.SmsCheckOutService;
 import com.qushop.common.util.Constants;
 import com.qushop.common.util.UtilDate;
+import com.qushop.sms.mos.MosGateway;
 import com.qushop.user.entity.User;
 import com.qushop.user.entity.UserAddress;
 import com.qushop.user.entity.User_Ext_Enterprise;
@@ -273,11 +274,19 @@ public class UserController {
 		user.setUserType((short) 1);// irving 暂时自由一般用户。
 		request.setAttribute("returnURL", returnURL);
 		service.register(user, request);
+		request.setAttribute("result","注册成功请登录");
+		request.setAttribute("userName",user.getUserName());
 		return "web/signup";
 	}
 
 	@RequestMapping("updatePassword.action")
 	public Object updatePassword(User user, String returnURL, HttpServletRequest request) {
 		return "web/password";
+	}
+	
+	@RequestMapping("checkCode.action")
+	@ResponseBody
+	public void sendCode(String telephone,String code, HttpServletRequest request) throws Exception {
+		MosGateway.INSTANCE.sendMessage("ce", telephone, "您的验证码是:"+code);
 	}
 }

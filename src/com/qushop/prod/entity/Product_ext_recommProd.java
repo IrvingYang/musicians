@@ -25,7 +25,7 @@ import org.hibernate.annotations.GenericGenerator;
  * 
  */
 @Entity
-@Table(name="tb_product_ext_recommprod")
+@Table(name="tb_product_ext_recommProd")
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 public class Product_ext_recommProd implements Serializable{
 

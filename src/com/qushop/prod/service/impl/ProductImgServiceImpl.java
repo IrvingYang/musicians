@@ -49,16 +49,16 @@ public class ProductImgServiceImpl implements ProductImgService {
 		
 		switch (type) {
 		case 0:
-			commonDao.executeBySql("delete from tb_productImg where productId=? and imgType in(1,2,3,4)", params[0]);
+			commonDao.executeBySql("delete from tb_productimg where productId=? and imgType in(1,2,3,4)", params[0]);
 			break;
 		case 1:
-			commonDao.executeBySql("delete from tb_productImg where productId=? and imgType in(5,6)", params[0]);
+			commonDao.executeBySql("delete from tb_productimg where productId=? and imgType in(5,6)", params[0]);
 			break;
 		case 2:
-			commonDao.executeBySql("delete from tb_productImg where productId=?", params[0]);
+			commonDao.executeBySql("delete from tb_productimg where productId=?", params[0]);
 			break;
 		case 3:
-			commonDao.executeBySql("delete from tb_productImg where productId in ("+params[0]+")");
+			commonDao.executeBySql("delete from tb_productimg where productId in ("+params[0]+")");
 			break;
 
 		default:
