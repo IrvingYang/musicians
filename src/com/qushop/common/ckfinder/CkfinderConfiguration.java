@@ -1,13 +1,13 @@
 package com.qushop.common.ckfinder;
 
 
+
 import javax.servlet.ServletConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.ckfinder.connector.configuration.Configuration;
 import com.qushop.common.util.Constants;
-import com.qushop.user.entity.Oper;
 
 public class CkfinderConfiguration extends Configuration {
     String path = "";
@@ -24,7 +24,8 @@ public class CkfinderConfiguration extends Configuration {
             super.init();
             /*改用相对路径 便于部署在ngnix */
             //this.baseURL = path + "/media_upload/";
-            this.baseURL = "media_upload/";            
+          //  this.baseURL = path+"/media_upload/";            
+             this.baseURL = path+"/media_upload/";            
     }
     
     @Override
@@ -40,6 +41,5 @@ public class CkfinderConfiguration extends Configuration {
     	}
     	return true;
     }
-    
 
 }

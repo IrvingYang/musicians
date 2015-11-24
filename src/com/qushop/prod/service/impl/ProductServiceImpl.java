@@ -261,6 +261,8 @@ public class ProductServiceImpl implements ProductService {
 			/*************************************************************************************************************/
 			String groupbigdealimg = request.getParameter("groupbigdealimg");
 			
+			groupbigdealimg=groupbigdealimg.replace(PublicUtil.getURLWithConext(request)+"/", "");
+			
 			if(groupbigdealimg!=null && !"".equals(groupbigdealimg)){
 				
 				productImgService.deleteProductImgPhysically(1,product.getProductId());
@@ -328,6 +330,9 @@ public class ProductServiceImpl implements ProductService {
 				for (int i = 0;i<images.length;i++) {
 					
 					String img = images[i];
+					
+					img=img.replace(PublicUtil.getURLWithConext(request)+"/", "");
+					
 					//获取后缀
 					String suffix = img.substring(img.lastIndexOf("."));
 					//获取图片所在文件跟目录

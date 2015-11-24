@@ -55,12 +55,12 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 	
 	//加入ckfinder集成
-	config.filebrowserBrowseUrl = '/ckfinder/ckfinder.html';
-    config.filebrowserImageBrowseUrl = '/ckfinder/ckfinder.html?type=Images';
-    config.filebrowserFlashBrowseUrl = '/ckfinder/ckfinder.html?type=Flash';
-    config.filebrowserUploadUrl = '/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Files';
-    config.filebrowserImageUploadUrl = '/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images';
-    config.filebrowserFlashUploadUrl = '/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash';
+	config.filebrowserBrowseUrl = 'ckfinder/ckfinder.html';
+    config.filebrowserImageBrowseUrl = 'ckfinder/ckfinder.html?type=Images';
+    config.filebrowserFlashBrowseUrl = 'ckfinder/ckfinder.html?type=Flash';
+    config.filebrowserUploadUrl = 'ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Files';
+    config.filebrowserImageUploadUrl = 'ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images';
+    config.filebrowserFlashUploadUrl = 'ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash';
 
     config.enterMode = CKEDITOR.ENTER_BR;// CKEDITOR.ENTER_P;CKEDITOR.ENTER_DIV
     config.format_p = { element: 'p', attributes: { 'style': 'text-indent:24.0pt;line-height:150%' } };

@@ -21,9 +21,10 @@
 <link rel="stylesheet" href="resources/css/bootstrap-carousel.css"/>
 <link rel="stylesheet" href="resources/css/global.css"/>
 <link rel="stylesheet" href="resources/css/custom.css"/>
-<link rel="stylesheet" href="resources/css/dropdown.css"/>
 <link rel="stylesheet" href="resources/css/product-list.css"/>
-<script src="resources/js/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="resources/css/dropdown.css"/>
+
+<script src="resources/js/jquery-1.11.3.min.js"></script>
 </head>
 <body>
 	<!-- header -->

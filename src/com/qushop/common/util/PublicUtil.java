@@ -54,6 +54,18 @@ public class PublicUtil {
 	}
 	
 	
+	
+	
+	
+	public static String getURLWithConext(HttpServletRequest request){
+		String scheme = request.getScheme();
+		String serverName = request.getServerName();
+		int serverPort = request.getServerPort();
+		String contextPath = request.getContextPath(); // includes leading
+														// forward slash
+		String resultPath = scheme + "://" + serverName + ":" + serverPort + contextPath;
+		return resultPath;
+	}
 	public static String getRootFileDirectory(HttpServletRequest request){
 		
 		return request.getSession().getServletContext().getRealPath("/");

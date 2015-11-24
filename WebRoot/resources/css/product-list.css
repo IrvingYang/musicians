@@ -5,6 +5,11 @@
 .tabs li {
     margin-right: -12px;
 }
+
+body > div.container{		
+	padding-top:  10px !important;		
+}
+
 .first-child {
     border-left: 0 none!important;
     margin-left: 0!important;

@@ -47,7 +47,7 @@
 									<input type="hidden" value="${returnURL}" name="returnURL" />
 									<span class="error">${result}</span>
 									<div class="form-group">
-										<label for="exampleInputEmail1">邮箱</label> <input type="email"
+										<label for="exampleInputEmail1">用户名</label> <input type="text"
 											class="form-control" id="lemail" name="username"
 											value="${userName}" placeholder="请输入用户名" required>
 										<p class="help-block"></p>
@@ -58,7 +58,18 @@
 											name="password" placeholder="密码" required>
 										<p class="help-block"></p>
 									</div>
-
+									<div class="form-group">
+										<label>验证码：</label>
+										<div class="row">
+											<div class="col-xs-6">
+												<input type="text" id="input" class="form-control" />
+											</div>
+											<div class="col-xs-2">
+												<input type="button" class="btn btn-danger" id="vcode"
+													onclick="createCode()" />
+											</div>
+										</div>
+									</div>
 									<button type="submit" class="btn btn-primary">登录</button>
 									<span class="error">${msg}</span>
 								</form>
@@ -80,7 +91,7 @@
 							method="POST">
 							<input type="hidden" value="${returnURL}" name="returnURL" />
 							<div class="form-group">
-								<label>用户名：</label> <input class="form-control" type="email"
+								<label>用户名：</label> <input class="form-control" type="text"
 									id="userName" name="userName" />
 							</div>
 
@@ -152,43 +163,67 @@
 	<script src="resources/js/respond.min.js"></script>
 	<script>
 		var fcode;
-	
+		var vcode; //在全局定义验证码 
+
 		$.validator.setDefaults({
 			submitHandler : function(form) {
-
-				$.ajax({
-					data : {
-						userName : $("#userName").val()
-					}, // get the form data
-					type : "POST", // GET or POST
-					url : "user/user/exists.action", // the file to call
-					success : function(response) { // on success..
-						console.log(response)
-						if (response == 'exists') {
-							alert("用户名已经存在，请更换");
-						} else {
-							if(fcode==$('#code').val()){
-								form.submit();
-							}else {
-								alert("验证码有误，请校验后输入");
+				if (form.id == "sign_form") {
+					$.ajax({
+						data : {
+							userName : $("#userName").val()
+						}, // get the form data
+						type : "POST", // GET or POST
+						url : "user/user/exists.action", // the file to call
+						success : function(response) { // on success..
+							console.log(response)
+							if (response == 'exists') {
+								alert("用户名已经存在，请更换");
+							} else {
+								if (fcode == $('#code').val()) {
+									form.submit();
+								} else {
+									alert("验证码有误，请校验后输入");
+								}
 							}
 						}
-					}
-				});
+					});
+				}
+				if(form.id =="login_form"){
+					validate(form);
+				}
+				
 			}
 		});
 
-		/* $('.common-reg').hide();
-		$('#telephone').on('blur', function (e) {
-			alert(111);
-		    var v = $(this).val();
-		    if (isNaN(v)) {
-		        $('.common-reg').show(400);
-		      //  $('#login_pwd').focus();
-		    } else {
-		        $('.common-reg').hide(400);
-		    }
-		}); */
+		//产生验证码
+		function createCode() {
+			vcode = "";
+			var codeLength = 4;//验证码的长度
+			var checkCode = document.getElementById("vcode");
+			var random = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C',
+					'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
+					'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');//随机数
+			for (var i = 0; i < codeLength; i++) {//循环操作
+				var index = Math.floor(Math.random() * 36);//取得随机数的索引（0~35）
+				vcode += random[index];//根据索引取得随机数加到code上
+			}
+			checkCode.value = vcode;//把code值赋给验证码
+		}
+		//校验验证码
+		function validate(form) {
+			var inputCode = document.getElementById("input").value
+					.toUpperCase(); //取得输入的验证码并转化为大写      
+			if (inputCode.length <= 0) { //若输入的验证码长度为0
+				alert("请输入验证码！"); //则弹出请输入验证码
+			} else if (inputCode != vcode) { //若输入的验证码与产生的验证码不一致时
+				alert("验证码输入错误！"); //则弹出验证码输入错误
+				createCode();//刷新验证码
+				document.getElementById("input").value = "";//清空文本框
+			} else { //输入正确时
+				form.submit();
+			}
+		}
+
 		$('#send_pwd').on('click', function(e) {
 			var tel = $('#telephone');
 			tel.validate();
@@ -199,26 +234,24 @@
 			;
 			if ($(this).attr('disabled'))
 				return;
-			
-			fcode=randomNum(6);
-			
+
+			fcode = randomNum(6);
+
 			$.ajax({
 				data : {
-					telephone :$("#telephone").val(),
+					telephone : $("#telephone").val(),
 					code : fcode
 				}, // get the form data
 				type : "POST", // GET or POST
 				url : "user/user/checkCode.action"
 			});
-			
-			
+
 			var $b = $(this), c = 10;
 			$b.text('10秒后重发');
 			$b.attr('disabled', true);
 			var it = setInterval(function() {
 				c -= 1;
 				if (c <= 0) {
-
 					$b.removeAttr('disabled');
 					$b.text('获取动态密码');
 					clearInterval(it);
@@ -231,6 +264,23 @@
 		});
 
 		$().ready(function() {
+
+			createCode();
+
+			$("#login_form").validate({
+				rules : {
+					code : {
+						required : true
+					}
+				},
+				messages : {
+					code : {
+						required : "请输入验证码",
+						equalTo : "#spassword"
+					}
+				}
+			});
+
 			$("#sign_form").validate({
 				rules : {
 					userName : {
@@ -279,14 +329,14 @@
 				}
 			});
 		});
-		
-		function randomNum(n){ 
-		    var t=''; 
-		    for(var i=0;i<n;i++){ 
-		        t+=Math.floor(Math.random()*10); 
-		    } 
-		    return t; 
-		} 
+
+		function randomNum(n) {
+			var t = '';
+			for (var i = 0; i < n; i++) {
+				t += Math.floor(Math.random() * 10);
+			}
+			return t;
+		}
 	</script>
 </body>
 </html>

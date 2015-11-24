@@ -38,7 +38,7 @@
 						<li data-target="#myCarousel1" data-slide-to="${status.index}" class="${status.index == 0?'active':'item'}">
 							<div class="">
 								<a data-target="#myCarousel1" data-slide-to="${status.index}"><img class="img-responsive"
-									src="${shop.product.productimglist[status.index*4+1].path }"></a>
+									src="${shop.product.productimglist[status.index*4].path }"></a>
 							</div>
 						</li>
 					</c:forEach>
@@ -49,9 +49,9 @@
 
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner">
-					<c:forEach begin="0" end="${fn:length(shop.product.productimglist)/3}" varStatus="status">
+					<c:forEach begin="0" end="${fn:length(shop.product.productimglist)/3-1}" varStatus="status">
 						<div class="${status.index == 0?'item active':'item'}">
-							<a href="${shop.product.productimglist[status.index*3+1].path}" data-lightbox="example-1"><img src="${shop.product.productimglist[status.index*3+1].path}" class="center-block"></a>
+							<a href="${shop.product.productimglist[status.index*3].path}" data-lightbox="example-1"><img src="${shop.product.productimglist[status.index*3+1].path}" class="center-block"></a>
 						</div>
 					</c:forEach>
 				</div>

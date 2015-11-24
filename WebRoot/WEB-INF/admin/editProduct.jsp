@@ -32,6 +32,14 @@
     		return;
     	}
     }
+    
+   /*  function getFileName(fileUrl){
+    	var index = fileUrl.lastIndexOf("/") + 1;
+    	var filename = fileUrl.substr(index);
+		alert(filename);
+    	return filename;
+    } */
+    
     function SetFileFieldGroupbuyBigdeal( fileUrl )
     {  	
     	$("#groupbigdeal").val(fileUrl);

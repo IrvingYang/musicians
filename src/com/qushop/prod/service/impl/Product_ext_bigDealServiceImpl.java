@@ -23,7 +23,7 @@ public class Product_ext_bigDealServiceImpl implements
 	@Resource
 	CommonDao<Product_ext_bigDeal> bigdealdao;
 	
-	@Resource
+	@Resource 
 	ProductService productService;
 	
 	@Resource

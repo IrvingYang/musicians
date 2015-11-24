@@ -29,7 +29,7 @@
 	<!-- header -->
 	<jsp:include page="/WEB-INF/web/common/top-nav.jsp"></jsp:include>
 	<!-- content -->
-	<div class="container">
+	<div class="container main">
 		<div class="row">
 			<div class="col-sm-8  col-md-9">
 				<div class="panel panel-primary">
