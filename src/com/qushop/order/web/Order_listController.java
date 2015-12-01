@@ -25,6 +25,7 @@ import com.qushop.common.util.ShopTemp;
 import com.qushop.common.util.ShoppingCart;
 import com.qushop.dict.entity.Brand_vendor;
 import com.qushop.musicains.entity.Lease;
+import com.qushop.musicains.entity.LeaseConfig;
 import com.qushop.musicains.service.LeaseDaoService;
 import com.qushop.musicains.service.business.LeaseBusinessService;
 import com.qushop.order.entity.Order_detail;
@@ -127,6 +128,7 @@ public class Order_listController {
 					// 当前产品合作社价格
 					double shopPrice = (double) productMap.get("shopPrice");
 					shopTemp.setYajin((double) productMap.get("yajin"));
+					shopTemp.setLeaseConfig((LeaseConfig)productMap.get("leaseConfig"));
 					shopTemp.setLeaseCycle(Integer.valueOf((String) productMap.get("leaseCycle")));
 					shopTemp.setTotalamt(shopPrice * productCount);
 					shopTemp.setLeaseType((int) productMap.get("leaseType"));

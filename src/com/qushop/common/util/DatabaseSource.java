@@ -91,7 +91,7 @@ public class DatabaseSource {
 		DruidPooledConnection druidPooledConnection = DatabaseSource
 				.getDataSourceConnection();
 		PreparedStatement preparedStatement = druidPooledConnection
-				.prepareStatement("select * from tb_producttype where parentId="
+				.prepareStatement("select * from tb_productType where parentId="
 						+ parentId);
 
 		ResultSet resultSet = preparedStatement.executeQuery();

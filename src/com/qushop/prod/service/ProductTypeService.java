@@ -18,6 +18,8 @@ public interface ProductTypeService {
 	
 	public boolean existsChildrenProductOfProductTypeId(String productTypeId);
 	
+	public String getParentProductTypeId(String productTypeId);
+	
 	/**
 	 * 
 	 * @param type 0 取详细    1取兄弟类型   2取子类型 3获取指定级别类型  4 查询已经取消的类型

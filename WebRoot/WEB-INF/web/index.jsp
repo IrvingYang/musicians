@@ -23,18 +23,21 @@
 <link rel="stylesheet" href="resources/css/global.css" />
 <link rel="stylesheet" href="resources/css/custom.css" />
 <link rel="stylesheet" href="resources/css/index.css" />
-<script src="resources/js/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="resources/css/product-list.css"/>
+<link rel="stylesheet" href="resources/css/dropdown.css"/>
+<script src="resources/js/jquery-1.11.3.min.js"></script>
 </head>
 <body class="join-index">
 	<!-- header -->
 	<jsp:include page="/WEB-INF/web/common/top-nav.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/web/common/top-nav2.jsp"></jsp:include>
 	<!-- content -->
 	<div class="container main">
 		<div class="row">
 			<div class="col-sm-8  col-md-9">
 				<div class="panel panel-primary">
 					<div class="panel-body">
-						<img class="img-responsive" src="resources/images/ad1.jpg">
+						<img class="img-responsive" src="resources/images/lachine-x1.jpg">
 					</div>
 				</div>
 				<div id="myCarousel" class="carousel slide" data-ride="carousel"
@@ -197,7 +200,23 @@
 			</div>
 		</div>
 	</div>
-
+	<form id="pageForm" action="<%=basePath%>eshop/shopProduct/shopProduct.shtml" method=POST>
+		<input type="hidden" name="action" value="list" /> <input type="hidden" id="pageNo" name="pageNostr" value="${page.pageno+1}" /> <input
+			type="hidden" id="pageSize" name="pageSizestr" value="${page.pagesize }" /> <input type="hidden" id="search" name="searchstr" value="${search}" />
+		<input type="hidden" id="order" name="orderstr" value="${orderstr}" /> <input type="hidden" id="pricestr" name="pricestr" value="${pricestr}" /> <input
+			type="hidden" id="brandstr" name="brandstr" value="${brandstr}" /> <input type="hidden" id="gradestr" name="gradestr" value="${gradestr}" /> <input
+			type="hidden" id="typestr" name="typestr" value="${typestr}" /> <input type="hidden" id="typename" name="typename" value="${typename}" />
+	</form>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("#myid li a").click(function() {
+					    top.document.getElementsByName("searchstr")[0].value='${search}';
+					 	top.document.getElementsByName("typestr")[0].value=this.id;
+					 	top.document.getElementsByName("typename")[0].value=$(this).text();
+						document.getElementById("pageForm").submit();
+						});
+		});
+	</script>
 	<script src="resources/js/bootstrap.js"></script>
 	<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 	<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->

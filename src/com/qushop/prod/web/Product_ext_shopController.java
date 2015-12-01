@@ -145,10 +145,13 @@ public class Product_ext_shopController {
 
 	}
 
-	/**
-	 * ===================================================这里断===================
-	 * =======================================
-	 **/
+	@RequestMapping("productTypeList.action")
+	@ResponseBody
+	public List<ProductType> searchProductShop(HttpServletRequest request) {
+		List<ProductType> productTypesList = productTypeService.getProductTypeByMethod(9,
+				Constants.TOP_PROD_TYPE_PARENT);
+		return productTypesList;
+	}
 
 	@RequestMapping("shopProduct.shtml")
 	public String getShopProductList(HttpServletRequest request, String pageNostr, String pageSizestr, String orderstr,

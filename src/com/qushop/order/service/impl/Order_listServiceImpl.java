@@ -379,11 +379,12 @@ public class Order_listServiceImpl implements Order_listService {
 			order_list.setProviderid(shopTemp.getProviderId());
 			Order_detail order_detail = new Order_detail();
 			order_detail.setOrderId(order_list.getOrderId());
-			double totalamt = leaseBusinessService.calculateTotalRentPrice(shopTemp.getProduct().getProductId(),
-					shopTemp.getCount(), shopTemp.getLeaseCycle(), shopTemp.getYajin());
+			double ayajin = shopTemp.getProduct().getShopPrice()*shopTemp.getLeaseConfig().getDepositPercent();
+			double totalamt = leaseBusinessService.calculateTotalRentPrice(shopTemp.getProduct(),shopTemp.getCount(),
+					shopTemp.getLeaseConfig());
 			order_list.setTotalamt(order_list.getTotalamt() + totalamt);
 			order_detail.setTotalamt(totalamt);
-			order_detail.setPrice(shopTemp.getPrice());
+			order_detail.setPrice(ayajin);
 			order_detail.setProductId(shopTemp.getProduct().getProductId());
 			order_detail.setOrderType(orderType);
 			order_detail.setQuantity((short) shopTemp.getCount());

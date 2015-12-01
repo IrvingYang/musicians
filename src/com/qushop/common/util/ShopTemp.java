@@ -1,5 +1,6 @@
 package com.qushop.common.util;
 
+import com.qushop.musicains.entity.LeaseConfig;
 import com.qushop.prod.entity.Product;
 
 public class ShopTemp {
@@ -12,6 +13,16 @@ public class ShopTemp {
 	private int leaseCycle;
 	private int leaseType;
 	private double yajin; 
+	private LeaseConfig leaseConfig;
+	
+	
+	public void setLeaseConfig(LeaseConfig leaseConfig) {
+		this.leaseConfig = leaseConfig;
+	}
+	
+	public LeaseConfig getLeaseConfig() {
+		return leaseConfig;
+	}
 	
 	public void setYajin(double yajin) {
 		this.yajin = yajin;

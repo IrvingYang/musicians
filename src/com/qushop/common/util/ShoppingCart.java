@@ -5,16 +5,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-import com.qushop.musicains.entity.Lease;
+import com.qushop.musicains.entity.LeaseConfig;
 import com.qushop.prod.entity.Product;
 import com.qushop.prod.entity.Product_ext_shop;
 
 public class ShoppingCart {
 
 	private Map<String, Map<String, Object>> map = new TreeMap<String, Map<String, Object>>();
-
+	
+	
+	
 	public void addCart(Product product, int addCount, int cartType, Product_ext_shop product_ext_shop,
-			String leaseCycle) {
+			String leaseCycle,LeaseConfig leaseConfig) {
 		String key = product.getProductId() + "|" + cartType;
 		if (map.containsKey(key)) {
 			Map<String, Object> shopMap = map.get(key);
@@ -58,6 +60,7 @@ public class ShoppingCart {
 				shopMap.put("shopPrice", product.getShopPrice());
 				shopMap.put("yajin", product.getShopPrice());
 				shopMap.put("leaseCycle", leaseCycle);
+				shopMap.put("leaseConfig",leaseConfig);
 				shopMap.put("leaseType", 1);
 			}
 

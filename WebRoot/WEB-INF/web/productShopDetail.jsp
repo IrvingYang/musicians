@@ -142,15 +142,15 @@
 				<div class="carousel-inner">
 					<div class="item active">
 						<div class="row">
-							<c:forEach begin="0" end="${fn:length(recommProdsList)-1}" var="recommend" varStatus="status">
+							<c:forEach items="${recommProdsList}" var="recommend" varStatus="status">
 								<div class="col-md-3">
 									<div class="thumbnail" id="myRecommend">
-										<img class="img-responsive" id="reco" src="${recommProdsList[recommend].product_ext_shop.product.productimglist[0].path}"
+										<img class="img-responsive" id="reco" src="${recommend.product_ext_shop.product.productimglist[0].path}"
 											alt="${status.index}">
 										<div class="caption">
-											<h3>${recommProdsList[recommend].product_ext_shop.product.productName}</h3>
+											<h3>${recommend.product_ext_shop.product.productName}</h3>
 											<p>
-												<a href="#" class="btn btn-primary" role="button">￥${recommProdsList[recommend].product_ext_shop.product.shopPrice}</a> <a href="#"
+												<a href="#" class="btn btn-primary" role="button">￥${recommend.product_ext_shop.product.shopPrice}</a> <a href="#"
 													class="btn btn-default" role="button">Wishlist</a>
 											</p>
 										</div>

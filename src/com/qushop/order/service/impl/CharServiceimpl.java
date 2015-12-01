@@ -24,7 +24,7 @@ public class CharServiceimpl implements ChartService {
 				"FROM"+
 				" tb_order_detail detail,"+
 				" tb_order_list orders,"+
-				" tb_producttype type "+
+				" tb_productType type "+
 				" WHERE "+
 				"orders.providerId = ? "+
 				" AND orders.orderId = detail.orderId "+

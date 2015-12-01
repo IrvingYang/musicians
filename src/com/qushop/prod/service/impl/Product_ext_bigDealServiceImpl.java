@@ -36,32 +36,32 @@ public class Product_ext_bigDealServiceImpl implements
 		switch (type) {
 		case 1:
 			if (params[0].equals("00")) {
-				bigDealList = bigdealdao.findPagingByHql("from Product_ext_bigDeal where  validflag = 1", 0,Integer.parseInt(params[1]));
+				bigDealList = bigdealdao.findPagingByHql("from Product_ext_bigdeal where  validflag = 1", 0,Integer.parseInt(params[1]));
 			} else {
 
 			}
 			break;
 		case 2:		
-			bigDealList = bigdealdao.findPagingByHql("from Product_ext_bigDeal where bigdealid = ?  and validflag = 1",  0, Integer.parseInt(params[1]), params[0]);
+			bigDealList = bigdealdao.findPagingByHql("from Product_ext_bigdeal where bigdealid = ?  and validflag = 1",  0, Integer.parseInt(params[1]), params[0]);
 			String prodtype = bigDealList.get(0).getProductId().substring(4, 6);
-			bigDealList = bigdealdao.findPagingByHql("from Product_ext_bigDeal where substr(productid, 5, 2) = ? and bigdealid <> ? and validflag = 1",  0, Integer.parseInt(params[1]), prodtype, params[0]);
+			bigDealList = bigdealdao.findPagingByHql("from Product_ext_bigdeal where substr(productid, 5, 2) = ? and bigdealid <> ? and validflag = 1",  0, Integer.parseInt(params[1]), prodtype, params[0]);
             break;
 		case 3:		
-			bigDealList = bigdealdao.findPagingByHql("from Product_ext_bigDeal where bigdealid = ?  and validflag = 1",  0, Integer.parseInt(params[1]), params[0]);
+			bigDealList = bigdealdao.findPagingByHql("from Product_ext_bigdeal where bigdealid = ?  and validflag = 1",  0, Integer.parseInt(params[1]), params[0]);
 			break;
 		case 4:
 			if(Integer.parseInt(params[0])==0){
-				bigDealList = bigdealdao.findByHql("from Product_ext_bigDeal where validflag=1 ");
+				bigDealList = bigdealdao.findByHql("from Product_ext_bigdeal where validflag=1 ");
 			}
 			if(Integer.parseInt(params[0])==1){
-				bigDealList = bigdealdao.findBySql("select bigdeal.* from tb_product_ext_bigDeal bigdeal,tb_product product where bigdeal.productId=product.productId and bigdeal.validflag=1 and providerId=?",Product_ext_bigDeal.class,params[1]);
+				bigDealList = bigdealdao.findBySql("select bigdeal.* from tb_product_ext_bigdeal bigdeal,tb_product product where bigdeal.productId=product.productId and bigdeal.validflag=1 and providerId=?",Product_ext_bigDeal.class,params[1]);
 			}
 			break;
 		case 5:
 			bigDealList = bigdealdao.findByHql("from Product_ext_bigDeal where bigdealId=?", params[0]);
 			break;
 		case 6:
-			bigDealList = bigdealdao.findBySql("select * from tb_product_ext_bigDeal where productId in("+params[0]+") and validflag=1",null);
+			bigDealList = bigdealdao.findBySql("select * from tb_product_ext_bigdeal where productId in("+params[0]+") and validflag=1",null);
 			return bigDealList;
 		default:
 			break;
@@ -102,7 +102,7 @@ public class Product_ext_bigDealServiceImpl implements
 //				bigDealsList = bigdealdao.findByHql("from Product_ext_bigDeal where validflag=1 ");
 //			}
 //			if(Integer.parseInt(params[0])==1){
-//				bigDealsList = bigdealdao.findBySql("select bigdeal.* from tb_product_ext_bigDeal bigdeal,tb_product product where bigdeal.productId=product.productId and bigdeal.validflag=1 and providerId=?",Product_ext_bigDeal.class,params[1]);
+//				bigDealsList = bigdealdao.findBySql("select bigdeal.* from tb_product_ext_bigdeal bigdeal,tb_product product where bigdeal.productId=product.productId and bigdeal.validflag=1 and providerId=?",Product_ext_bigDeal.class,params[1]);
 //			}
 //			break;
 //			
@@ -153,7 +153,7 @@ public class Product_ext_bigDealServiceImpl implements
 	public boolean deleteProductBigDeal(String bigDealIds,HttpServletRequest request) {
 		
 		try {
-			String sql = "update tb_product_ext_bigDeal set validflag=0,lastUpdateTime=?,operid=? where bigDealId in("+bigDealIds+") and validflag=1";
+			String sql = "update tb_product_ext_bigdeal set validflag=0,lastUpdateTime=?,operid=? where bigDealId in("+bigDealIds+") and validflag=1";
 			return  bigdealdao.executeBySql(sql, new Date(),PublicUtil.getOper(request).getOperId());
 		} catch (Exception e) {
 			e.printStackTrace();

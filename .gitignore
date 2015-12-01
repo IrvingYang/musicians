@@ -26,6 +26,7 @@
 .settings/org.eclipse.wst.jsdt.ui.superType.name
 
 qushop.log
+.idea/*
 
 classes/*
 
@@ -44,3 +45,5 @@ classes/*
 WebRoot/etc/jdbc.properties
 
 WebRoot/etc/jdbc.properties
+
+musicians.iml

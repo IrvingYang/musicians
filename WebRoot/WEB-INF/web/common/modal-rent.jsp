@@ -82,8 +82,9 @@
 		        
 		        var firstZujin='';
 		        $.each(response, function (i, item) {
+		        	azujin=item.money*0.01*${shop.product.shopPrice};
 		        	firstline+='<th>' + item.day + ' 天</th>'
-		        	secondline += '<td>' + item.money + '</td>';
+		        	secondline += '<td>' + azujin.toFixed(2) + '</td>';
 		        	//$('#option'+(i+1)).append(item.day);
 		        	var j =i +1;
 		        	var checked = '';
@@ -92,11 +93,11 @@
 		        	if(i==0){
 		        		checked = 'checked';
 		        		active = 'active'
-		        		firstZujin= item.money;
-		        		firstYajin= ${shop.product.shopPrice}*(item.depositPercent)
+		        		firstZujin= azujin.toFixed(2);
+		        		firstYajin= ${shop.product.shopPrice}*(item.depositPercent).toFixed(2)
 		        	}
 		        	
-		        	radioHTML +='<label id="label'+j+'" class="btn btn-success '+active+'"> <input type="radio" name="options" id="option'+j+'" value="'+item.money+'" data-period="'+item.day+'" data-percent="'+ item.depositPercent+'" autocomplete="off"'+checked+ '>'+item.day+'<span> 天 </span>'+'</label>'
+		        	radioHTML +='<label id="label'+j+'" class="btn btn-success '+active+'"> <input type="radio" name="options" id="option'+j+'" value="'+azujin.toFixed(2)+'" data-period="'+item.day+'" data-percent="'+ item.depositPercent+'" autocomplete="off"'+checked+ '>'+item.day+'<span> 天 </span>'+'</label>'
 		        });
 		        
 		        firstline +='</tr></thead>'
@@ -216,7 +217,6 @@
 			        //alert("Data: " + data.leaseOrderList.orderId + "\nStatus: " + status);
 				//	$(this).remove();
 			    });
-                
             })
             
             $("#period_selection").on("change", function () {

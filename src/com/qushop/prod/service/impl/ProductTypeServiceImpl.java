@@ -80,7 +80,7 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 			break;
 			
 		case 1:
-			sql = "select * from tb_producttype WHERE parentId = (select parentId from tb_producttype where productTypeId=? and validflag=1) and validflag=1 order by RAND() limit 5";
+			sql = "select * from tb_productType WHERE parentId = (select parentId from tb_productType where productTypeId=? and validflag=1) and validflag=1 order by RAND() limit 5";
 			productTypesList = commonDao.findBySql(sql, ProductType.class, params[0]);
 			break;
 			
@@ -89,10 +89,10 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 			break;
 			
 		case 3:
-			sql = "SELECT tb_producttype.productTypeId, tb_producttype.LogImagePath, tb_producttype.typeName, tb_producttype.parentId,"
-						+"tb_producttype.description, tb_producttype.properties,tb_producttype.operid,tb_producttype.lastUpdateTime,"
-						+ "tb_producttype.validflag FROM tb_producttype WHERE "
-						+"LENGTH(tb_producttype.productTypeId) = ? and validflag=1";
+			sql = "SELECT tb_productType.productTypeId, tb_productType.LogImagePath, tb_productType.typeName, tb_productType.parentId,"
+						+"tb_productType.description, tb_productType.properties,tb_productType.operid,tb_productType.lastUpdateTime,"
+						+ "tb_productType.validflag FROM tb_productType WHERE "
+						+"LENGTH(tb_productType.productTypeId) = ? and validflag=1";
 			productTypesList = commonDao.findBySql(sql, ProductType.class,params[0]);
 			for (ProductType productType : productTypesList) {
 				List<ProductType> parentProductType = commonDao.findByHql("from ProductType where productTypeId=? and validflag=1",productType.getParentId());
@@ -147,7 +147,6 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 		
 		List<String> list = commonDao.findBySql("select max(productTypeId) from tb_productType where parentId = ? ", null,productType.getParentId());
 		String maxProductTypeId = list.get(0);
-		try {
 			String productTypeId = "";
 			if(maxProductTypeId==null){
 				productTypeId= "01";
@@ -177,19 +176,12 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 			}
 			commonDao.insert(productType);
 			return true;
-		} catch (Exception e) {
-			throw new RuntimeException();
-		}
 	}
 
 	@Override
 	public boolean updateProductType(ProductType productType) {
-		try {
 			commonDao.update(productType);
 			return true;
-		} catch (Exception e) {
-			throw new RuntimeException();
-		}
 	}
 	
 	@Override
@@ -206,6 +198,13 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 		Integer count =  Integer.parseInt(commonDao.findBySql("select count(*) from tb_productType where parentId in ("+productTypeId+") and validflag=1",null).get(0)+"");
 		
 		return count>0?true:false;
+	}
+
+
+	@Override
+	public String getParentProductTypeId(String productTypeId) {
+		String parentTypeId = (String)commonDao.findBySql("select parentId from tb_productType where productTypeId in ("+productTypeId+") and validflag=1",null).get(0);
+		return parentTypeId;
 	}
 	
 }

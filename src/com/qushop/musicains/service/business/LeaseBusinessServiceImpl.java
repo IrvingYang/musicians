@@ -10,10 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.qushop.musicains.entity.Lease;
 import com.qushop.musicains.entity.LeaseConfig;
-import com.qushop.musicains.service.LeaseConfigService;
 import com.qushop.musicains.service.LeaseDaoService;
 import com.qushop.prod.entity.Product;
-import com.qushop.prod.service.ProductService;
 import com.qushop.user.entity.UserAddress;
 import com.qushop.user.service.UserAddressService;
 
@@ -24,21 +22,17 @@ public class LeaseBusinessServiceImpl implements LeaseBusinessService {
 	LeaseDaoService leaseDaoService;
 
 	@Resource
-	LeaseConfigService leaseConfigService;
-
-	@Resource
-	ProductService productService;
-	
-	@Resource
 	UserAddressService userAddressService;
 
 	@Override
-	public double calculateTotalRentPrice(String productId, int count, int period,double yajin) {
-		Product product = productService.getProductListByMethod(2, null, productId).get(0);
-		LeaseConfig leaseConfig = leaseConfigService.getLeaseConfig(product.getProductTypeId(), count,
-				period);
+	public double calculateTotalRentPrice(Product product, int count, LeaseConfig leaseConfig) {
+//		Product product = productService.getProductListByMethod(2, null, productId).get(0);
+//		LeaseConfig leaseConfig = leaseConfigService.getLeaseConfig(product.getProductTypeId(), count,
+//				period);
 		// 计算租赁价格
-		Double totalMoney = leaseConfig.getMoney() * count + yajin;
+		double rent = leaseConfig.getMoney() *0.01*product.getShopPrice();
+		double cyajin=product.getShopPrice()*leaseConfig.getDepositPercent();
+		Double totalMoney = rent* count + cyajin;
 		return totalMoney;
 	}
 	

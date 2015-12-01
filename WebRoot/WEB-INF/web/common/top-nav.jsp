@@ -72,7 +72,7 @@
 											<li>单价：<c:choose>
 													<c:when test="${cart.value['promoteflag']==0}">${cart.value['originalPrice']}</c:when>
 													<c:when test="${cart.value['promoteflag']==1}">${cart.value['promotePrice']}</c:when>
-												</c:choose> 
+												</c:choose>  元
 											</li>
 										</ul>
 									</li>
@@ -88,8 +88,8 @@
 										<ul>
 											<li><strong>${cart.value['product'].productName } (租赁)</strong>
 											<li>数量： ${cart.value['productCount']}</li>
-											<li>押金：${cart.value['yajin']} </li>
-											<li>租期：${cart.value['leaseCycle']} 天</li>
+											<%-- <li>押金：${cart.value['yajin']} </li> --%>
+											<li>租期： ${cart.value['leaseCycle']} 天</li>
 										</ul>
 									</li>
 								</ul>

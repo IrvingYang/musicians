@@ -26,13 +26,13 @@
 							</c:if>
 						</dd>
 					</dl>
-			<dl>
+					<dl>
 						<dt>租赁天数：</dt>
 						<dd><input name="day" class="required" type="number" value="${leaseConfig.day}" > 天</dd>
 					</dl>
 					<dl>
-						<dt>租金：</dt>
-						<dd><input name="money" class="required" type="number" value="${leaseConfig.money}" > 元</dd>
+						<dt>租金：(原价百分比)</dt>
+						<dd><input name="money" class="required" type="number" value="${leaseConfig.money}" > %</dd>
 					</dl>
 					<dl>
 						<dt>押金比例：</dt>

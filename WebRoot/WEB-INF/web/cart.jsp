@@ -106,6 +106,7 @@
 									<th><span>押金</span></th>
 									<th><span>数量</span></th>
 									<th><span>租赁周期</span></th>
+									<th><span>租金</span></th>
 									<th><span>小计</span></th>
 								</tr>
 
@@ -120,7 +121,7 @@
 										</td>
 										<td>
 											<div>
-												<p id="aprice">${cart.value['yajin']}</p>
+												<p id="aprice">${cart.value['yajin']*cart.value['leaseConfig'].depositPercent}</p>
 											</div>
 										</td>
 										<td>
@@ -141,6 +142,11 @@
 										<td>
 											<div>
 												<p id="leaseCycle"> ${cart.value['leaseCycle']} </p>
+											</div>
+										</td>
+										<td>
+											<div>
+												<p id="rent"> ${cart.value['leaseConfig'].money*0.01*cart.value['product'].shopPrice} </p>
 											</div>
 										</td>
 										
@@ -205,7 +211,7 @@
 				var base = $(this).parent().parent().parent();
 				var count = $(this).val();
 				var price = $("#aprice", base).text();
-				var subtotal = price * count;
+				var subtotal = price *count
 
 				$("#subtotal", base).text(subtotal);
 				var pid = $("#productId", base).text().trim();
@@ -223,8 +229,14 @@
 				$("input[id='count']").each(function() {
 					var base = $(this).parent().parent().parent();
 					var price = $("#aprice", base).text();
+					var rent = $("#rent", base).text();
 					var count = parseInt($(this).val());
-					var subtotal = price * count;
+					var subtotal;
+					if(rent!=''){
+						subtotal= (parseFloat(price)+parseFloat(rent)) * count;
+					}else{
+						subtotal = price *count
+					}
 					$("#subtotal", base).text(subtotal);
 					total += subtotal;
 					totalCount += count;
@@ -251,13 +263,19 @@
 				var base = $(this).parent().parent().parent(); //loop-item
 				var price = $("#aprice", base).text();
 				var count = parseInt($(this).val());
-				var subtotal = price * count;
+				var rent = $("#rent", base).text();
+				var subtotal;
+				if(rent!=''){
+					subtotal= (parseFloat(price)+parseFloat(rent)) * count;
+				}else{
+					subtotal = price *count
+				}
 				$("#subtotal", base).text(subtotal);
 				total += subtotal;
 				totalCount += count;
 			});
 
-			$("#total").text('￥' + total);
+			$("#total").text('￥' + total.toFixed(2));
 			$("#totalCount").text(totalCount);
 		});
 

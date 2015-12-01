@@ -15,7 +15,6 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import com.qushop.order.entity.Order_detail;
-import com.qushop.order.entity.Order_list;
 import com.qushop.prod.entity.Product_ext_shop;
 import com.qushop.user.entity.User;
 

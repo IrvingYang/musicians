@@ -29,7 +29,7 @@ import com.qushop.musicains.entity.LeaseConfig;
  * 
  */
 @Entity
-@Table(name="tb_producttype")
+@Table(name="tb_productType")
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 public class ProductType implements Serializable{
 	

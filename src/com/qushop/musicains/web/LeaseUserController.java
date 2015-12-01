@@ -19,6 +19,7 @@ import com.qushop.musicains.service.business.LeaseBusinessService;
 import com.qushop.order.entity.Order_list;
 import com.qushop.order.service.Order_listService;
 import com.qushop.prod.entity.Product_ext_shop;
+import com.qushop.prod.service.ProductTypeService;
 import com.qushop.prod.service.Product_ext_shopService;
 import com.qushop.user.entity.User;
 import com.qushop.user.entity.User_Ext_Personal;
@@ -49,6 +50,9 @@ public class LeaseUserController {
 
 	@Resource
 	Order_listService order_listService;
+	
+	@Resource
+	ProductTypeService productTypeService;
 
 	/*
 	 * not used
@@ -144,6 +148,10 @@ public class LeaseUserController {
 	@ResponseBody
 	public Object getLeasePrice(HttpServletRequest request, String productTypeId) {
 		List<LeaseConfig> leaseList = leaseConfigService.getLeaseConfigList(productTypeId);
+		if(leaseList==null||leaseList.isEmpty()){
+			String parentProductTypeId = productTypeService.getParentProductTypeId(productTypeId);
+			leaseList = leaseConfigService.getLeaseConfigList(parentProductTypeId);
+		}
 		return leaseList;
 	}
 

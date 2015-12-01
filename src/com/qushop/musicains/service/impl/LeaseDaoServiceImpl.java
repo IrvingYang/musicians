@@ -77,7 +77,7 @@ public class LeaseDaoServiceImpl implements LeaseDaoService {
 
 	@Override
 	public List<Lease> getLeaseListByUserId(String userId) {
-		List<Lease> reposList = commonDao.findByHql("from Lease where userId=? and validflag=1", userId);
+		List<Lease> reposList = commonDao.findByHql("from Lease where userId=? and validflag=1 order by createTime desc", userId);
 		for (Lease lease : reposList) {
 			lease.setExt_shop(ext_shopService.getShopProductByMethod(5, lease.getProductId()).get(0));
 			lease.setUser((User) userService.getUserByMethod(6, lease.getUserId()).get(0));

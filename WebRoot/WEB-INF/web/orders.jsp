@@ -139,11 +139,12 @@
 	<script type="text/javascript" src="resources/js/bootstrap-table.js"></script>
 	<script type="text/javascript" src="resources/js/laypage.js"></script>
 	<script type="text/javascript" src="resources/js/star-rating.js"></script>
+	<script type="text/javascript" src="resources/js/jquery-ui.min.js"></script>
 	<script src="resources/js/html5shiv.min.js"></script>
 	<script src="resources/js/respond.min.js"></script>
 
 	<script type="text/javascript">
-		function onSubmit() {
+		/* function onSubmit() {
 			var productId = $("#mproductId").val();
 			var productComments = $("#productComments").val();
 			var rate = $("#input-rating").val();
@@ -159,7 +160,7 @@
 				$('#myModal').modal('hide');
 				//	window.location.reload()
 			});
-		}
+		} */
 
 		$(document)
 				.ready(
@@ -265,7 +266,7 @@
 																							'<tr class="group"><td colspan="6" class="create"><span class="left"><span>订单号:</span>'
 																									+ group.orderId
 																									+ '</span><span class="right"><span> 创建时间：</span>'
-																									+ group.createTime
+																									+ $.datepicker.formatDate('yy-mm-dd',new Date(group.createTime))
 																									+ '</span></td></tr>');
 
 																			last = group.orderId;
@@ -300,7 +301,7 @@
 															"data" : "order_detail.product"
 														},
 														{
-															"data" : "order_detail.product.shopPrice"
+															"data" : "order_detail.price"
 														},
 														{
 															"data" : "leaseCycle"
@@ -388,7 +389,7 @@
 																							'<tr class="group"><td colspan="6" class="create"><span class="left"><span>订单号:</span>'
 																									+ group.orderId
 																									+ '</span><span class="right"><span> 创建时间：</span>'
-																									+ group.createTime
+																									+ $.datepicker.formatDate('yy-mm-dd',new Date(group.createTime))
 																									+ '</span></td></tr>');
 
 																			last = group.orderId;

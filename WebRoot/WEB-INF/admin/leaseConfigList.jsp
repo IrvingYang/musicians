@@ -68,7 +68,7 @@ $(function(){
 			<tr>
 				<th>租赁编号</th>
 				<th>天数</th>
-				<th>租金</th>
+				<th>租金(原价百分比)</th>
 				<th>产品类型(ID)</th>
 				<th>押金比例</th>
 				<th>更新时间</th>
@@ -80,7 +80,7 @@ $(function(){
 				<tr rel="${lease.lcId}" class="${classes}">
 					<td>${lease.lcId} </td>
 					<td>${lease.day} 天 </td>
-					<td>￥${lease.money}</td>
+					<td>${lease.money} %</td>
 					<td>${lease.productType.typeName} (${lease.productTypeId})</td>
 					<td>${lease.depositPercent*100} %</td>
 					<td>${lease.lastUpdateTime}</td>

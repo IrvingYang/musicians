@@ -1,7 +1,7 @@
 package com.qushop.prod.entity;
 
 /***********************************************************************
- * Module:  tb_product_ext_bigDeal.java
+ * Module:  tb_product_ext_bigdeal.java
  * Author:  Administrator
  * Purpose: Defines the Class tb_product_ext_bigDeal
  ***********************************************************************/
