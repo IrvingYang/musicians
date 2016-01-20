@@ -69,20 +69,20 @@ public class ShoppingCart {
 
 	}
 
-	public void updateCart(Product product, int count) {
-
-		if (map.containsKey(product.getProductId())) {
-			Map<String, Object> shopMap = map.get(product.getProductId());
+	public void updateCart(Product product, int count,String cartType) {
+		String key = product.getProductId() + "|" + cartType;
+		if (map.containsKey(key)) {
+			Map<String, Object> shopMap = map.get(key);
 			// String productCount = shopMap.get("productCount")+"";
 			shopMap.put("productCount", count);
 			shopMap.put("product", product);
-			map.put(product.getProductId(), shopMap);
+			map.put(key, shopMap);
 		}
 	}
 
-	public void removeCart(String productId) {
-
-		map.remove(productId);
+	public void removeCart(String productId,String cartType) {
+		String key = productId + "|" + cartType;
+		map.remove(key);
 	}
 
 	public Map<String, Map<String, Object>> getMap() {

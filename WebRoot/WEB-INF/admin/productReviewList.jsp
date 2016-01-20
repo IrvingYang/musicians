@@ -75,7 +75,6 @@
 			        var selected = $("#reviewDatatables").children("tbody").children(".selected");
 			        var productIds = '';
  					$.each(selected, function(index, data){
- 						alert($(data).attr("rel"));
  						if(index==0){
  	 						productIds+=$(data).attr("rel")==undefined?"":$(data).attr("rel");
  						}else{

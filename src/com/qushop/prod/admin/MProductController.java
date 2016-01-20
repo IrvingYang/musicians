@@ -92,6 +92,7 @@ public class MProductController {
 			return DwzUtil.opFailed("团购（大宗交易）图片不能为空", "product");
 		}
 		String cityId = request.getParameter("city.cityId");
+		String countryId = request.getParameter("country.countryId");
 		String productTypdId = request.getParameter("productType.productTypeId");
 		String brandid = request.getParameter("vendor.brandid");
 		String ontimes = request.getParameter("ontimes");
@@ -107,7 +108,8 @@ public class MProductController {
 		propertiest.substring(0, propertiest.lastIndexOf(","));
 		propertiest.append("]");
 		product.setAttribute(propertiest.toString());
-		product.setProductCityId(cityId);
+		//product.setProductCityId(cityId);
+		product.setProductCountryId(countryId);
 		product.setProductTypeId(productTypdId);
 		product.setBrandid(brandid);
 		
@@ -132,6 +134,7 @@ public class MProductController {
 		}
 		product.setProductGrade((short)4);
 		String cityId = request.getParameter("city.cityId");
+		String countryId = request.getParameter("country.countryId");
 		String productTypdId = request.getParameter("productType.productTypeId");
 		String brandid = request.getParameter("vendor.brandid");
 		
@@ -145,7 +148,8 @@ public class MProductController {
 			propertiest.append("]");
 			product.setAttribute(propertiest.toString());
 		}
-		product.setProductCityId(cityId);
+		//product.setProductCityId(cityId);
+		product.setProductCountryId(countryId);
 		product.setProductTypeId(productTypdId);
 		product.setBrandid(brandid);
 		product.setProviderId(PublicUtil.getOper(request).getProviderId());

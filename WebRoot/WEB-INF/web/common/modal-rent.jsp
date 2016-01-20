@@ -72,7 +72,9 @@
 		    url: 'web/lease/getLeasePrice.action',
 		    type: 'POST',
 		    data: {
-		    	productTypeId: '${shop.product.productTypeId}'
+		    	productTypeId: '${shop.product.productTypeId}',
+		    	productId: '${shop.product.productId}',
+		    	promoteFlag: ${shop.promoteflag}
 		    },
 		    success: function (response) {
 		    	var trHTML = '';
@@ -150,7 +152,7 @@
 						'action' : 'add',
 						'cartType' : '2',
 						'productId' : '${shop.product.productId}',
-						'addcount' : count,
+						'addcount' : 1,
 						'leaseCycle':leaseCycle
 					}, function() {
 						window.location.reload()

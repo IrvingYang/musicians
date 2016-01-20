@@ -4,6 +4,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.qushop.common.entity.CartUtil;
 import com.qushop.common.util.PagePojo;
 import com.qushop.common.util.ShopTemp;
@@ -13,8 +17,7 @@ import com.qushop.order.pojo.OrderListResult;
 import com.qushop.user.entity.Oper;
 
 public interface Order_listService {
-
-	public void addOrder(List<ShopTemp> shopTemp,short orderType,String userId,String userAddressId,Integer payofflineflag,HttpServletRequest request);
+	public Order_list addOrder(List<ShopTemp> shopTemp,short orderType,String userId,String userAddressId,Integer payofflineflag,HttpServletRequest request);
 
 	public void addShopOrder(CartUtil cartUtil,String userId,String userAddressId,Integer payofflineflag,HttpServletRequest request);
 

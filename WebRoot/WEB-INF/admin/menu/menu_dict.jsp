@@ -15,6 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<li><a href="manage/express/getAllExpress.do" target="navTab" rel="express">物流信息</a></li>
 			<li><a href="manage/brand_vendor/getAllbrand_vendor.do" target="navTab" rel="brand">品牌信息</a></li>
 			<li><a href="manage/payment/getAllPaymentMethod.do" target="navTab" rel="payment">支付方式</a></li>
+			<li><a href="manage/country/getCountryList.do" target="navTab" rel="country">产地信息</a></li>
 		</ul>
 	</div>
 </div>

@@ -39,11 +39,11 @@ public class ProviderServiceImpl implements ProviderService {
 	@Resource
 	LocationService locationService;
 	
-	@Resource
-	StateService stateService;
+//	@Resource
+//	StateService stateService;
 	
-	@Resource
-	CityService cityService;
+//	@Resource
+//	CityService cityService;
 	
 	@Resource
 	ProviderImgService imgService;
@@ -95,15 +95,15 @@ public class ProviderServiceImpl implements ProviderService {
 		}
 		for (Provider provider : providersList) {
 			List<Provider_image> provider_imagesList = imgService.getProviderImageByMethod(1, provider.getProviderId(),"1");
-			List<Location> location = locationService.getLocationByMethod(1, "01",provider.getProviderId());
-			List<City> city = cityService.getCityByMethod(4, provider.getCityId());
-			if(location!=null && location.size()>0){
-				provider.setLocation(location.get(0));
-			}
-			if(city!=null && city.size()>0){
-				provider.setCity(city.get(0));
-				provider.setStateId(city.get(0).getStateId());
-			}
+//			List<Location> location = locationService.getLocationByMethod(1, "01",provider.getProviderId());
+//			List<City> city = cityService.getCityByMethod(4, provider.getCityId());
+//			if(location!=null && location.size()>0){
+//				provider.setLocation(location.get(0));
+//			}
+//			if(city!=null && city.size()>0){
+//				provider.setCity(city.get(0));
+//				provider.setStateId(city.get(0).getStateId());
+//			}
 			provider.setProvider_image(provider_imagesList);
 		}
 		return providersList;

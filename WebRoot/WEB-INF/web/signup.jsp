@@ -284,8 +284,7 @@
 			$("#sign_form").validate({
 				rules : {
 					userName : {
-						required : true,
-						email : true
+						required : true
 					},
 					spassword : {
 						required : true,
@@ -308,8 +307,7 @@
 				},
 				messages : {
 					userName : {
-						required : "请输入用户名",
-						email : "用户名必须是合法的email地址：例如：xiaoming@163.com"
+						required : "请输入用户名"
 					},
 					spassword : {
 						required : "必须填写密码",

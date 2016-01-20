@@ -19,9 +19,9 @@
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<!-- 链接 -->
-				<li class="topLink"><a ${flag eq 'shop' ? 'class="active"' : '' } href="eshop/shopProduct/shopProduct.shtml?action=list">商城</a></li>
-				<li><a ${flag eq '' ? 'class="active"' : ''} href="javascript:;">教育</a></li>
-				<li><a href="#contact">论坛</a></li>
+				<li class="topLink"><a ${flag eq 'shop' ? 'class="active"' : '' } href="eshop/shopProduct/shopProduct.shtml?action=list">乐器商城</a></li>
+				<li><a ${flag eq '' ? 'class="active"' : ''} href="http://www.lachinemusic.com/sns/">乐星圈▼</a></li>
+				<li><a href="http://www.lachinemusic.com/edu/html/education/main.html">乐星教育</a></li>
 			</ul>
 			<form id="form-id" class="navbar-form navbar-left" role="search" action="eshop/shopProduct/searchProductShop.action" method="POST">
 				<input type="hidden" name="pageNostr" value="${pageNostr}" />

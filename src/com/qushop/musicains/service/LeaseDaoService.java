@@ -14,6 +14,8 @@ public interface LeaseDaoService {
 	
 	public void deleteLeaseByLeaseId(String leaseId);
 	
+	public void deleteLeaseByOrderId(String leaseId);
+	
 	public List<Lease> getLeaseListByUserId(String userId);
 	
 	public List<Lease> getLeasePagingListByUserId(String userId,Integer pageNo,Integer pageSize);

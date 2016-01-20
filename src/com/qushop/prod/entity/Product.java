@@ -22,6 +22,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import com.qushop.dict.entity.Brand_vendor;
 import com.qushop.dict.entity.City;
+import com.qushop.dict.entity.Country;
 import com.qushop.provider.entity.Provider;
 
 /**
@@ -57,6 +58,7 @@ public class Product  implements Serializable{
 	private String operid;
 	private Date lastUpdateTime;
 	private short validflag;
+	private String productCountryId;
 	
 	//新增评分
 	private Integer grade;
@@ -78,8 +80,25 @@ public class Product  implements Serializable{
 	@Transient
 	private City city;
 	@Transient
+	private Country country;
+	@Transient
 	private ProductTrack producttrack;
 	
+	public void setCountry(Country country) {
+		this.country = country;
+	}
+	
+	public Country getCountry() {
+		return country;
+	}
+	
+	public void setProductCountryId(String productCountryId) {
+		this.productCountryId = productCountryId;
+	}
+	
+	public String getProductCountryId() {
+		return productCountryId;
+	}
 	
 	public Short getDiscount() {
 		return discount;

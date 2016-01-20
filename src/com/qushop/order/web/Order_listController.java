@@ -60,7 +60,7 @@ public class Order_listController {
 	@RequestMapping(value = "addOrder_list.do", method = RequestMethod.POST)
 	public Object addOrder_list(String userAddressId, short orderTypes[], Integer payofflineflag,
 			HttpServletRequest request) {
-
+		Order_list addedOrder = null ;
 		for (short orderType : orderTypes) {
 
 			if (userAddressId != null && !"".equals(userAddressId)) {
@@ -147,7 +147,6 @@ public class Order_listController {
 					leaseItems.add(shopTemp);
 				}
 			}
-
 			switch (orderType) {
 			case 1:
 				// Collections.sort(shopsList, new Comparator<ShopTemp>() {
@@ -157,7 +156,7 @@ public class Order_listController {
 				// }
 				// });
 
-				order_listService.addOrder(shopItems, orderType, user.getUserId(), userAddressId, payofflineflag,
+				addedOrder = order_listService.addOrder(shopItems, orderType, user.getUserId(), userAddressId, payofflineflag,
 						request);
 
 				for (ShopTemp shopTemp : shopItems) {
@@ -166,16 +165,16 @@ public class Order_listController {
 
 				break;
 			case 2:
-				order_listService.addOrder(null, orderType, user.getUserId(), userAddressId, payofflineflag, request);
+				addedOrder =order_listService.addOrder(null, orderType, user.getUserId(), userAddressId, payofflineflag, request);
 				break;
 			case 3:
-				order_listService.addOrder(null, orderType, user.getUserId(), userAddressId, payofflineflag, request);
+				addedOrder =order_listService.addOrder(null, orderType, user.getUserId(), userAddressId, payofflineflag, request);
 				break;
 			case 4:
-				order_listService.addOrder(null, orderType, user.getUserId(), userAddressId, payofflineflag, request);
+				addedOrder =order_listService.addOrder(null, orderType, user.getUserId(), userAddressId, payofflineflag, request);
 				break;
 			case 5:
-				order_listService.addOrder(null, orderType, user.getUserId(), userAddressId, payofflineflag, request);
+				addedOrder =order_listService.addOrder(null, orderType, user.getUserId(), userAddressId, payofflineflag, request);
 				break;
 
 			case 100:
@@ -190,7 +189,7 @@ public class Order_listController {
 				// String remark = request.getParameter("remark");
 
 				String paymentway = "01";
-				order_listService.addLeaseOrder(leaseItems, orderType, user.getUserId(), userAddressId, 0, 1, "",
+				addedOrder =order_listService.addLeaseOrder(leaseItems, orderType, user.getUserId(), userAddressId, 0, 1, "",
 						paymentway);
 				break;
 
@@ -201,8 +200,8 @@ public class Order_listController {
 		}
 		request.getSession().removeAttribute(Constants.SHOPPING_CART);
 
-		RedirectAttributesModelMap modelMap = new RedirectAttributesModelMap();
-		modelMap.put("test", "testvalue");
+//		RedirectAttributesModelMap modelMap = new RedirectAttributesModelMap();
+//		modelMap.put("test", "testvalue");
 		// 调用支付接口
 
 		// switch (orderType) {
@@ -221,7 +220,7 @@ public class Order_listController {
 		// default:
 		// break;
 		// }
-		return "redirect:orderList.do";
+		return "forward:/alipay/pay.action?orderId="+addedOrder.getOrderId()+"&orderType="+addedOrder.getOrderType();
 	}
 
 	@RequestMapping(value = "cancelOrder.action", method = RequestMethod.POST)
@@ -230,6 +229,15 @@ public class Order_listController {
 		String str = order_listService.cancelOrder(orderId);
 		return str;
 	}
+	
+	
+	@RequestMapping(value = "deleteOrder.action", method = RequestMethod.GET)
+	public Object deleteOrder( HttpServletRequest request,String orderId) {
+		leaseDaoService.deleteLeaseByOrderId(orderId);
+	  order_listService.deleteOrderList(orderId, request);
+	  return "forward:orderList.do";
+	}
+	
 
 	@RequestMapping(value = "orderPayment.action", method = RequestMethod.POST)
 	@ResponseBody

@@ -85,4 +85,18 @@ public class MRelationController {
 		return "admin/addRelationProduct";
 	}
 	
+	public static void main(String[] args) {
+		for(int i=0;i<9;i++){
+			System.err.print(i);
+			for(int j=1;j<4;j++){
+				if(i!=0){
+					System.err.print(i*j);
+				}else{
+					System.err.print(i+j);
+				}
+			}
+			System.err.println();
+		}
+	}
+	
 }

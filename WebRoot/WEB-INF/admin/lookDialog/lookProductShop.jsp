@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td>${shop.promoteStartTime}</td>
 					<td>${shop.promoteEndTime}</td>
 					<td>
-						<a class="btnSelect" href="javascript:$.bringBack({productId:'${shop.productId}', productName:'${shop.product.productName}'})" title="${product.product.productName}">选择</a>
+						<a class="btnSelect" href="javascript:$.bringBack({productId:'${shop.productId}', productName:'${shop.product.productName}', productTypeId:'${shop.product.productTypeId}'})" title="${shop.product.productName}">选择</a>
 					</td>
 				</tr>
 			</c:forEach>

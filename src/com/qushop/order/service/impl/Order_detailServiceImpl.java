@@ -71,7 +71,6 @@ public class Order_detailServiceImpl implements Order_detailService {
 
 	@Override
 	public boolean deleteOrderDetail(String orderIds) {
-
 		String dsql = "update tb_order_detail set validflag=0 where orderId in (" + orderIds + ")";
 		return commonDao.executeBySql(dsql);
 	}

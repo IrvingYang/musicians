@@ -100,16 +100,16 @@
 	<tx:advice transaction-manager="hTransaction" id="hadvice">
 		<tx:attributes>
 			<tx:method name="*" propagation="REQUIRED" read-only="true"/>
-			<tx:method name="add*" propagation="REQUIRED" />
-			<tx:method name="update*" propagation="REQUIRED" />
-			<tx:method name="insert*" propagation="REQUIRED" />
-			<tx:method name="delete*" propagation="REQUIRED" />
-			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="add*" propagation="REQUIRES_NEW" />
+			<tx:method name="update*" propagation="REQUIRES_NEW" />
+			<tx:method name="insert*" propagation="REQUIRES_NEW" />
+			<tx:method name="orderPayment*" propagation="REQUIRES_NEW" />
+			<tx:method name="delete*" propagation="REQUIRES_NEW" />
+			<tx:method name="save*" propagation="REQUIRES_NEW" />
 			<tx:method name="register*" propagation="REQUIRED" />
-			<tx:method name="open*" propagation="REQUIRED" />
-			<tx:method name="cancel*" propagation="REQUIRED" />
-			<tx:method name="applyRefund" propagation="REQUIRED" />
-			<tx:method name="orderPayment" propagation="REQUIRED" />
+			<tx:method name="open*" propagation="REQUIRES_NEW" />
+			<tx:method name="cancel*" propagation="REQUIRES_NEW" />
+			<tx:method name="applyRefund" propagation="REQUIRES_NEW" />
 			<tx:method name="login" propagation="REQUIRED" />
 			<tx:method name="logout" propagation="REQUIRED" />
 		</tx:attributes>

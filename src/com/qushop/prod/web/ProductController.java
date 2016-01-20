@@ -32,7 +32,7 @@ import com.qushop.prod.service.Product_ext_shopService;
 
 @Controller
 @RequestMapping("/eshop/product")
-public class ProductController{
+public class ProductController {
 
 	@Resource
 	ProductService productService;
@@ -77,71 +77,68 @@ public class ProductController{
 		}
 		ShoppingCart shoppingCart = (ShoppingCart) request.getSession().getAttribute(Constants.SHOPPING_CART);
 		if (shoppingCart == null) {
-			shoppingCart =new ShoppingCart();
+			shoppingCart = new ShoppingCart();
 		}
-		try {
-			if ("getCart".equals(action)) {
-				Map map = shoppingCart.getMap();
-				double totalPrice = 0;
-				for (Iterator iter = map.keySet().iterator(); iter.hasNext();) {
-					String key = iter.next() + "";
-					Map<String, Object> productMap = (Map<String, Object>) map.get(key);
-					Integer type = Integer.parseInt(productMap.get("cartType") + "");
-					Product product = (Product) productMap.get("product");
-					if (type == 0) {
-						Integer promoteflag = Integer.parseInt(productMap.get("promoteflag") + "");
-						if (promoteflag == 1) {
-							Double promotePrice = Double.parseDouble(productMap.get("promotePrice") + "");
-							Integer productCount = Integer.parseInt(productMap.get("productCount") + "");
-							totalPrice += (promotePrice * productCount);
-						} else {
-							Double originalPrice = Double.parseDouble(productMap.get("originalPrice") + "");
-							Integer productCount = Integer.parseInt(productMap.get("productCount") + "");
-							totalPrice += (originalPrice * productCount);
-						}
-					} else if (type == 1) {
-						Double shopPrice = Double.parseDouble(productMap.get("shopPrice") + "");
+		if ("getCart".equals(action)) {
+			Map map = shoppingCart.getMap();
+			double totalPrice = 0;
+			for (Iterator iter = map.keySet().iterator(); iter.hasNext();) {
+				String key = iter.next() + "";
+				Map<String, Object> productMap = (Map<String, Object>) map.get(key);
+				Integer type = Integer.parseInt(productMap.get("cartType") + "");
+				Product product = (Product) productMap.get("product");
+				if (type == 0) {
+					Integer promoteflag = Integer.parseInt(productMap.get("promoteflag") + "");
+					if (promoteflag == 1) {
+						Double promotePrice = Double.parseDouble(productMap.get("promotePrice") + "");
 						Integer productCount = Integer.parseInt(productMap.get("productCount") + "");
-						totalPrice += (shopPrice * productCount);
+						totalPrice += (promotePrice * productCount);
+					} else {
+						Double originalPrice = Double.parseDouble(productMap.get("originalPrice") + "");
+						Integer productCount = Integer.parseInt(productMap.get("productCount") + "");
+						totalPrice += (originalPrice * productCount);
 					}
+				} else if (type == 1) {
+					Double shopPrice = Double.parseDouble(productMap.get("shopPrice") + "");
+					Integer productCount = Integer.parseInt(productMap.get("productCount") + "");
+					totalPrice += (shopPrice * productCount);
+				}
 
-				}
-				NumberFormat numberFormat = NumberFormat.getInstance();
-				numberFormat.setMaximumFractionDigits(2);
-				String totalPriceStr = numberFormat.format(totalPrice);
-				Map rmap = new HashMap();
-				rmap.put("totalPrice", totalPriceStr);
-				rmap.put("product", map);
-				return rmap;
 			}
-			if ("add".equals(action)) {
-
-				List<Product_ext_shop> product_ext_shops = shopService.getShopProductByMethod(5, productId);
-				Product_ext_shop ext_shop = null;
-				if (product_ext_shops != null && product_ext_shops.size() > 0) {
-					ext_shop = product_ext_shops.get(0);
-				}
-				Product product = (Product) productService.getProductListByMethod(2, null, productId).get(0);
-				product.setProductimglist(productImgService.getProductImgByMethod(1, product.getProductId(), "4"));
-				if(cartType.equals("2")){
-				LeaseConfig leaseConfig = leaseConfigServiceImpl.getLeaseConfig(product.getProductTypeId(),addcount,Integer.valueOf(leaseCycle));
-				shoppingCart.addCart(product, addcount, Integer.parseInt(cartType), ext_shop, leaseCycle,leaseConfig);
-				}else{
-					shoppingCart.addCart(product, addcount, Integer.parseInt(cartType), ext_shop, leaseCycle,null);
-				}
-			} else if ("remove".equals(action)) {
-				shoppingCart.removeCart(productId);
-			} else if ("update".equals(action)) {
-				Product product = (Product) productService.getProductListByMethod(4, null, productId).get(0);
-				product.setProductimglist(productImgService.getProductImgByMethod(1, product.getProductId(), "4"));
-				shoppingCart.updateCart(product, addcount);
-			}
-			request.getSession().setAttribute(Constants.SHOPPING_CART, shoppingCart);
-			return "operasuccess";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "operafailed";
+			NumberFormat numberFormat = NumberFormat.getInstance();
+			numberFormat.setMaximumFractionDigits(2);
+			String totalPriceStr = numberFormat.format(totalPrice);
+			Map rmap = new HashMap();
+			rmap.put("totalPrice", totalPriceStr);
+			rmap.put("product", map);
+			return rmap;
 		}
+		if ("add".equals(action)) {
+
+			List<Product_ext_shop> product_ext_shops = shopService.getShopProductByMethod(5, productId);
+			Product_ext_shop ext_shop = null;
+			if (product_ext_shops != null && product_ext_shops.size() > 0) {
+				ext_shop = product_ext_shops.get(0);
+			}
+			Product product =ext_shop.getProduct();
+			//Product product = (Product) productService.getProductListByMethod(2, null, productId).get(0);
+			//product.setProductimglist(productImgService.getProductImgByMethod(1, product.getProductId(), "4"));
+			if (cartType.equals("2")) {
+				LeaseConfig leaseConfig = leaseConfigServiceImpl.getLeaseConfig(ext_shop, addcount,
+						Integer.valueOf(leaseCycle));
+				shoppingCart.addCart(product, addcount, Integer.parseInt(cartType), ext_shop, leaseCycle, leaseConfig);
+			} else {
+				shoppingCart.addCart(product, addcount, Integer.parseInt(cartType), ext_shop, leaseCycle, null);
+			}
+		} else if ("remove".equals(action)) {
+			shoppingCart.removeCart(productId, cartType);
+		} else if ("update".equals(action)) {
+			Product product = (Product) productService.getProductListByMethod(4, null, productId).get(0);
+			product.setProductimglist(productImgService.getProductImgByMethod(1, product.getProductId(), "4"));
+			shoppingCart.updateCart(product, addcount, cartType);
+		}
+		request.getSession().setAttribute(Constants.SHOPPING_CART, shoppingCart);
+		return "operasuccess";
 	}
 
 }

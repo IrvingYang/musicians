@@ -142,15 +142,16 @@ public class LeaseUserController {
 
 	@RequestMapping("deleteALease.action")
 	public void deleteALease(HttpServletRequest request, String leaseId) {
+		leaseDaoService.deleteLeaseByLeaseId(leaseId);
 	}
 
 	@RequestMapping("getLeasePrice.action")
 	@ResponseBody
-	public Object getLeasePrice(HttpServletRequest request, String productTypeId) {
-		List<LeaseConfig> leaseList = leaseConfigService.getLeaseConfigList(productTypeId);
+	public Object getLeasePrice(HttpServletRequest request, String productTypeId,String productId,int promoteFlag) {
+		List<LeaseConfig> leaseList = leaseConfigService.getLeaseConfigList(productTypeId,productId,(short)promoteFlag);
 		if(leaseList==null||leaseList.isEmpty()){
 			String parentProductTypeId = productTypeService.getParentProductTypeId(productTypeId);
-			leaseList = leaseConfigService.getLeaseConfigList(parentProductTypeId);
+			leaseList = leaseConfigService.getLeaseConfigList(parentProductTypeId,productId,(short)promoteFlag);
 		}
 		return leaseList;
 	}

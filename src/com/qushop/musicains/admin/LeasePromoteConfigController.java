@@ -18,25 +18,15 @@ import com.qushop.prod.entity.ProductType;
 import com.qushop.prod.service.ProductTypeService;
 
 @Controller
-@RequestMapping("manage/leaseConfig")
-public class LeaseConfigController {
+@RequestMapping("manage/leasePromote")
+public class LeasePromoteConfigController {
 
 	@Resource
 	LeaseConfigService leaseConfigService;
 	
-	@Resource
-	ProductTypeService productTypeService;
-
-	@RequestMapping("getAllLeaseConfig.do")
-	public String getAllLeaseConfig(HttpServletRequest request) {
-		List<LeaseConfig> allLeaseConfigList = leaseConfigService.getAllLeaseConfigList();
-		request.setAttribute("leaseConfigList", allLeaseConfigList);
-		return "admin/leaseConfigList";
-	}
-	
 	@RequestMapping("getAllLeasePromote.do")
 	public String getAllLeasePromote(HttpServletRequest request) {
-		List<LeaseConfig> allLeaseConfigList = leaseConfigService.getAllLeaseConfigList();
+		List<LeaseConfig> allLeaseConfigList = leaseConfigService.getAllPromoteLeaseConfigList();
 		request.setAttribute("leaseConfigList", allLeaseConfigList);
 		return "admin/leasePromoteConfigList";
 	}
@@ -44,7 +34,7 @@ public class LeaseConfigController {
 	@RequestMapping("toAdd.do")
 	public String toAdd(HttpServletRequest request) {
 		request.setAttribute("action", "add");
-		return "admin/editLeaseConfig";
+		return "admin/editPromoteLeaseConfig";
 	}
 
 	@RequestMapping("toUpdate.do")
@@ -53,24 +43,27 @@ public class LeaseConfigController {
 		LeaseConfig leaseConfig = leaseConfigService.getLeaseConfig(lcId);
 		request.setAttribute("action", "update");
 		request.setAttribute("leaseConfig", leaseConfig);
-		return "admin/editLeaseConfig";
+		return "admin/editPromoteLeaseConfig";
 	}
 
 	@RequestMapping("add.do")
 	@ResponseBody
-	public Object add(Integer day, Double money, Double depositPercent, ProductType productType,
+	public Object add(Integer day, Double money, Double depositPercent,
 			HttpServletRequest request) {
-		String productTypeId = request.getParameter("productType.productTypeId");
+		String productId = request.getParameter("productPromote.productId");
+		String productTypeId = request.getParameter("productPromote.productTypeId");
 		LeaseConfig leaseConfig = new LeaseConfig();
 		leaseConfig.setDay(day);
 		leaseConfig.setMoney(money);
+		leaseConfig.setProductId(productId);
 		leaseConfig.setProductTypeId(productTypeId);
 		leaseConfig.setLastUpdateTime(new Date());
 		leaseConfig.setValidflag((short) 1);
+		leaseConfig.setPromoteFlag((short) 1);
 		leaseConfig.setDepositPercent(depositPercent * .01);
 		String result = leaseConfigService.saveLeaseConfig(leaseConfig);
 		if (result.equals("success")) {
-			return DwzUtil.opSuccess("操作成功", "leaseConfig");
+			return DwzUtil.opSuccess("操作成功", "leasePromote");
 		}
 		return DwzUtil.opFailed("操作失败", "");
 	}
@@ -78,34 +71,25 @@ public class LeaseConfigController {
 	@RequestMapping("update.do")
 	@ResponseBody
 	public Object update(Integer day, Double money, Double depositPercent, String lcId, HttpServletRequest request) {
-		String productTypeId = request.getParameter("productType.productTypeId");
+	//	String productId = request.getParameter("productType.productTypeId");
 		LeaseConfig leaseConfig = leaseConfigService.getLeaseConfig(lcId);
 		leaseConfig.setDay(day);
 		leaseConfig.setMoney(money);
-		leaseConfig.setProductTypeId(productTypeId);
 		leaseConfig.setLastUpdateTime(new Date());
 		leaseConfig.setDepositPercent(depositPercent * .01);
 		String result = leaseConfigService.updateLeaseConfig(leaseConfig);
 		if (result.equals("success")) {
-			return DwzUtil.opSuccess("操作成功", "leaseConfig");
+			return DwzUtil.opSuccess("操作成功", "leasePromote");
 		}
 		return DwzUtil.opFailed("操作失败", "");
 	}
-
-	@RequestMapping("getAllProductType.do")
-	public ModelAndView getAllProductType(HttpServletRequest request) {
-		List<ProductType> productTypeList = productTypeService.getProductTypeByMethod(7);
-		ModelAndView mv = new ModelAndView("admin/lookDialog/lookProductTypeForRent");
-		mv.addObject("productTypes", productTypeList);
-		return mv;
+	
+	@RequestMapping("delete.do")
+	@ResponseBody
+	public Object delete( String lcId, HttpServletRequest request) {
+		 leaseConfigService.deleteLeaseConfig(lcId);
+		return DwzUtil.opSuccess("操作成功", "leaseConfig");
 	}
 	
-	@RequestMapping("getAllProduct.do")
-	public ModelAndView getAllProduct(HttpServletRequest request) {
-		List<ProductType> productTypeList = productTypeService.getProductTypeByMethod(7);
-		ModelAndView mv = new ModelAndView("admin/lookDialog/lookProductTypeForRent");
-		mv.addObject("productTypes", productTypeList);
-		return mv;
-	}
 
 }

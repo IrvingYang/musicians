@@ -24,25 +24,23 @@ package com.qushop.alipay.config;
 public class AlipayConfig {
 	
 	//↓↓↓↓↓↓↓↓↓↓请在这里配置您的基本信息↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-	// 合作身份者ID，以2088开头由16位纯数字组成的字符串
-	public static String partner = "";
-	
-	// 收款支付宝账号
-	public static String seller_email = "acccyangjun@163.com";
-	
-	// 商户的私钥
-	public static String key = "";
+		// 合作身份者ID，以2088开头由16位纯数字组成的字符串
+		public static String partner = "2088021512725520";
+		
+		// 收款支付宝账号，一般情况下收款账号就是签约账号
+		public static String seller_email = "lachinemusic@163.com";
+		// 商户的私钥
+		public static String key = "t2m6w4p1in42szcl4r3g8l97f7u3oglj";
 
-	//↑↑↑↑↑↑↑↑↑↑请在这里配置您的基本信息↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-	
+		//↑↑↑↑↑↑↑↑↑↑请在这里配置您的基本信息↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
-	// 调试用，创建TXT日志文件夹路径
-	public static String log_path = "/";
+		// 调试用，创建TXT日志文件夹路径
+		public static String log_path = "/";
 
-	// 字符编码格式 目前支持 gbk 或 utf-8
-	public static String input_charset = "utf-8";
-	
-	// 签名方式 不需修改
-	public static String sign_type = "MD5";
+		// 字符编码格式 目前支持 gbk 或 utf-8
+		public static String input_charset = "utf-8";
+		
+		// 签名方式 不需修改
+		public static String sign_type = "MD5";
 
 }

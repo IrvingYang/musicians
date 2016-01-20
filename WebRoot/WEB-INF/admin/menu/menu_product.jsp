@@ -16,6 +16,7 @@
 			<li><a href="manage/relation/getAllRelationProduct.do" target="navTab" rel="relation">关联商品</a></li>
 			<li><a href="manage/review/getAllProductReview.do" target="navTab" rel="review">商品评价</a></li>
 			<li><a href="manage/leaseConfig/getAllLeaseConfig.do" target="navTab" rel="leaseConfig">租赁管理</a></li>
+			<li><a href="manage/leasePromote/getAllLeasePromote.do" target="navTab" rel="leasePromote">租赁促销</a></li>
 		</ul>
 	</div>
 </div>

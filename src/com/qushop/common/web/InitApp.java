@@ -32,14 +32,12 @@ public class InitApp implements BeanPostProcessor {
 			e.printStackTrace();
 		}
 		
-		Constants.SMS_USERNAME = pro.getProperty("sms_user");
-		Constants.SMS_PWD = pro.getProperty("sms_pwd");
-		AlipayConfig.partner = pro.getProperty("partner");
-		AlipayConfig.key = pro.getProperty("key");
-		Constants.SENDADDR= pro.getProperty("sendaddress");
-		Constants.SENDUSER= pro.getProperty("senduser");
-		Constants.SENDUSERPHONE= pro.getProperty("senduserphone");
-		Constants.POSTCODE= pro.getProperty("postcode");
+//		Constants.SMS_USERNAME = pro.getProperty("sms_user");
+//		Constants.SMS_PWD = pro.getProperty("sms_pwd");
+//		Constants.SENDADDR= pro.getProperty("sendaddress");
+//		Constants.SENDUSER= pro.getProperty("senduser");
+//		Constants.SENDUSERPHONE= pro.getProperty("senduserphone");
+//		Constants.POSTCODE= pro.getProperty("postcode");
 	}
 	
 	@Override

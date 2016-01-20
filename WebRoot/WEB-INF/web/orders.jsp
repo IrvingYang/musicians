@@ -28,7 +28,8 @@
 <link rel="stylesheet" href="resources/css/orders.css" />
 <link rel="stylesheet" href="resources/css/jquery.dataTables.min.css" />
 <script type="text/javascript" src="resources/js/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="resources/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript"
+	src="resources/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
 	<!-- header -->
@@ -104,6 +105,7 @@
 										<th>原价（元）</th>
 										<th>数量</th>
 										<th>实付款</th>
+										<th>付款</th>
 										<th>交易状态</th>
 										<th>评价打分</th>
 									</tr>
@@ -120,6 +122,7 @@
 										<th>押金（元）</th>
 										<th>租期（天）</th>
 										<th>总金额（押金+租金）</th>
+										<th>付款</th>
 										<th>交易状态</th>
 										<th>评价打分</th>
 									</tr>
@@ -127,12 +130,26 @@
 							</table>
 						</div>
 						<div role="tabpanel" class="tab-pane" id="messages"></div>
+						<div class="modal fade" id="myConfirmModal" tabindex="-1"
+							role="dialog" aria-labelledby="myDeleteModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-body">确定删除?</div>
+									<div class="modal-footer">
+										<a 
+											class="btn btn-danger" id="delete">删除</a>
+										<button type="button" data-dismiss="modal" class="btn">取消</button>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 
 				</div>
 			</div>
 
 		</div>
+
 	</div>
 
 	<script type="text/javascript" src="resources/js/bootstrap.js"></script>
@@ -188,12 +205,13 @@
 															"data" : "totalamt"
 														},
 														{
+															"data" : "order_list"
+														},
+														{
 															"data" : "deliverStatus"
 														}, {
 															"data" : "product"
-														}
-
-												],
+														} ],
 												"columnDefs" : [
 														{
 															"visible" : false,
@@ -214,6 +232,19 @@
 															"render" : function(
 																	data, type,
 																	full, meta) {
+																if (data.status != '03') {
+																	var text = '<form action="alipay/pay.action" method=POST><input type="hidden" id="orderId" name="orderId" value='+full.orderId+' /><input type="hidden" id="orderType" name="orderType" value='+full.orderType+' /><input type="submit" value="付款"></form>'
+																	return text;
+																} else {
+																	return '已付款'
+																}
+															}
+														},
+														{
+															"targets" : 6,
+															"render" : function(
+																	data, type,
+																	full, meta) {
 																if (data == '02'
 																		|| data == '08') {
 																	return '已完成订单'
@@ -224,11 +255,10 @@
 															}
 														},
 														{
-															"targets" : 6,
+															"targets" : 7,
 															"render" : function(
 																	data, type,
 																	full, meta) {
-
 																if (full.productReview == null) {
 																	return '<a href="javascript:;" data-toggle="modal"'+'data-target="#myModal"'+ 'data-product-id="'+data.productId+'" '+'data-product-name="'+data.productName+'" '+'data-order-id="'+full.orderId+'"'+' > 评价</a>'
 																} else {
@@ -237,7 +267,7 @@
 															}
 														} ],
 												"order" : [ [ 0, 'asc' ] ],
-												"displayLength" : 25,
+												"displayLength" : 10,
 												"drawCallback" : function(
 														settings) {
 													var api = this.api();
@@ -263,13 +293,24 @@
 																					.eq(
 																							i)
 																					.before(
-																							'<tr class="group"><td colspan="6" class="create"><span class="left"><span>订单号:</span>'
+																							'<tr class="group"><td colspan="7" class="create"><span class="left"><span>订单号:</span>'
 																									+ group.orderId
 																									+ '</span><span class="right"><span> 创建时间：</span>'
-																									+ $.datepicker.formatDate('yy-mm-dd',new Date(group.createTime))
-																									+ '</span></td></tr>');
-
+																									+ $.datepicker
+																											.formatDate(
+																													'yy-mm-dd',
+																													new Date(
+																															group.createTime))
+																									+ ' <a  href="javascript:;" data-toggle="modal"'+'data-target="#myConfirmModal"'+ 'data-order-id="'+group.orderId+'" class="btn btn-danger btn-xs"><span id="delete" class="glyphicon glyphicon-remove"/></a></span></td></tr>');
 																			last = group.orderId;
+																			
+																		}else{
+																			var cell4 = $('td',$(rows).eq(i)).eq(4);
+																			removeTopBorder(cell4);
+																			var cell5=$('td',$(rows).eq(i)).eq(5);
+																			removeTopBorder(cell5);
+																			var cell6=$('td',$(rows).eq(i)).eq(6);
+																			removeTopBorder(cell6);
 																		}
 																	});
 												}
@@ -310,6 +351,9 @@
 															"data" : "order_detail.totalamt"
 														},
 														{
+															"data" : "order_detail.order_list"
+														},
+														{
 															"data" : "order_detail.deliverStatus"
 														},
 														{
@@ -337,6 +381,19 @@
 															"render" : function(
 																	data, type,
 																	full, meta) {
+																if (data.status != '03') {
+																	var text = '<form action="alipay/pay.action" method=POST><input type="hidden" id="orderId" name="orderId" value='+data.orderId+' /><input type="hidden" id="orderType" name="orderType" value='+data.orderType+' /><input type="submit" value="付款"></form>'
+																	return text;
+																} else {
+																	return '已付款'
+																}
+															}
+														},
+														{
+															"targets" : 6,
+															"render" : function(
+																	data, type,
+																	full, meta) {
 																if (data == '02'
 																		|| data == '08') {
 																	return '已完成订单'
@@ -347,7 +404,7 @@
 															}
 														},
 														{
-															"targets" : 6,
+															"targets" : 7,
 															"render" : function(
 																	data, type,
 																	full, meta) {
@@ -386,11 +443,15 @@
 																					.eq(
 																							i)
 																					.before(
-																							'<tr class="group"><td colspan="6" class="create"><span class="left"><span>订单号:</span>'
+																							'<tr class="group"><td colspan="7" class="create"><span class="left"><span>订单号:</span>'
 																									+ group.orderId
 																									+ '</span><span class="right"><span> 创建时间：</span>'
-																									+ $.datepicker.formatDate('yy-mm-dd',new Date(group.createTime))
-																									+ '</span></td></tr>');
+																									+ $.datepicker
+																											.formatDate(
+																													'yy-mm-dd',
+																													new Date(
+																															group.createTime))
+																									+ '<a  href="javascript:;" data-toggle="modal"'+'data-target="#myConfirmModal"'+ 'data-order-id="'+group.orderId+'" class="btn btn-danger btn-xs"><span id="delete" class="glyphicon glyphicon-remove"/></a></span></td></tr>');
 
 																			last = group.orderId;
 																		}
@@ -398,6 +459,16 @@
 												}
 											});
 						});
+
+		$('#myConfirmModal').on(
+				'show.bs.modal',
+				function(e) {
+					var orderId = $(e.relatedTarget).data('order-id');
+					$(this).find('.btn-danger').attr(
+							'href',
+							'order/orderList/deleteOrder.action?orderId='
+											+ orderId);
+				});
 
 		$('#myModal').on('show.bs.modal', function(e) {
 			var productId = $(e.relatedTarget).data('product-id');
@@ -410,6 +481,12 @@
 		});
 	</script>
 	<script>
+	
+		function removeTopBorder(cell){
+			cell.css('border-top','0');
+			cell.html('');
+		}
+	
 		function detailFormatter(index, row) {
 			var html = [];
 

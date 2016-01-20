@@ -51,9 +51,9 @@ $(function(){
 <div class="pageContent" layoutH="40">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="manage/leaseConfig/toAdd.do" target="navTab" title="添加租赁设置" id="leaseConfigAdd"><span>添加</span></a></li>
-			<li><a class="edit" href="manage/leaseConfig/toUpdate.do?lcId={null}" target="navTab" title="修改租赁设置" id="leaseConfigEdit"><span>修改</span></a></li>
-			<li><a class="delete" href="manage/leasePromote/delete.do?lcId={null}" target="ajaxTodo" title="确定要删除吗?" id="leaseConfigDelete" ><span>删除</span></a></li>
+			<li><a class="add" href="manage/leasePromote/toAdd.do" target="navTab" title="添加租赁设置" id="leaseAdd"><span>添加</span></a></li>
+			<li><a class="edit" href="manage/leasePromote/toUpdate.do?lcId={null}" target="navTab" title="修改租赁设置" id="leaseEdit"><span>修改</span></a></li>
+			<li><a class="delete" href="manage/leasePromote/delete.do?lcId={null}" target="ajaxTodo" title="确定要删除吗?" id="leaseDelete" ><span>删除</span></a></li>
 			<c:if test="${sessionScope.admin.partnerflag==0}">
 				<li id="leasemine"  class="edit">显示非自营订单信息
 					<label><input type="radio" name="leasemine" value="1" checked="checked"/>是</label>
@@ -62,13 +62,14 @@ $(function(){
 			</c:if>
 		</ul>	
 	</div>
-	<table id="leaseConfigDatabases" class="display">	
+	<table id="leasePromoteDatabases" class="display">	
 <!-- 	class=""  layoutH="200"  -->
 		<thead>
 			<tr>
 				<th>租赁编号</th>
 				<th>天数</th>
 				<th>租金(原价百分比)</th>
+				<th>产品(ID)</th>
 				<th>产品类型(ID)</th>
 				<th>押金比例</th>
 				<th>更新时间</th>
@@ -81,6 +82,7 @@ $(function(){
 					<td>${lease.lcId} </td>
 					<td>${lease.day} 天 </td>
 					<td>${lease.money} %</td>
+					<td>${lease.productId}</td>
 					<td>${lease.productType.typeName} (${lease.productTypeId})</td>
 					<td>${lease.depositPercent*100} %</td>
 					<td>${lease.lastUpdateTime}</td>
@@ -92,6 +94,7 @@ $(function(){
 				<th>租赁编号</th>
 				<th>天数</th>
 				<th>租金</th>
+				<th>产品(ID)</th>
 				<th>产品类型(ID)</th>
 				<th>押金比例</th>
 				<th>更新时间</th>
@@ -99,7 +102,7 @@ $(function(){
 		</tfoot>
 	</table>
 		<script type="text/javascript">
-			 $('#leaseConfigDatabases').dataTable({
+			 $('#leasePromoteDatabases').dataTable({
 		         "sPaginationType" : "full_numbers",
 		         "iDisplayLength" : "20",
 		         "oLanguage": {
@@ -118,9 +121,9 @@ $(function(){
 		 			"sProcessing": "<img src='./loading.gif' />"
 		         }
 		     });
-			 $('#leaseConfigDatabases tbody').on( 'click', 'tr', function () {
+			 $('#leasePromoteDatabases tbody').on( 'click', 'tr', function () {
 			       $(this).toggleClass('selected');
-			       prod_selected = $("#leaseConfigDatabases").children("tbody").children(".selected");
+			       prod_selected = $("#leasePromoteDatabases").children("tbody").children(".selected");
 			        var productIds = '';
 						$.each(prod_selected, function(index, data){
 							if(index==0){
@@ -129,9 +132,10 @@ $(function(){
 								productIds+="&lcId="+$(data).attr("rel");
 							}
 						});
-					$("#leaseConfigAdd").attr("href","manage/leaseConfig/toAdd.do");
-					$("#leaseConfigEdit").attr("href","manage/leaseConfig/toUpdate.do?lcId="+(productIds==''?"{null}": productIds));
-					$("#leaseConfigDelete").attr("href","manage/leasePromote/delete.do?lcId="+(productIds==''?"{null}":productIds));
+												
+					$("#leaseAdd").attr("href","manage/leasePromote/toAdd.do");
+					$("#leaseEdit").attr("href","manage/leasePromote/toUpdate.do?lcId="+(productIds==""?"{null}":productIds));
+					$("#leaseDelete").attr("href","manage/leasePromote/delete.do?lcId="+(productIds==""?"{null}":productIds));
 			  } );
 		</script>
 </div>

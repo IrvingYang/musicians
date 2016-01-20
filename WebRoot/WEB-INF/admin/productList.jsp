@@ -95,7 +95,7 @@ var prod_oTable;
 						<td>${fn:substring(product.salesrange,0,1) eq '1'?'商城':''}&nbsp;
 						${fn:substring(product.salesrange,1,2) eq '1'?'团购':''}&nbsp;
 						${fn:substring(product.salesrange,2,3) eq '1'?'大宗交易':''}&nbsp;</td>
-						<td>${product.city.cityName}</td>
+						<td>${product.country.countryName}</td>
 						<td>${product.onTime}</td>
 						<td>${product.offTime}</td>
 					</tr>

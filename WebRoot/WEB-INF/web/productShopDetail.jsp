@@ -34,11 +34,11 @@
 		<div class="row">
 			<div class="col-sm-1 small-icon">
 				<ul class="nav  nav-sidebar">
-					<c:forEach begin="0" end="${fn:length(shop.product.productimglist)/4}" varStatus="status">
+					<c:forEach begin="0" end="${fn:length(shop.product.productimglist)/3-1}" varStatus="status">
 						<li data-target="#myCarousel1" data-slide-to="${status.index}" class="${status.index == 0?'active':'item'}">
-							<div class="">
+							<div class="" id="size${shop.product.productimglist.size()}">
 								<a data-target="#myCarousel1" data-slide-to="${status.index}"><img class="img-responsive"
-									src="${shop.product.productimglist[status.index*4].path }"></a>
+									src="${shop.product.productimglist[status.index*3].path }"></a>
 							</div>
 						</li>
 					</c:forEach>

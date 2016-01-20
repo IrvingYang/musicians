@@ -44,7 +44,6 @@ public class CommonDao<T> // extends HibernateDaoSupport{
 	 */
 	public Serializable insert(final Object obj) {
 		Serializable s = getSession().save(obj);
-		this.getSession().flush();
 		return s;
 	}
 
@@ -54,9 +53,7 @@ public class CommonDao<T> // extends HibernateDaoSupport{
 	 * @param obj
 	 */
 	public void update(final Object obj) {
-
 		this.getSession().update(obj);
-		this.getSession().flush();
 	}
 
 	/**
@@ -67,7 +64,6 @@ public class CommonDao<T> // extends HibernateDaoSupport{
 	 */
 	public void delete(final Object obj) {
 		this.getSession().delete(obj);
-		this.getSession().flush();
 	}
 
 	/**
@@ -80,7 +76,6 @@ public class CommonDao<T> // extends HibernateDaoSupport{
 	public void delete(final Class<T> cls, final Integer id) {
 		T t = (T) this.getSession().get(cls, id);
 		this.getSession().delete(t);
-		this.getSession().flush();
 	}
 
 	/**
@@ -258,8 +253,6 @@ public class CommonDao<T> // extends HibernateDaoSupport{
 	 * @return
 	 */
 	public Boolean executeBySql(final String sql, Object... params) {
-
-		try {
 			SQLQuery sqlQuery = this.getSession().createSQLQuery(sql);
 			if (params != null) {
 				for (int i = 0; i < params.length; i++) {
@@ -268,11 +261,6 @@ public class CommonDao<T> // extends HibernateDaoSupport{
 			}
 			int count = sqlQuery.executeUpdate();
 			return count > 0 ? new Boolean(true) : new Boolean(false);
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException();
-		}
-
 	}
 
 	public List<T> findBySql(String sql, Class<T> cls, Object... params) {

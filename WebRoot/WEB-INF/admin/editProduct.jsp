@@ -126,12 +126,20 @@
 						<a class="btnLook" href="manage/brand_vendor/getAllbrand_vendor.do?action=dialog" lookupGroup="vendor">查找选择商品品牌</a>
 				</dd>
 			</dl>
-			<dl>
+			<%-- <dl>
 				<dt>商品产地：</dt>
 				<dd>
 					<input type="hidden" name="city.cityId" value="${product.city.cityId}"/>
 					<input type="text" class="required" name="city.cityName" value="${product.city.cityName}" readonly="readonly"  lookupGroup="city" /> 
 						<a class="btnLook" href="manage/city/getAllCity.do?action=dialog" lookupGroup="city">查找选择商品产地</a>
+				</dd>
+			</dl> --%>
+			<dl>
+				<dt>商品产地：</dt>
+				<dd>
+					<input type="hidden" name="country.countryId" value="${product.country.countryId}"/>
+					<input type="text" class="required" name="country.countryName" value="${product.country.countryName}" readonly="readonly"  lookupGroup="country" /> 
+						<a class="btnLook" href="manage/country/getCountryList.do?action=dialog" lookupGroup="country">查找选择商品产地</a>
 				</dd>
 			</dl>
 			<dl>

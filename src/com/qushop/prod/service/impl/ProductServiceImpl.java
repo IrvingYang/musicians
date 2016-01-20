@@ -17,6 +17,7 @@ import com.qushop.common.util.ImgCompress;
 import com.qushop.common.util.PublicUtil;
 import com.qushop.dict.service.Brand_vendorService;
 import com.qushop.dict.service.CityService;
+import com.qushop.dict.service.CountryService;
 import com.qushop.prod.entity.Product;
 import com.qushop.prod.entity.ProductImg;
 import com.qushop.prod.entity.ProductTrack;
@@ -53,7 +54,7 @@ public class ProductServiceImpl implements ProductService {
 	Brand_vendorService brandservice;
 	
 	@Resource
-	CityService cityService;
+	CountryService countryService;
 	
 	@Resource
 	ProductTypeService productTypeService;
@@ -92,7 +93,8 @@ public class ProductServiceImpl implements ProductService {
 					for (Product product : productsList) {
 						product.setProvider(providerService.getProviderByMethod(5, null, product.getProviderId()).get(0));
 						product.setBrand_vendor(brandservice.getVendorByMethod(4, product.getBrandid()).get(0));
-						product.setCity(cityService.getCityByMethod(4, product.getProductCityId()).get(0));
+						//product.setCity(cityService.getCityByMethod(4, product.getProductCityId()).get(0));
+						product.setCountry(countryService.getCountriesById(new Integer(product.getProductCountryId())));
 						product.setProduct_type(productTypeService.getProductTypeByMethod(8, product.getProductTypeId()).get(0));
 					}
 				}
@@ -105,7 +107,8 @@ public class ProductServiceImpl implements ProductService {
 					for (Product product : productsList) {
 						product.setProvider(providerService.getProviderByMethod(5,null, product.getProviderId()).get(0));
 						product.setBrand_vendor(brandservice.getVendorByMethod(4, product.getBrandid()).get(0));
-						product.setCity(cityService.getCityByMethod(4, product.getProductCityId()).get(0));
+						//product.setCity(cityService.getCityByMethod(4, product.getProductCityId()).get(0));
+						product.setCountry(countryService.getCountriesById(new Integer(product.getProductCountryId())));
 						product.setProduct_type(productTypeService.getProductTypeByMethod(8, product.getProductTypeId()).get(0));
 						List<ProductTrack> productTracksList = productTrackService.getProductTrackByMethod(1, null, product.getProductId());
 						List<ProductImg> productImgsList = productImgService.getProductImgByMethod(4, product.getProductId());
@@ -173,7 +176,8 @@ public class ProductServiceImpl implements ProductService {
 		for (Product product : productsList) {
 			product.setProvider(providerService.getProviderByMethod(1,null, product.getProviderId()).get(0));
 			product.setBrand_vendor(brandservice.getVendorByMethod(4, product.getBrandid()).get(0));
-			product.setCity(cityService.getCityByMethod(4, product.getProductCityId()).get(0));
+			//product.setCity(cityService.getCityByMethod(4, product.getProductCityId()).get(0));
+			product.setCountry(countryService.getCountriesById( new Integer(product.getProductCountryId())));
 			product.setProduct_type(productTypeService.getProductTypeByMethod(8, product.getProductTypeId()).get(0));
 		}
 		

@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 </style>
 <div class="pageContent" id="orderDetail" style="width:1060px; height:auto;" layoutH="33">
-	<h3>彝家优品-购物清单</h3>
+	<h3>购物清单</h3>
 	<div style="float: left; margin:10px 40px 20px 0px; width:30%;">订单编号：${orderList[0].orderId}</div>
 	<fmt:formatDate value="${orderList[0].createTime}" pattern="yyyy-MM-dd HH:mm:ss" var="createtime"/>
 	<div style="float: left; margin:10px 40px 20px 0px; width:30%;">下单时间：${createtime}</div>

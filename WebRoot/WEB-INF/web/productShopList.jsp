@@ -23,7 +23,6 @@
 <link rel="stylesheet" href="resources/css/custom.css" />
 <link rel="stylesheet" href="resources/css/product-list.css" />
 <link rel="stylesheet" href="resources/css/dropdown.css" />
-<link rel="stylesheet" href="resources/css/page-style.css" />
 
 <script src="resources/js/jquery-1.11.3.min.js"></script>
 </head>
@@ -175,7 +174,7 @@
 							<div class="productTag">
 								<strong> <c:choose>
 										<c:when test="${shop.promoteflag==1}">促销商品</c:when>
-										<c:when test="${shop.promoteflag==0}">降价商品</c:when>
+										<c:when test="${shop.promoteflag==0}">最新商品</c:when>
 									</c:choose>
 								</strong>
 							</div>
@@ -220,11 +219,7 @@
 						</select>
 						</span>
 					</div> -->
-					<!-- <div id="pageDiv" class="paging">
-						<a href="javascript">上一页</a> <a class="active" href="javascript">1</a> <a href="javascript">2</a> <a href="javascript">3</a> <a
-							href="javascript">4</a> <a href="javascript">5</a> <a href="javascript">下一页</a>
-					</div> -->
-					<ul id="pagination-demo" class="pagination-sm"></ul>
+					<ul id="pagination-demo" class="pull-right"></ul>
 				</div>
 			</div>
 		</div>
@@ -252,9 +247,9 @@
 	</form>
 
 	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="resources/js/jquery.twbsPagination.min.js"></script>
 	<script src="resources/js/html5shiv.min.js"></script>
 	<script src="resources/js/respond.min.js"></script>
-	<script src="resources/js/jquery.twbsPagination.min.js"></script>
 
 
 

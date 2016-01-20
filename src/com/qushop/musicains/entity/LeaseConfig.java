@@ -36,14 +36,32 @@ public class LeaseConfig implements Serializable {
 	private int day;//天数
 	private Double money;//金额
 	private String productTypeId;//类型ID
+	private String productId;//类型ID
 	private Date lastUpdateTime;
 	private Short validflag;
 	private double depositPercent;
+	private short promoteFlag;
 	
 	@Transient
 	ProductType productType;
 	
 	
+	public void setProductId(String productId) {
+		this.productId = productId;
+	}
+	
+	public String getProductId() {
+		return productId;
+	}
+	
+	
+	public void setPromoteFlag(short promoteFlag) {
+		this.promoteFlag = promoteFlag;
+	}
+	
+	public short getPromoteFlag() {
+		return promoteFlag;
+	}
 	
 	public void setDepositPercent(double depositPercent) {
 		this.depositPercent = depositPercent;

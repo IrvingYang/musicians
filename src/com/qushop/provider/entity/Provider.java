@@ -21,6 +21,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.qushop.dict.entity.City;
+import com.qushop.dict.entity.Country;
 import com.qushop.dict.entity.Location;
 import com.qushop.prod.entity.Product;
 
@@ -68,7 +69,9 @@ public class Provider implements Serializable {
 	private City city;
 	@Transient
 	private List<Product> productList;
-
+	@Transient
+	private Country country;
+	
 	public List<Product> getProductList() {
 		return productList;
 	}

@@ -97,7 +97,7 @@ public class Order_listServiceImpl implements Order_listService {
 	LeaseDaoService leaseDaoService;
 
 	@Override
-	public void addOrder(List<ShopTemp> shopsList, short orderType, String userId, String userAddressId,
+	public Order_list addOrder(List<ShopTemp> shopsList, short orderType, String userId, String userAddressId,
 			Integer payofflineflag, HttpServletRequest request) {
 
 		Order_list order_list = new Order_list();
@@ -338,6 +338,8 @@ public class Order_listServiceImpl implements Order_listService {
 			break;
 		}
 
+		return order_list;
+
 	}
 
 	public Order_list addLeaseOrder(List<ShopTemp> shopTempList, short orderType, String userId, String userAddressId,
@@ -379,8 +381,8 @@ public class Order_listServiceImpl implements Order_listService {
 			order_list.setProviderid(shopTemp.getProviderId());
 			Order_detail order_detail = new Order_detail();
 			order_detail.setOrderId(order_list.getOrderId());
-			double ayajin = shopTemp.getProduct().getShopPrice()*shopTemp.getLeaseConfig().getDepositPercent();
-			double totalamt = leaseBusinessService.calculateTotalRentPrice(shopTemp.getProduct(),shopTemp.getCount(),
+			double ayajin = shopTemp.getProduct().getShopPrice() * shopTemp.getLeaseConfig().getDepositPercent();
+			double totalamt = leaseBusinessService.calculateTotalRentPrice(shopTemp.getProduct(), shopTemp.getCount(),
 					shopTemp.getLeaseConfig());
 			order_list.setTotalamt(order_list.getTotalamt() + totalamt);
 			order_detail.setTotalamt(totalamt);
@@ -661,16 +663,11 @@ public class Order_listServiceImpl implements Order_listService {
 
 	@Override
 	public boolean deleteOrderList(String orderId, HttpServletRequest request) {
-
 		boolean bool = false;
-		try {
-			String sql = "update tb_order_list set validflag=0,lastUpdateTime=?,operid=? where orderId in (" + orderId
+			String sql = "update tb_order_list set validflag=0,lastUpdateTime=? where orderId in (" + orderId
 					+ ")";
 			detailService.deleteOrderDetail(orderId);
-			bool = detailDao.executeBySql(sql, new Date(), PublicUtil.getOper(request).getOperId());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			bool = detailDao.executeBySql(sql, new Date());
 		return bool;
 	}
 
@@ -692,17 +689,12 @@ public class Order_listServiceImpl implements Order_listService {
 				groupBuyService.updateStockNumber(order_detail.getProductId(), count);
 			}
 		}
-		try {
 			boolean bool = commonDao.executeBySql("UPDATE tb_order_list SET STATUS = '02' WHERE orderId IN ('" + orderId
 					+ "') and STATUS ='01' and validflag=1", null);
 			if (bool) {
 				return "success";
 			}
 			return "failed";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return e.getMessage();
-		}
 	}
 
 	@Override
@@ -722,25 +714,19 @@ public class Order_listServiceImpl implements Order_listService {
 
 	@Override
 	public String orderPayment(String orderId, int orderType) {
-
-		try {
-			boolean bool = false;
-			if (orderType == 1) {
-				bool = commonDao.executeBySql("UPDATE tb_order_list SET STATUS = '03' WHERE orderId ='" + orderId
-						+ "' and STATUS ='01' and validflag=1", null);
-			} else {
-				/* 如果开放立刻开团模式,状态需要改为05 */
-				bool = commonDao.executeBySql("UPDATE tb_order_list SET STATUS = '04' WHERE orderId ='" + orderId
-						+ "' and STATUS ='01' and validflag=1", null);
-			}
-			if (bool) {
-				return "success";
-			}
-			return "failed";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return e.getMessage();
+		boolean bool = false;
+		if (orderType == 1) {
+			bool = commonDao.executeBySql("UPDATE tb_order_list SET status = '03' WHERE orderId ='" + orderId
+					+ "' and status ='01' and validflag=1");
+		} else {
+			/* 如果开放立刻开团模式,状态需要改为05 */
+			bool = commonDao.executeBySql("UPDATE tb_order_list SET status = '04' WHERE orderId ='" + orderId
+					+ "' and status ='01' and validflag=1");
 		}
+		if (bool) {
+			return "success";
+		}
+		return "failed";
 	}
 
 	@Override
@@ -951,7 +937,6 @@ public class Order_listServiceImpl implements Order_listService {
 
 		return order_details;
 	}
-
 
 	public Order_list getOrderListByOrderId(String orderId) {
 		String hql = "from Order_list where orderId=? and validflag=1 order by createTime desc";

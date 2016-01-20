@@ -120,5 +120,11 @@ public class LeaseDaoServiceImpl implements LeaseDaoService {
 		}
 		return leaseList.get(0);
 	}
+
+	@Override
+	public void deleteLeaseByOrderId(String orderId) {
+		String sql = "update tb_lease set validflag=0,lastUpdateTime=? where orderId =" + orderId;
+		 commonDao.executeBySql(sql, new Date());
+	}
 	
 }
